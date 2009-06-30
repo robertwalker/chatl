@@ -7,6 +7,7 @@ RAILS_GEM_VERSION = '2.3.2' unless defined? RAILS_GEM_VERSION
 require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
+  config.gem 'rubyist-aasm', :lib => 'aasm', :version => '>=2.0.5'
   config.gem 'rspec', :lib => false, :version => '>=1.2.7'
   config.gem 'rspec-rails', :lib => false, :version => '>=1.2.7.1'
   config.gem 'cucumber', :lib => false, :version => '>=0.3.11'
@@ -34,6 +35,7 @@ Rails::Initializer.run do |config|
 
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
+  config.active_record.observers = :user_observer
 
   # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
   # Run "rake -D time" for a list of tasks for finding time zone names.
