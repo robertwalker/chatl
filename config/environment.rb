@@ -7,11 +7,6 @@ RAILS_GEM_VERSION = '2.3.2' unless defined? RAILS_GEM_VERSION
 require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
-  config.gem 'rubyist-aasm', :lib => 'aasm', :version => '>=2.0.5'
-  config.gem 'rspec', :lib => false, :version => '>=1.2.7'
-  config.gem 'rspec-rails', :lib => false, :version => '>=1.2.7.1'
-  config.gem 'cucumber', :lib => false, :version => '>=0.3.11'
-  config.gem 'webrat', :lib => false, :version => '>=0.4.4'
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
   # -- all .rb files in that directory are automatically loaded.
@@ -24,6 +19,7 @@ Rails::Initializer.run do |config|
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
+  config.gem 'rubyist-aasm', :lib => 'aasm', :version => '>=2.0.5'
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
