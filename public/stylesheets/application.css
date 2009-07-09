@@ -1,0 +1,121 @@
+body {
+	font: small "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	background: #4d2615;
+}
+
+#banner {
+	position: relative;
+	width: 800px;
+	margin: 0 auto;
+	padding-bottom: 6px;
+}
+
+#top_logo {
+}
+
+#member_access {
+	color: #ddd;
+	float: right;
+}
+
+#member_access a,
+#member_access a:visited {
+	color: #ddd;
+	text-decoration: none;
+}
+
+#member_access a:hover {
+	color: #ffd6c2;
+	text-decoration: underline;
+}
+
+.pipe_separator {
+	margin: 0 8px;
+}
+
+#tab_bar {
+	position: absolute;
+	right: 8px;
+	bottom: 0;
+}
+
+.tab {
+	color: #ccc;
+	background-color: #2d190f;
+	margin-left: 3px;
+	padding: 2px 10px;
+	height: 16px;
+	border-left: 1px solid #555;
+	border-top: 1px solid #555;
+	border-right: 1px solid #555;
+	cursor: pointer;
+	float: left;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	font: small "Lucida Grande", Lucida, Verdana, sans-serif;
+}
+
+.tab:hover {
+	background-color: #999;
+}
+
+.selected_tab {
+	color: #4d2615;
+	background-color: #ffd6c2;
+	border-left: 1px solid #555;
+	border-top: 1px solid #555;
+	border-right: 1px solid #555;
+}
+
+#cocoa_mug {
+	float: right;
+	margin-top: 12px;
+	margin-right: 50px;
+}
+
+#page_content {
+	width: 800px;
+	margin: 0 auto;
+	min-height: 700px;
+	background-color: #fff0e6;
+	border: 1px solid #333;
+}
+
+#sidebar {
+	width: 200px;
+	height: 684px;
+	background-color: #ffd6c2;
+	margin-left: 8px;
+	padding: 8px;
+	border-left: 1px solid gray;
+	float: right;
+}
+
+#blog_post_container {
+	padding: 8px;
+}
+
+.post_title {
+	color: #5d2a11;
+	margin-top: 0;
+	margin-bottom: 4px;
+	padding-bottom: 0.25em;
+	border-bottom: 1px solid #2d190f;
+	font: italic x-large Georgia, "Times New Roman", Times, serif;
+}
+
+.post_date_line {
+	margin-bottom: 1em;
+	font: italic 10pt "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+}
+
+.post_date_line img {
+	vertical-align: bottom;
+}
+
+.post_content {
+	padding-right: 220px;
+	color: #2d190f;
+}
