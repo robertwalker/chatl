@@ -79,22 +79,18 @@ body {
 #page_content {
 	width: 800px;
 	margin: 0 auto;
-	min-height: 700px;
-	background-color: #fff0e6;
 	border: 1px solid #333;
+	background: #fff0e6 url(../images/sidebar_background.png) repeat-y right;
 }
 
 #sidebar {
 	width: 200px;
-	height: 684px;
-	background-color: #ffd6c2;
-	margin-left: 8px;
 	padding: 8px;
-	border-left: 1px solid gray;
 	float: right;
 }
 
 #blog_post_container {
+	width: 568px;
 	padding: 8px;
 }
 
@@ -117,7 +113,6 @@ body {
 }
 
 .post_content {
-	padding-right: 220px;
 	color: #2d190f;
 }
 
