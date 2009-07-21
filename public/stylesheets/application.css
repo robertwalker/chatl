@@ -76,7 +76,7 @@ body {
 	margin-right: 50px;
 }
 
-#page_content {
+#page_wrapper {
 	width: 800px;
 	margin: 0 auto;
 	border: 1px solid #333;
@@ -89,7 +89,7 @@ body {
 	float: right;
 }
 
-#blog_post_container {
+#main_content {
 	width: 568px;
 	padding: 8px;
 }

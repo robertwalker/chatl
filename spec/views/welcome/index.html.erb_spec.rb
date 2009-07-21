@@ -9,8 +9,8 @@ describe "/welcome/index" do
     response.should have_tag('div#sidebar')
   end
   
-  it "should contain the 'blog_post_container' div" do
-    response.should have_tag('div#blog_post_container') do
+  it "should contain the 'main_content' div" do
+    response.should have_tag('div#main_content') do
       with_tag('div.post_content') do
         with_tag('h2.post_title')
         with_tag('div.post_date_line')
