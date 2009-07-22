@@ -27,7 +27,14 @@
       </div>
     </div>
     <div id="page_wrapper">
-      <%= yield %>
+      <div id="sidebar">
+        <div>
+          This is a sidebar. See how it gleams. This you can imagine, only in your dreams.
+        </div>
+      </div>
+      <div id="main_content">
+        <%= yield %>
+      </div>
     </div>
   </body>
 </html>

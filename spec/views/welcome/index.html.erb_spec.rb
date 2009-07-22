@@ -5,17 +5,11 @@ describe "/welcome/index" do
     render 'welcome/index'
   end
 
-  it "should contain the 'sidebar' div" do
-    response.should have_tag('div#sidebar')
-  end
-  
-  it "should contain the 'main_content' div" do
-    response.should have_tag('div#main_content') do
-      with_tag('div.post_content') do
-        with_tag('h2.post_title')
-        with_tag('div.post_date_line')
-        with_tag('div.post_narrative')
-      end
+  it "should contain at least one 'post'" do
+    response.should have_tag('div.post_content') do
+      with_tag('h2.post_title')
+      with_tag('div.post_date_line')
+      with_tag('div.post_narrative')
     end
   end
 end
