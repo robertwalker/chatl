@@ -5,17 +5,15 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>
       Cocoaheads Atlanta - Atlanta's Premier Mac OS X Developer Group
-    </title>
-    <%= stylesheet_link_tag 'reset', :cache => true %>
-    <%= stylesheet_link_tag 'base', :cache => true %>
-    <%= stylesheet_link_tag 'application', :cache => true %>
+    </title><%= stylesheet_link_tag 'reset', :cache => true %><%= stylesheet_link_tag 'base', :cache => true %><%= stylesheet_link_tag 'application', :cache => true %>
   </head>
   <body>
     <div id="banner">
       <%= link_to image_tag("chatl-logo.png", :id => "top_log", :alt => "Cocoaheads Atlanta Logo"), "/" %>
-      <div id="member_access">
-        <%= link_to "Register", signup_path %><span class="pipe_separator">|</span><%= link_to "Sign-in", login_path %>
-      </div>
+      <%= render :partial => 'shared/user_bar' %>
+      <!-- <div id="member_access">
+      <%= link_to "Register", signup_path %><span class="pipe_separator">|</span><%= link_to "Sign-in", login_path %>
+    </div> -->
       <div id="tab_bar">
         <div id="presentations_tab" class="tab selected_tab">
           Presentations
@@ -29,11 +27,7 @@
       </div>
     </div>
     <div id="page_wrapper">
-      <div id="sidebar">
-        <div>
-          This is a sidebar. See how it gleams. This you can imagine, only in your dreams.
-        </div>
-      </div>
+      <%= render :partial => 'shared/sidebar' %>
       <div id="main_content">
         <%= yield %>
       </div>

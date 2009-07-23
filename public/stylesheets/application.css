@@ -1,5 +1,5 @@
 html {
-	background: #4d2615;
+	background: #210e00;
 }
 
 body {
@@ -23,18 +23,18 @@ h1 {
 	
 }
 
-#member_access {
+#user_bar_action {
 	color: #ddd;
 	float: right;
 }
 
-#member_access a,
-#member_access a:visited {
+#user_bar_action a,
+#user_bar_action a:visited {
 	color: #ddd;
 	text-decoration: none;
 }
 
-#member_access a:hover {
+#user_bar_action a:hover {
 	color: #ffd6c2;
 	text-decoration: underline;
 }
@@ -51,7 +51,7 @@ h1 {
 
 .tab {
 	color: #ccc;
-	background-color: #2d190f;
+	background-color: #5a3214;
 	margin-left: 3px;
 	padding: 2px 10px;
 	height: 16px;
