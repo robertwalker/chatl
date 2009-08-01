@@ -9,7 +9,7 @@
   </head>
   <body>
     <div id="banner">
-      <%= link_to image_tag("chatl-logo.png", :id => "top_log", :alt => "Cocoaheads Atlanta Logo"), "/" %>
+      <%= link_to image_tag("chatl_logo.jpg", :id => "chatl_logo", :alt => "Cocoaheads Atlanta Logo"), "/" %>
       <%= render :partial => 'shared/user_bar' %>
       <div id="tab_bar">
         <div id="presentations_tab" class="tab selected_tab">
@@ -28,6 +28,10 @@
       <div id="main_content">
         <%= yield %>
       </div>
+    </div>
+    <div id="footer">
+      This is a footer. It sits down below.<br />
+      Nobody cares, but it&apos;s here for the show!
     </div>
   </body>
 </html>

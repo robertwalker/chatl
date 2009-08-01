@@ -1,9 +1,6 @@
-html {
-	background: #210e00;
-}
-
 body {
 	font: small "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	margin: 0;
 }
 
 h1 {
@@ -14,9 +11,9 @@ h1 {
 
 #banner {
 	position: relative;
-	width: 800px;
-	margin: 0 auto;
-	padding-bottom: 6px;
+	padding: 8px 8px 0 8px;
+	border-bottom: 1px solid gray;
+	background-image: url(../images/brown_background_tile.jpg);
 }
 
 #top_logo {
@@ -45,13 +42,14 @@ h1 {
 
 #tab_bar {
 	position: absolute;
-	right: 8px;
+	left: 106px;
 	bottom: 0;
 }
 
 .tab {
-	color: #ccc;
-	background-color: #5a3214;
+	font-weight: bold;
+	color: #5d2a11;
+	background-color: white;
 	margin-left: 3px;
 	padding: 2px 10px;
 	height: 16px;
@@ -64,32 +62,24 @@ h1 {
 	-webkit-border-top-right-radius: 6px;
 	-moz-border-radius-topleft: 6px;
 	-moz-border-radius-topright: 6px;
-	font: small "Lucida Grande", Lucida, Verdana, sans-serif;
 }
 
 .tab:hover {
 	color: #4d2615;
-	background-color: #ffd6c2;
+	background-color: #ffc47e;
 }
 
 .selected_tab {
 	color: #4d2615;
-	background-color: #ffd6c2;
+	background-color: #ffab59;
 	border-left: 1px solid #555;
 	border-top: 1px solid #555;
 	border-right: 1px solid #555;
 }
 
-#cocoa_mug {
-	float: right;
-	margin-top: 12px;
-	margin-right: 50px;
-}
-
 #page_wrapper {
-	width: 800px;
-	margin: 0 auto;
-	border: 1px solid #333;
+	min-width: 800px;
+	border-bottom: 1px solid gray;
 	background: #fff0e6 url(../images/sidebar_background.png) repeat-y right;
 }
 
@@ -100,7 +90,7 @@ h1 {
 }
 
 #main_content {
-	width: 568px;
+	margin-right: 215px;
 	padding: 8px;
 }
 
@@ -124,6 +114,12 @@ h1 {
 
 .post_content {
 	color: #2d190f;
+}
+
+#footer {
+	color: gray;
+	text-align: center;
+	padding: 8px;
 }
 
 /* @group Form Errors */

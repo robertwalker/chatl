@@ -22,7 +22,11 @@ describe "/layouts/application" do
   end
 
   it "should contain the banner div" do
-    response.should have_tag('div#banner')
+    response.should have_tag('div#banner') do
+      with_tag('a[href=?]', "/") do
+        with_tag('img[id=?][src=?]', "chatl_logo", %r{/images/chatl_logo.jpg.*})
+      end
+    end
   end
 
   it "should contain the 'sidebar' div" do
@@ -31,5 +35,9 @@ describe "/layouts/application" do
 
   it "should contain the 'main_content' div" do
     response.should have_tag('div#main_content')
+  end
+  
+  it "should contain the 'footer' div" do
+    response.should have_tag('div#footer')
   end
 end
