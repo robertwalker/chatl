@@ -1,12 +1,25 @@
+html {
+	background-color: #eee;
+}
+
 body {
-	font: small "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
-	margin: 0;
+	font: small Georgia, "Times New Roman", Times, serif;
+	margin: 0 0 1em 0;
 }
 
 h1 {
 	color: #5d2a11;
 	margin-top: 0;
 	margin-bottom: 0.5em;
+}
+
+#page_wrapper {
+	width: 800px;
+	margin: 0 auto;
+	border-left: 1px solid #552a0d;
+	border-right: 1px solid #552a0d;
+	border-bottom: 1px solid #552a0d;
+	background: #fff0e6 url(../images/sidebar_background.png) repeat-y right;
 }
 
 #banner {
@@ -47,15 +60,13 @@ h1 {
 }
 
 .tab {
+	font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
 	font-weight: bold;
 	color: #5d2a11;
 	background-color: white;
 	margin-left: 3px;
 	padding: 2px 10px;
 	height: 16px;
-	border-left: 1px solid #555;
-	border-top: 1px solid #555;
-	border-right: 1px solid #555;
 	cursor: pointer;
 	float: left;
 	-webkit-border-top-left-radius: 6px;
@@ -72,15 +83,6 @@ h1 {
 .selected_tab {
 	color: #4d2615;
 	background-color: #ffab59;
-	border-left: 1px solid #555;
-	border-top: 1px solid #555;
-	border-right: 1px solid #555;
-}
-
-#page_wrapper {
-	min-width: 800px;
-	border-bottom: 1px solid gray;
-	background: #fff0e6 url(../images/sidebar_background.png) repeat-y right;
 }
 
 #sidebar {
