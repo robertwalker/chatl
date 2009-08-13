@@ -24,12 +24,12 @@ h1 {
 }
 
 #banner {
-	position: relative;
+	position: absolute;
 	width: 760px;
 	top: -20px;
-	margin: auto;
+	left: 11px;
 	padding: 8px 8px 0 8px;
-	border-bottom: 1px solid gray;
+	border: 1px solid #552a0d;
 	background-image: url(../images/brown_background_tile.jpg);
 	-webkit-border-radius: 15px;
 	-moz-border-radius: 15px;
@@ -93,13 +93,15 @@ h1 {
 
 #sidebar {
 	width: 200px;
+	margin-top: 80px;
 	padding: 8px;
 	float: right;
 }
 
 #main_content {
+	margin-top: 80px;
 	margin-right: 215px;
-	padding: 8px;
+	padding: 12px;
 }
 
 .post_title {
