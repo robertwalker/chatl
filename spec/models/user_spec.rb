@@ -276,6 +276,18 @@ describe User do
       @user.should be_pending
     end
   end
+  
+  describe "using gravtastic" do
+    fixtures :users
+    
+    before do
+      @user = users(:quentin)
+    end
+    
+    it 'responds to gravatar_url' do
+      @user.should respond_to("gravatar_url")
+    end
+  end
 
 protected
   def create_user(options = {})
