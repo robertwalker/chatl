@@ -1,10 +1,10 @@
 html {
-	background-color: #eee;
+	background: url(../images/canvas.jpg) repeat;
 }
 
 body {
 	font: small Georgia, "Times New Roman", Times, serif;
-	margin: 0 0 1em 0;
+	margin: 2em 0;
 }
 
 h1 {
@@ -14,19 +14,25 @@ h1 {
 }
 
 #page_wrapper {
+	position: relative;
 	width: 800px;
 	margin: 0 auto;
-	border-left: 1px solid #552a0d;
-	border-right: 1px solid #552a0d;
-	border-bottom: 1px solid #552a0d;
-	background: #fff0e6 url(../images/sidebar_background.png) repeat-y right;
+	border: 1px solid #552a0d;
+	background: white url(../images/sidebar_background.jpg) repeat-y right;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
 }
 
 #banner {
 	position: relative;
+	width: 760px;
+	top: -20px;
+	margin: auto;
 	padding: 8px 8px 0 8px;
 	border-bottom: 1px solid gray;
 	background-image: url(../images/brown_background_tile.jpg);
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
 }
 
 #top_logo {
@@ -119,7 +125,7 @@ h1 {
 }
 
 #footer {
-	color: gray;
+	color: #333;
 	text-align: center;
 	padding: 8px;
 }
