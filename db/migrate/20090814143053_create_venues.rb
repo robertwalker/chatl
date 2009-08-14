@@ -3,8 +3,8 @@ class CreateVenues < ActiveRecord::Migration
     create_table :venues do |t|
       t.string :name
       t.string :street_address
-      t.string :city
-      t.string :state
+      t.string :city, :default => "Atlanta"
+      t.string :state, :default => "GA"
       t.string :zip
       t.integer :seating_capacity
       t.text :notes
