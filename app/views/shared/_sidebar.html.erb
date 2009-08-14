@@ -1,6 +1,11 @@
 <div id="sidebar">
-  <div>
+  <p>
     This is a sidebar. See how it gleams. This you can imagine, only in your dreams.
-  </div>
-  <p><%= image_tag current_user.gravatar_url if current_user %></p>
+  </p>
+  <% if current_user -%>
+  <p>
+    <%= image_tag current_user.gravatar_url, :size => "48x48" %> 
+    <%= "Administrator" if current_user.admin? %>
+  </p>
+  <% end -%>
 </div>
