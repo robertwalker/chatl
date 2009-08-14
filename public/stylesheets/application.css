@@ -130,6 +130,7 @@ h1 {
 	color: #333;
 	text-align: center;
 	padding: 8px;
+	clear: both;
 }
 
 /* @group Form Errors */
