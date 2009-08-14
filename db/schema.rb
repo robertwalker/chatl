@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090814044258) do
+ActiveRecord::Schema.define(:version => 20090814143053) do
 
   create_table "roles", :force => true do |t|
     t.string "name"
@@ -40,5 +40,17 @@ ActiveRecord::Schema.define(:version => 20090814044258) do
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true
+
+  create_table "venues", :force => true do |t|
+    t.string   "name"
+    t.string   "street_address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.integer  "seating_capacity"
+    t.text     "notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
