@@ -21,11 +21,28 @@ describe "/layouts/application" do
     response.should have_tag('body')
   end
 
+  it "should contain the page_wrapper div" do
+    response.should have_tag('div#page_wrapper')
+  end
+
+  it "should contain the top_spacer div" do
+    response.should have_tag('div#top_spacer')
+  end
+
   it "should contain the banner div" do
     response.should have_tag('div#banner') do
       with_tag('a[href=?]', "/") do
         with_tag('img[id=?][src=?]', "chatl_logo", %r{/images/chatl_logo.jpg.*})
       end
+    end
+  end
+
+  it "should contain the tab bar" do
+    response.should have_tag('div#tab_bar') do
+      with_tag('div#meetings_tab', "Meetings")
+      with_tag('div#presentations_tab', "Presentations")
+      with_tag('div#files_tab', "Files")
+      with_tag('div#members_tab', "Members")
     end
   end
 
@@ -36,7 +53,7 @@ describe "/layouts/application" do
   it "should contain the 'main_content' div" do
     response.should have_tag('div#main_content')
   end
-  
+
   it "should contain the 'footer' div" do
     response.should have_tag('div#footer')
   end

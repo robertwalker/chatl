@@ -12,18 +12,9 @@
       <div id="banner">
         <%= link_to image_tag("chatl_logo.jpg", :id => "chatl_logo", :alt => "Cocoaheads Atlanta Logo"), "/" %>
         <%= render :partial => 'shared/user_bar' %>
-        <div id="tab_bar">
-          <div id="presentations_tab" class="tab selected_tab">
-            Presentations
-          </div>
-          <div id="files_tab" class="tab">
-            Files
-          </div>
-          <div id="members_tab" class="tab">
-            Members
-          </div>
-        </div>
+        <%= render :partial => 'shared/tab_bar' %>
       </div>
+      <div id="top_spacer"></div>
       <%= render :partial => 'shared/sidebar' %>
       <div id="main_content">
         <%= yield %>

@@ -91,15 +91,22 @@ h1 {
 	background-color: #ffab59;
 }
 
+.tab a {
+	text-decoration: none;
+	color: #5d2a11;
+}
+
 #sidebar {
 	width: 200px;
-	margin-top: 80px;
 	padding: 8px;
 	float: right;
 }
 
+#top_spacer {
+	height: 80px;
+}
+
 #main_content {
-	margin-top: 80px;
 	margin-right: 215px;
 	padding: 12px;
 }
