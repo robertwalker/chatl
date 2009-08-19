@@ -1,19 +1,19 @@
 <div id="tab_bar">
-  <div id="meetings_tab" class="tab">
+  <% content_tag(:div, :id => "meetings_tab", :class => tab_class_for('meetings')) do -%>
     Meetings
-  </div>
-  <div id="presentations_tab" class="tab selected_tab">
+  <% end -%>
+  <% content_tag(:div, :id => "presentations_tab", :class => tab_class_for('presentations')) do -%>
     Presentations
-  </div>
-  <div id="files_tab" class="tab">
+  <% end -%>
+  <% content_tag(:div, :id => "files_tab", :class => tab_class_for('files')) do -%>
     Files
-  </div>
-  <div id="members_tab" class="tab">
+  <% end -%>
+  <% content_tag(:div, :id => "members_tab", :class => tab_class_for('members')) do -%>
     Members
-  </div>
+  <% end -%>
   <% if current_user && current_user.admin? %>
-  <div id="venues_tab" class="tab">
+  <% content_tag(:div, :id => "venues_tab", :class => tab_class_for('venues')) do -%>
     <%= link_to "Venues", venues_path %>
-  </div>
+  <% end -%>
   <% end %>
 </div>
