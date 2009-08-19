@@ -13,6 +13,37 @@ h1 {
 	margin-bottom: 0.5em;
 }
 
+/* @group Standard Table */
+
+table {
+	font: 9pt "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	background-color: #eee;
+}
+
+th,td {
+	padding: 3px;
+}
+
+th {
+	color: #ffd6c2;
+	background-color: #5d2a11;
+	border: 1px solid #5d2a11;
+}
+
+td {
+	border: 1px solid #aaa;
+}
+
+.odd_row {
+	background-color: #eee;
+}
+
+.even_row {
+	background-color: #ffe7d9;
+}
+
+/* @end */
+
 #page_wrapper {
 	position: relative;
 	width: 800px;
