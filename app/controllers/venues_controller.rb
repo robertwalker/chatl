@@ -1,4 +1,6 @@
 class VenuesController < ApplicationController
+  require_role "admin"
+
   # GET /venues
   # GET /venues.xml
   def index
