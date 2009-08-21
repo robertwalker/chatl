@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :meetings
+
   map.resources :venues
 
   map.activate '/activate/:activation_code', :controller => 'users', :action => 'activate', :activation_code => nil

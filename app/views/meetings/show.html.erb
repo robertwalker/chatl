@@ -1,0 +1,18 @@
+<p>
+  <b>Venue:</b>
+  <%=h @meeting.venue_id %>
+</p>
+
+<p>
+  <b>Scheduled at:</b>
+  <%=h @meeting.scheduled_at %>
+</p>
+
+<p>
+  <b>Details:</b>
+  <%=h @meeting.details %>
+</p>
+
+
+<%= link_to 'Edit', edit_meeting_path(@meeting) %> |
+<%= link_to 'Back', meetings_path %>

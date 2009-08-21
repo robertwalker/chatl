@@ -1,0 +1,25 @@
+<h1>Listing meetings</h1>
+
+<table>
+  <tr>
+    <th>Venue</th>
+    <th>Scheduled at</th>
+    <th>Details</th>
+    <th colspan="3">&nbsp;</th>
+  </tr>
+
+<% @meetings.each do |meeting| %>
+  <tr>
+    <td><%=h meeting.venue_id %></td>
+    <td><%=h meeting.scheduled_at %></td>
+    <td><%=h meeting.details %></td>
+    <td><%= link_to 'Show', meeting %></td>
+    <td><%= link_to 'Edit', edit_meeting_path(meeting) %></td>
+    <td><%= link_to 'Destroy', meeting, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New meeting', new_meeting_path %>

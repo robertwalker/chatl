@@ -1,6 +1,6 @@
 <div id="tab_bar">
   <% content_tag(:div, :id => "meetings_tab", :class => tab_class_for('meetings')) do -%>
-    Meetings
+    <%= link_to "Meetings", meetings_path %>
   <% end -%>
   <% content_tag(:div, :id => "presentations_tab", :class => tab_class_for('presentations')) do -%>
     Presentations

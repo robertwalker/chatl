@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  venue_id: 1
+  scheduled_at: 2009-08-21 13:21:01
+  details: MyText
+
+two:
+  venue_id: 1
+  scheduled_at: 2009-08-21 13:21:01
+  details: MyText
