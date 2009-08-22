@@ -20,3 +20,10 @@ Factory.define :venue do |v|
   v.state 'GA'
   v.zip '30303'
 end
+
+# A meeting
+Factory.define :meeting do |m|
+  # m.scheduled_at Time.now
+  m.details "value for details"
+  m.association :venue
+end
