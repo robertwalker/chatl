@@ -13,8 +13,8 @@ class Meeting < ActiveRecord::Base
   end
   
   def second_thursday_next_month
-    h = { 0 => 4, 1 => 3, 2 => 2, 3 => 1, 4 => 0, 5 => 6, 6 => 5 }
+    wday_map = { 0 => 4, 1 => 3, 2 => 2, 3 => 1, 4 => 0, 5 => 6, 6 => 5 }
     next_month = Time.now.next_month.beginning_of_month.utc
-    next_month + h[next_month.wday].days + 1.week + 19.hours
+    next_month + wday_map[next_month.wday].days + 1.week + 19.hours
   end
 end
