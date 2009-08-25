@@ -6,6 +6,84 @@ describe VenuesController do
     @mock_venue ||= mock_model(Venue, stubs)
   end
 
+  describe "not logged in" do
+    it "denies access to 'index'" do
+      get :index
+      response.should redirect_to(new_session_url)
+    end
+
+    it "denies access to 'show'" do
+      get :show, :id => "1"
+      response.should redirect_to(new_session_url)
+    end
+
+    it "denies access to 'new'" do
+      get :new
+      response.should redirect_to(new_session_url)
+    end
+
+    it "denies access to 'edit'" do
+      get :edit, :id => "1"
+      response.should redirect_to(new_session_url)
+    end
+
+    it "denies access to 'create'" do
+      post :create, :venue => {:these => 'params'}
+      response.should redirect_to(new_session_url)
+    end
+
+    it "denies access to 'update'" do
+      put :update, :id => "37", :venue => {:these => 'params'}
+      response.should redirect_to(new_session_url)
+    end
+
+    it "denies access to 'destroy'" do
+      delete :destroy, :id => "1"
+      response.should redirect_to(new_session_url)
+    end
+  end
+
+  describe "authenticated but not authorized" do
+    before(:each) do
+      login_as(Factory(:user))
+    end
+
+    it "denies access to 'index'" do
+      get :index
+      response.should have_text("You don't have access here.")
+    end
+
+    it "denies access to 'show'" do
+      get :show, :id => "1"
+      response.should have_text("You don't have access here.")
+    end
+
+    it "denies access to 'new'" do
+      get :new
+      response.should have_text("You don't have access here.")
+    end
+
+    it "denies access to 'edit'" do
+      get :edit, :id => "1"
+      response.should have_text("You don't have access here.")
+    end
+
+    it "denies access to 'create'" do
+      post :create, :venue => {:these => 'params'}
+      response.should have_text("You don't have access here.")
+    end
+
+    it "denies access to 'update'" do
+      put :update, :id => "37", :venue => {:these => 'params'}
+      response.should have_text("You don't have access here.")
+    end
+
+    it "denies access to 'destroy'" do
+      delete :destroy, :id => "1"
+      response.should have_text("You don't have access here.")
+    end
+  end
+
   describe "authenticated and authorized as admin" do
     before(:each) do
       admin_role = Factory(:role)
@@ -131,85 +209,6 @@ describe VenuesController do
         delete :destroy, :id => "1"
         response.should redirect_to(venues_url)
       end
-    end
-  end
-
-  describe "not authorized" do
-    before(:each) do
-      @user = Factory(:user)
-      login_as(@user)
-    end
-
-    it "denies access to 'index'" do
-      get :index
-      response.should have_text("You don't have access here.")
-    end
-    
-    it "denies access to 'show'" do
-      get :show, :id => "1"
-      response.should have_text("You don't have access here.")
-    end
-    
-    it "denies access to 'new'" do
-      get :new
-      response.should have_text("You don't have access here.")
-    end
-    
-    it "denies access to 'edit'" do
-      get :edit, :id => "1"
-      response.should have_text("You don't have access here.")
-    end
-    
-    it "denies access to 'create'" do
-      post :create, :venue => {:these => 'params'}
-      response.should have_text("You don't have access here.")
-    end
-    
-    it "denies access to 'update'" do
-      put :update, :id => "37", :venue => {:these => 'params'}
-      response.should have_text("You don't have access here.")
-    end
-    
-    it "denies access to 'destroy'" do
-      delete :destroy, :id => "1"
-      response.should have_text("You don't have access here.")
-    end
-  end
-
-  describe "not logged in" do
-    it "denies access to 'index'" do
-      get :index
-      response.should redirect_to(new_session_url)
-    end
-    
-    it "denies access to 'show'" do
-      get :show, :id => "1"
-      response.should redirect_to(new_session_url)
-    end
-    
-    it "denies access to 'new'" do
-      get :new
-      response.should redirect_to(new_session_url)
-    end
-    
-    it "denies access to 'edit'" do
-      get :edit, :id => "1"
-      response.should redirect_to(new_session_url)
-    end
-    
-    it "denies access to 'create'" do
-      post :create, :venue => {:these => 'params'}
-      response.should redirect_to(new_session_url)
-    end
-    
-    it "denies access to 'update'" do
-      put :update, :id => "37", :venue => {:these => 'params'}
-      response.should redirect_to(new_session_url)
-    end
-    
-    it "denies access to 'destroy'" do
-      delete :destroy, :id => "1"
-      response.should redirect_to(new_session_url)
     end
   end
 end
