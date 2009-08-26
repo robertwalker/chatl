@@ -10,7 +10,7 @@
 
 <p>
   <b>Details:</b>
-  <%=h @meeting.details %>
+  <%= render_textile(@meeting.details) %>
 </p>
 
 <% if logged_in? && current_user.admin? %>

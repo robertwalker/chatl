@@ -7,4 +7,8 @@ module ApplicationHelper
       'tab'
     end
   end
+
+  def render_textile(textile)
+    RedCloth.new(textile).to_html
+  end
 end
