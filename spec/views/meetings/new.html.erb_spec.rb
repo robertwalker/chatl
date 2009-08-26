@@ -15,7 +15,7 @@ describe "/meetings/new.html.erb" do
     render
 
     response.should have_tag("form[action=?][method=post]", meetings_path) do
-      with_tag("input#meeting_venue_id[name=?]", "meeting[venue_id]")
+      with_tag("select#meeting_venue_id[name=?]", "meeting[venue_id]")
       with_tag("textarea#meeting_details[name=?]", "meeting[details]")
     end
   end

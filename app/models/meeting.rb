@@ -5,7 +5,7 @@ class Meeting < ActiveRecord::Base
   
   has_one :venue
   
-  validates_presence_of :venue, :scheduled_at, :details
+  validates_presence_of :venue_id, :scheduled_at, :details
   
   protected
   def set_defaults

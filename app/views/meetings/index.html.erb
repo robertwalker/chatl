@@ -14,12 +14,24 @@
     <td><%=h meeting.scheduled_at %></td>
     <td><%=h meeting.details %></td>
     <td><%= link_to 'Show', meeting %></td>
-    <td><%= link_to 'Edit', edit_meeting_path(meeting) %></td>
-    <td><%= link_to 'Destroy', meeting, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td>
+      <% if logged_in? && current_user.admin? %>
+      <%= link_to 'Edit', edit_meeting_path(meeting) %>
+      <% else %>
+      &nbsp;
+      <% end %>
+    </td>
+    <td>
+      <% if logged_in? && current_user.admin? %>
+      <%= link_to 'Destroy', meeting, :confirm => 'Are you sure?', :method => :delete %>
+      <% else %>
+      &nbsp;
+      <% end %>
+    </td>
   </tr>
 <% end %>
 </table>
-
+<% if logged_in? && current_user.admin? %>
 <br />
-
 <%= link_to 'New meeting', new_meeting_path %>
+<% end %>

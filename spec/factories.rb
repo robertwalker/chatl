@@ -1,29 +1,31 @@
 # The admin role
-Factory.define :role do |r|
-  r.name 'admin'
+Factory.define :role do |f|
+  f.name 'admin'
 end
 
 # A user
-Factory.define :user do |u|
-  u.login 'a_user'
-  u.email 'a_user@example.com'
-  u.password 'monkey'
-  u.password_confirmation 'monkey'
-  u.state 'active'
+Factory.define :user do |f|
+  f.login 'a_user'
+  f.email 'a_user@example.com'
+  f.password 'monkey'
+  f.password_confirmation 'monkey'
+  f.state 'active'
 end
 
 # A regular venue
-Factory.define :venue do |v|
-  v.name 'Venue name'
-  v.street_address 'Venue address'
-  v.city 'Atlanta'
-  v.state 'GA'
-  v.zip '30303'
+Factory.define :venue do |f|
+  f.name 'Venue name'
+  f.street_address 'Venue address'
+  f.city 'Atlanta'
+  f.state 'GA'
+  f.zip '30303'
 end
 
 # A meeting
-Factory.define :meeting do |m|
-  # m.scheduled_at Time.now
-  m.details "value for details"
-  m.association :venue
+Factory.define :meeting do |f|
+  f.details "value for details"
+  def f.default_venue
+    @default_venue ||= Factory(:venue)
+  end
+  f.venue_id { f.default_venue.id }
 end

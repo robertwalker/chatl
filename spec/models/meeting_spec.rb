@@ -24,7 +24,7 @@ describe Meeting do
   it "requires a venue" do
     meeting = Factory.build(:meeting, :venue => nil)
     meeting.should_not be_valid
-    meeting.should have(1).errors_on(:venue)
+    meeting.should have(1).errors_on(:venue_id)
   end
 
   it "requires scheduled date and time" do

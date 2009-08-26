@@ -21,4 +21,46 @@ describe "/meetings/index.html.erb" do
     response.should have_tag("tr>td", 1.to_s, 2)
     response.should have_tag("tr>td", "value for details".to_s, 2)
   end
+
+  describe "not signed in as an admin" do
+    it "hides link for creating new meetings" do
+      render
+      response.should_not have_tag("a[href=?]", "/meetings/new")
+    end
+
+    it "hides link for editing meetings" do
+      render
+      response.should_not have_tag("a[href=?]", %r{/meetings/\d+/edit}, "Edit")
+    end
+
+    it "hides link for destroying meetings" do
+      render
+      response.should_not have_tag("a[href=?]", %r{/meetings/\d+}, "Destroy")
+    end
+  end
+
+  describe "authenticated as admin" do
+    before(:each) do
+      admin_role = Factory(:role)
+      @admin_user = Factory.build(:user)
+      @admin_user.roles << admin_role
+      @admin_user.save
+      login_as(@admin_user)
+    end
+
+    it "renders a link for creating new meetings" do
+      render
+      response.should have_tag("a[href=?]", "/meetings/new")
+    end
+
+    it "renders a link for creating new meetings" do
+      render
+      response.should have_tag("a[href=?]", %r{/meetings/\d+/edit}, "Edit")
+    end
+
+    it "renders a link for creating new meetings" do
+      render
+      response.should have_tag("a[href=?]", %r{/meetings/\d+}, "Destroy")
+    end
+  end
 end

@@ -14,4 +14,26 @@ describe "/meetings/show.html.erb" do
     response.should have_text(/1/)
     response.should have_text(/value\ for\ details/)
   end
+
+  describe "not signed in as an admin" do
+    it "hides link for editing meetings" do
+      render
+      response.should_not have_tag("a[href=?]", %r{/meetings/\d+/edit}, "Edit")
+    end
+  end
+
+  describe "authenticated as admin" do
+    before(:each) do
+      admin_role = Factory(:role)
+      @admin_user = Factory.build(:user)
+      @admin_user.roles << admin_role
+      @admin_user.save
+      login_as(@admin_user)
+    end
+
+    it "renders link for editing meetings" do
+      render
+      response.should have_tag("a[href=?]", %r{/meetings/\d+/edit}, "Edit")
+    end
+  end
 end

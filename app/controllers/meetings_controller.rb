@@ -1,4 +1,6 @@
 class MeetingsController < ApplicationController
+  require_role "admin", :except => [ "index", "show" ]
+
   # GET /meetings
   # GET /meetings.xml
   def index
