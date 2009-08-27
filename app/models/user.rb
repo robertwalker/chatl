@@ -5,12 +5,14 @@ class User < ActiveRecord::Base
   include Authentication::ByPassword
   include Authentication::ByCookieToken
   include Authorization::AasmRoles
-  
+
   has_and_belongs_to_many :roles
-  
+  has_many :attendances, :class_name => "Attendee"
+  has_many :meetings, :through => :attendances
+
   # Gravatar support
   is_gravtastic
-  
+
   validates_presence_of     :login
   validates_length_of       :login,    :within => 3..40
   validates_uniqueness_of   :login
@@ -19,7 +21,7 @@ class User < ActiveRecord::Base
 
   validates_format_of       :name,     :with => Authentication.name_regex,
                                        :message => Authentication.bad_name_message,
-                                       :allow_nil => true
+  :allow_nil => true
 
   validates_length_of       :name,     :maximum => 100
 
@@ -70,11 +72,9 @@ class User < ActiveRecord::Base
   end
 
   protected
-    
-    def make_activation_code
-        self.deleted_at = nil
-        self.activation_code = self.class.make_token
-    end
 
-
+  def make_activation_code
+    self.deleted_at = nil
+    self.activation_code = self.class.make_token
+  end
 end

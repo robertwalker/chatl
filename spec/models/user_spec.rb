@@ -30,6 +30,12 @@ describe User do
     end
   end
 
+  it 'maintains a list of meetings through attendances' do
+    user = Factory(:user)
+    user.should respond_to(:attendances)
+    user.should respond_to(:meetings)
+  end
+
   #
   # Validations
   #

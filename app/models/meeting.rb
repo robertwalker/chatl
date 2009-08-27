@@ -10,6 +10,9 @@ h2. After meeting socializing
 Join us for drinks and conversion at <venue>.
 TEMPLATE
 
+  has_many :attendees
+  has_many :users, :through => :attendees
+
   def after_initialize
     set_defaults
   end

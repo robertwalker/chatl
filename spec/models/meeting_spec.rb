@@ -58,4 +58,10 @@ TEMPLATE
     meeting = Factory(:meeting)
     meeting.details.should == details_template
   end
+
+  it "maintains a list of users through attendees" do
+    meeting = Factory(:meeting)
+    meeting.should respond_to(:attendees)
+    meeting.should respond_to(:users)
+  end
 end

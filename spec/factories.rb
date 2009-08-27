@@ -28,3 +28,16 @@ Factory.define :meeting do |f|
   end
   f.venue_id { f.default_venue.id }
 end
+
+# An Attendee
+Factory.define :attendee do |f|
+  def f.default_user
+    @default_user ||= Factory(:user)
+  end
+  def f.default_meeting
+    @default_meeting ||= Factory(:meeting)
+  end
+  f.user_id { f.default_user }
+  f.meeting_id { f.default_meeting }
+  f.rsvp 'Yes'
+end
