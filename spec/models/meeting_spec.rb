@@ -43,4 +43,19 @@ describe Meeting do
     meeting = Factory(:meeting)
     meeting.scheduled_at.should == second_thursday_next_month
   end
+
+  it "defaults meeting details to a predefined Textile template" do
+    details_template = <<TEMPLATE
+h2. Presentation topics
+
+* *Topic 1* - Presented by <member_name>
+* *Topic 2* - Presented by <member_name>
+
+h2. After meeting socializing
+
+Join us for drinks and conversion at <venue>.
+TEMPLATE
+    meeting = Factory(:meeting)
+    meeting.details.should == details_template
+  end
 end
