@@ -16,6 +16,7 @@ class MeetingsController < ApplicationController
   # GET /meetings/1.xml
   def show
     @meeting = Meeting.find(params[:id])
+    @attendee = Attendee.new
 
     respond_to do |format|
       format.html # show.html.erb

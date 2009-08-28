@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :meetings
+  map.resources :meetings, :has_many => :attendees
 
   map.resources :venues
 

@@ -2,8 +2,12 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe MeetingsController do
 
-  def mock_meeting(stubs={})
+  def mock_meeting(stubs = {})
     @mock_meeting ||= mock_model(Meeting, stubs)
+  end
+
+  def mock_attendee(stubs = {})
+    @mock_attendee ||= mock_model(Attendee, stubs)
   end
 
   describe "GET index" do
@@ -19,6 +23,13 @@ describe MeetingsController do
       Meeting.stub!(:find).with("37").and_return(mock_meeting)
       get :show, :id => "37"
       assigns[:meeting].should equal(mock_meeting)
+    end
+
+    it "assigns a new attendee as @attendee" do
+      Meeting.stub!(:find).with("37").and_return(mock_meeting)
+      Attendee.stub!(:new).and_return(mock_attendee)
+      get :show, :id => "37"
+      assigns[:attendee].should equal(mock_attendee)
     end
   end
 

@@ -13,6 +13,20 @@
   <%= render_textile(@meeting.details) %>
 </p>
 
+<div id="rsvp_panel">
+  <p>Do you plan to attend?</p>
+  <div id="rsvp_options">
+    <% form_for [@meeting, @attendee] do |f| %>
+    <%= f.radio_button("rsvp", "Yes") %>
+    <%= f.label(:rsvp_yes, "Yes", :id => "attendee_rsvp_yes") %>
+    <%= f.radio_button("rsvp", "No") %>
+    <%= f.label(:rsvp_no, "No", :id => "attendee_rsvp_no") %>
+    <%= f.radio_button("rsvp", "Maybe") %>
+    <%= f.label(:rsvp_maybe, "Maybe", :id => "attendee_rsvp_maybe") %>
+    <% end -%>
+  </div>
+</div>
+
 <% if logged_in? && current_user.admin? %>
 <%= link_to 'Edit', edit_meeting_path(@meeting) %> |
 <% end %>
