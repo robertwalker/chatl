@@ -1,10 +1,10 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Meeting do
-  def second_thursday_next_month
-    wday_map = { 0 => 4, 1 => 3, 2 => 2, 3 => 1, 4 => 0, 5 => 6, 6 => 5 }
-    next_month = Time.now.next_month.beginning_of_month.utc
-    next_month + wday_map[next_month.wday].days + 1.week + 19.hours
+  def time_at_wnum_wday_hour(wnum = 2, wday = 4, hour_of_day = 19, min_of_hour = 0)
+    offsets = [ 6, 5, 4, 3, 2, 1, 0].rotate(wday + 1)
+    first = Time.now.next_month.beginning_of_month
+    first + offsets[first.wday].days + (wnum - 1).week + hour_of_day.hours + min_of_hour.minutes
   end
 
   before(:each) do
@@ -41,19 +41,19 @@ describe Meeting do
 
   it "defaults scheduled_at to second Thursday of next month at 7 p.m. EST" do
     meeting = Factory(:meeting)
-    meeting.scheduled_at.should == second_thursday_next_month
+    meeting.scheduled_at.should == time_at_wnum_wday_hour
   end
 
   it "defaults meeting details to a predefined Textile template" do
     details_template = <<TEMPLATE
 h2. Presentation topics
 
-* *Topic 1* - Presented by <member_name>
-* *Topic 2* - Presented by <member_name>
+* *Topic 1* - Presented by [member_name]
+* *Topic 2* - Presented by [member_name]
 
 h2. After meeting socializing
 
-Join us for drinks and conversion at <venue>.
+Join us for drinks and conversion at [venue].
 TEMPLATE
     meeting = Factory(:meeting)
     meeting.details.should == details_template

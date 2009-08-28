@@ -2,12 +2,12 @@ class Meeting < ActiveRecord::Base
   DETAILS_TEMPLATE = <<TEMPLATE
 h2. Presentation topics
 
-* *Topic 1* - Presented by <member_name>
-* *Topic 2* - Presented by <member_name>
+* *Topic 1* - Presented by [member_name]
+* *Topic 2* - Presented by [member_name]
 
 h2. After meeting socializing
 
-Join us for drinks and conversion at <venue>.
+Join us for drinks and conversion at [venue].
 TEMPLATE
 
   has_many :attendees
@@ -23,13 +23,7 @@ TEMPLATE
 
   protected
   def set_defaults
-    self.scheduled_at = second_thursday_next_month if self.scheduled_at.nil?
-    self.details = Meeting::DETAILS_TEMPLATE
-  end
-
-  def second_thursday_next_month
-    wday_map = { 0 => 4, 1 => 3, 2 => 2, 3 => 1, 4 => 0, 5 => 6, 6 => 5 }
-    next_month = Time.now.next_month.beginning_of_month.utc
-    next_month + wday_map[next_month.wday].days + 1.week + 19.hours
+    self.scheduled_at ||= Time.time_at_wnum_wday_hour
+    self.details ||= Meeting::DETAILS_TEMPLATE
   end
 end
