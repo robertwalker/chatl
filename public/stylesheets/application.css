@@ -13,6 +13,18 @@ h1 {
 	margin-bottom: 0.5em;
 }
 
+.left {
+	text-align: left;
+}
+
+.center {
+	text-align: center;
+}
+
+.right {
+	text-align: right;
+}
+
 /* @group Standard Table */
 
 table {
@@ -178,7 +190,7 @@ td {
 	font-weight: bold;
 	color: #5d2a11;
 	width: 170px;
-	height: 45px;
+	height: 70px;
 	background-color: #ddb;
 	padding: 8px;
 	margin-bottom: 0.75em;
