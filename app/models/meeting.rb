@@ -10,7 +10,7 @@ h2. After meeting socializing
 Join us for drinks and conversion at [venue].
 TEMPLATE
 
-  has_many :attendees
+  has_many :attendees, :dependent => :destroy
   has_many :users, :through => :attendees
 
   def after_initialize
@@ -20,6 +20,10 @@ TEMPLATE
   has_one :venue
 
   validates_presence_of :venue_id, :scheduled_at, :details
+
+  def attendee_with_user(user)
+    self.attendees.find_by_user_id(user.id) if user
+  end
 
   protected
   def set_defaults

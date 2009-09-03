@@ -13,6 +13,7 @@ describe MeetingsController do
   describe "GET index" do
     it "assigns all meetings as @meetings" do
       Meeting.stub!(:find).with(:all).and_return([mock_meeting])
+      mock_meeting.stub!(:attendee_with_user).and_return(nil)
       get :index
       assigns[:meetings].should == [mock_meeting]
     end
@@ -21,6 +22,7 @@ describe MeetingsController do
   describe "GET show" do
     it "assigns the requested meeting as @meeting" do
       Meeting.stub!(:find).with("37").and_return(mock_meeting)
+      mock_meeting.stub!(:attendee_with_user).and_return(nil)
       get :show, :id => "37"
       assigns[:meeting].should equal(mock_meeting)
     end
@@ -28,6 +30,7 @@ describe MeetingsController do
     it "assigns a new attendee as @attendee" do
       Meeting.stub!(:find).with("37").and_return(mock_meeting)
       Attendee.stub!(:new).and_return(mock_attendee)
+      mock_meeting.stub!(:attendee_with_user).and_return(nil)
       get :show, :id => "37"
       assigns[:attendee].should equal(mock_attendee)
     end

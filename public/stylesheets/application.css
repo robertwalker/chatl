@@ -159,6 +159,16 @@ td {
 
 /* @group Main Content Section */
 
+.flash_notice {
+	font-weight: bold;
+	background-color: #91fe8d;
+	border: 1px solid green;
+	margin-bottom: 6px;
+	padding: 8px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+}
+
 #main_content {
 	margin-right: 215px;
 	padding: 12px;
@@ -206,15 +216,15 @@ td {
 	margin-right: 0.75em;
 }
 
-#attendee_rsvp_yes {
+.attendee_rsvp_yes {
 	color: green;
 }
 
-#attendee_rsvp_no {
+.attendee_rsvp_no {
 	color: #c00;
 }
 
-#attendee_rsvp_maybe {
+.attendee_rsvp_maybe {
 	color: #55a;
 }
 

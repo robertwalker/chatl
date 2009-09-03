@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   include Authorization::AasmRoles
 
   has_and_belongs_to_many :roles
-  has_many :attendances, :class_name => "Attendee"
+  has_many :attendances, :class_name => "Attendee", :dependent => :destroy
   has_many :meetings, :through => :attendances
 
   # Gravatar support

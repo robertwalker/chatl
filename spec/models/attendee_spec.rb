@@ -1,16 +1,10 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Attendee do
-  before(:each) do
-    @valid_attributes = {
-      :user_id => 1,
-      :meeting_id => 1,
-      :rsvp => "value for rsvp"
-    }
-  end
-
   it "should create a new instance given valid attributes" do
-    Attendee.create!(@valid_attributes)
+    attendee = Factory.build(:attendee)
+    attendee.should be_valid
+    attendee.should have(:no).errors
   end
 
   it "requires 'user_id'" do
@@ -23,6 +17,20 @@ describe Attendee do
     attendee = Factory.build(:attendee, :meeting_id => nil)
     attendee.should_not be_valid
     attendee.should have(1).errors_on(:meeting_id)
+  end
+
+  it "requires 'rsvp'" do
+    attendee = Factory.build(:attendee, :rsvp => nil)
+    attendee.should_not be_valid
+    attendee.should have(1).errors_on(:rsvp)
+  end
+
+  it "requires 'rsvp' to be one of Yes, No or Maybe" do
+    attendee = Factory.build(:attendee, :rsvp => "Invalid")
+    valid_values = %w{ Yes No Maybe }
+    attendee.should_not be_valid
+    attendee.should have(1).errors_on(:rsvp)
+    attendee.errors.on(:rsvp).should == "must be Yes, No or Maybe"
   end
 
   it "belongs to a user" do

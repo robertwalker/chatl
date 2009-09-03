@@ -64,4 +64,14 @@ TEMPLATE
     meeting.should respond_to(:attendees)
     meeting.should respond_to(:users)
   end
+
+  it "responds to 'attendee_with_user'" do
+    # FIXME: This spec could probably be cleaned up
+    meeting = Factory(:meeting)
+    user = Factory(:user)
+    meeting.attendees.create(:user_id => user.id, :rsvp => "Yes")
+    meeting.reload
+    meeting.should respond_to(:attendee_with_user)
+    meeting.attendee_with_user(user).should == meeting.attendees.first
+  end
 end

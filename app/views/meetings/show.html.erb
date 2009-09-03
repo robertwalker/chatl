@@ -1,3 +1,7 @@
+<% if flash[:notice] %>
+<div class="flash_notice"><%= flash[:notice] %></div>
+<% end %>
+
 <p>
   <b>Venue:</b>
   <%=h @meeting.venue_id %>
@@ -14,20 +18,27 @@
 </p>
 
 <div id="rsvp_panel">
-  <p>Do you plan to attend?</p>
-  <div id="rsvp_options">
-    <% form_for [@meeting, @attendee] do |f| %>
-    <p class="center">
+<% if @meeting.users.include?(current_user) %>
+<p>You RSVPed: <%= rsvp_state %></p>
+<p>
+<%= link_to "Change your mind about attending?", meeting_attendee_path(@meeting), :method => :delete %>
+</p>
+<% else %>
+<p>Do you plan to attend?</p>
+<div id="rsvp_options">
+  <% form_for [@meeting, @attendee] do |f| %>
+  <p class="center">
     <%= f.radio_button("rsvp", "Yes") %>
-    <%= f.label(:rsvp_yes, "Yes", :id => "attendee_rsvp_yes") %>
+    <%= f.label(:rsvp_yes, "Yes", :class => "attendee_rsvp_yes") %>
     <%= f.radio_button("rsvp", "No") %>
-    <%= f.label(:rsvp_no, "No", :id => "attendee_rsvp_no") %>
+    <%= f.label(:rsvp_no, "No", :class => "attendee_rsvp_no") %>
     <%= f.radio_button("rsvp", "Maybe") %>
-    <%= f.label(:rsvp_maybe, "Maybe", :id => "attendee_rsvp_maybe") %>
-    </p>
-    <p class="center"><%= f.submit "Accept" %></p>
-    <% end -%>
-  </div>
+    <%= f.label(:rsvp_maybe, "Maybe", :class => "attendee_rsvp_maybe") %>
+  </p>
+  <p class="center"><%= f.submit "Accept" %></p>
+  <% end -%>
+</div>
+<% end %>
 </div>
 
 <% if logged_in? && current_user.admin? %>
