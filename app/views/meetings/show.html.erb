@@ -3,17 +3,17 @@
 <% end %>
 
 <p>
-  <b>Venue:</b>
-  <%=h @meeting.venue_id %>
+  <b>Where:</b>
+  <%=h @meeting.venue.name if @meeting.venue %>
 </p>
 
 <p>
-  <b>Scheduled at:</b>
-  <%=h @meeting.scheduled_at %>
+  <b>When:</b>
+  <%=h @meeting.scheduled_at.to_s(:long) %>
 </p>
 
 <p>
-  <b>Details:</b>
+  <b>What:</b>
   <%= render_textile(@meeting.details) %>
 </p>
 

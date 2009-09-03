@@ -10,14 +10,14 @@ h2. After meeting socializing
 Join us for drinks and conversion at [venue].
 TEMPLATE
 
-  has_many :attendees, :dependent => :destroy
-  has_many :users, :through => :attendees
-
   def after_initialize
     set_defaults
   end
 
-  has_one :venue
+  has_many :attendees, :dependent => :destroy
+  has_many :users, :through => :attendees
+  belongs_to :venue
+
 
   validates_presence_of :venue_id, :scheduled_at, :details
 
