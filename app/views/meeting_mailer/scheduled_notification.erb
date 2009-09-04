@@ -1,3 +1,24 @@
-MeetingMailer#scheduled_notification
+<p>The <%=h @meeting.scheduled_at.strftime("%B") %> CocoaHeads Atlanta meeting has been scheduled. Here are the details</p>
 
-Find me in app/views/meeting_mailer/scheduled_notification.erb
+<!-- TODO: Move this into a partial -->
+<p>
+  <b>What:</b><br />
+  CocoaHeads Atlanta Meeting
+</p>
+<p>
+  <b>Where:</b><br />
+  <%=h @meeting.venue.name %><br />
+  <%= address_formatter(@meeting.venue) %>
+  <%= city_state_zip_formatter(@meeting.venue) %>
+</p>
+<p>
+  <b>When:</b>
+  <%=h @meeting.scheduled_at.strftime("%A, %B %d, %Y at %I:%M %p")%>
+</p>
+
+<!-- Meeting Details -->
+<div id="meeting_details">
+  <h3>Venue Notes</h3>
+  <div><%= render_textile(@meeting.venue.notes) if @meeting.venue %></div>
+  <div><%= render_textile(@meeting.details) %></div>
+</div>
