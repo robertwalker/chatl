@@ -1,7 +1,12 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
 describe "/layouts/application" do
+  def mock_meeting(stubs={})
+    @mock_meeting ||= mock_model(Meeting, stubs)
+  end
+
   before(:each) do
+    Meeting.stub!(:next_scheduled).and_return(mock_meeting)
     render 'layouts/application'
   end
 

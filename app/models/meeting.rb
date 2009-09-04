@@ -18,6 +18,9 @@ TEMPLATE
   has_many :users, :through => :attendees
   belongs_to :venue
 
+  named_scope :next_scheduled, lambda {
+    { :conditions => [ 'scheduled_at >= ?', Time.now ], :order => "scheduled_at", :limit => 1 }
+  }
 
   validates_presence_of :venue_id, :scheduled_at, :details
 
