@@ -10,22 +10,23 @@ describe "/meetings/show.html.erb" do
     assigns[:attendee] = @attendee = stub_model(Attendee)
   end
 
-  it "renders attributes in <p>" do
-    render
-    response.should have_text(/1/)
-    response.should have_text(/value\ for\ details/)
-  end
-
-  it "renders RSVP div" do
-    render
-    response.should have_tag("div#rsvp_panel")
-  end
-
   describe "not signed in as an admin" do
     it "hides link for editing meetings" do
       render
       response.should_not have_tag("a[href=?]", %r{/meetings/\d+/edit}, "Edit")
     end
+  end
+
+  describe "signed in as a member" do
+    before(:each) do
+      login_as(Factory(:user))
+    end
+
+    it "renders RSVP div" do
+      render
+      response.should have_tag("div#rsvp_panel")
+    end
+
   end
 
   describe "authenticated as admin" do

@@ -7,6 +7,10 @@ body {
 	margin: 2em 0;
 }
 
+p {
+	margin-bottom: 0.75em;
+}
+
 h1 {
 	color: #5d2a11;
 	margin-top: 0;
@@ -72,6 +76,17 @@ td {
 
 #top_spacer {
 	height: 80px;
+}
+
+.form_labels {
+	width: 60px;
+	text-align: right;
+	font-weight: bold;
+	float: left;
+}
+
+.form_fields {
+	margin-left: 65px;
 }
 
 /* @group Banner Section */
@@ -174,6 +189,37 @@ td {
 	padding: 12px;
 }
 
+.rounded_box {
+	background-color: #eee;
+	padding: 8px;
+	margin: 4px 0;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+}
+
+#venue_details {
+	height: 100px;
+	margin-left: 110px;
+}
+
+#meeting_details {
+	margin-top: 0.75em;
+	margin-bottom: 0.75em;
+	padding-top: 0.75em;
+	border-top: 1px solid #aaa;
+	border-bottom: 1px solid #aaa;
+	clear: left;
+}
+
+#meeting_details h2,
+#meeting_details h3 {
+	font-size: 12pt;
+	font-weight: bold;
+	color: #5d2a11;
+	margin-top: 0;
+	margin-bottom: 10px;
+}
+
 .post_title {
 	color: #5d2a11;
 	margin-top: 0;
@@ -196,24 +242,83 @@ td {
 	color: #2d190f;
 }
 
+/* @end */
+
+/* @group Calendar Icon */
+
+.calendar_icon {
+	font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	width: 100px;
+	height: 90px;
+	text-align: center;
+	border: 2px solid #e60;
+	background-color: #eed;
+	position: relative;
+	float: left;
+}
+
+.calendar_icon_month {
+	font-size: 12pt;
+	font-weight: bold;
+	color: white;
+	background-color: #e60;
+	padding-bottom: 3px;
+}
+
+.calendar_icon_day {
+	font-size: 36pt;
+	font-weight: bold;
+	position: relative;
+	top: -6px;
+	text-shadow: #aaa 2px 3px 4px;
+}
+
+.calendar_icon_time {
+	font-size: 8pt;
+	position: relative;
+	top: -6px;
+}
+
+/* @end */
+
+/* @group RSVP Panel */
+
 #rsvp_panel {
+	text-align: center;
 	font-weight: bold;
 	color: #5d2a11;
-	width: 170px;
-	height: 70px;
-	background-color: #ddb;
+	width: 160px;
+	height: 75px;
+	background-color: #eed;
 	padding: 8px;
-	margin-bottom: 0.75em;
+	float: right;
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 6px;
 }
 
-#rsvp_panel p {
-	margin-bottom: 0.75em;
+#rsvp_panel h3 {
+	font-size: 12pt;
+	margin-top: 0;
+	margin-bottom: 0.25em;
+}
+
+#rsvp_panel a {
+	color: #5d2a11;
+}
+
+#rsvp_panel a:hover {
+	color: #99614b;
 }
 
 #rsvp_options label {
-	margin-right: 0.75em;
+	margin-right: 0.5em;
+}
+
+p.attendee_rsvp {
+	font-size: 14pt;
+	font-weight: bold;
+	font-style: italic;
+	margin-bottom: 0.5em;
 }
 
 .attendee_rsvp_yes {

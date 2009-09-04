@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(:version => 20090827191927) do
   create_table "attendees", :id => false, :force => true do |t|
     t.integer  "user_id"
     t.integer  "meeting_id"
-    t.string   "rsvp"
+    t.string   "rsvp",       :default => "Yes"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

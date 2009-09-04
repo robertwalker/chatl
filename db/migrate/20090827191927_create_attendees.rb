@@ -3,7 +3,7 @@ class CreateAttendees < ActiveRecord::Migration
     create_table :attendees, :id => false do |t|
       t.integer :user_id
       t.integer :meeting_id
-      t.string :rsvp
+      t.string :rsvp, :default => "Yes"
 
       t.timestamps
     end
@@ -13,7 +13,6 @@ class CreateAttendees < ActiveRecord::Migration
   end
 
   def self.down
-    remove_index :attendees, "idx_user_meeting"
     drop_table :attendees
   end
 end
