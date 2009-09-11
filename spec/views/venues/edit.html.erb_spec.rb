@@ -27,6 +27,7 @@ describe "/venues/edit.html.erb" do
       with_tag('input#venue_zip[name=?]', "venue[zip]")
       with_tag('input#venue_seating_capacity[name=?]', "venue[seating_capacity]")
       with_tag('textarea#venue_notes[name=?]', "venue[notes]")
+      with_tag("input#venue_submit[type=?][value=?]", "submit", "Update")
     end
   end
 end

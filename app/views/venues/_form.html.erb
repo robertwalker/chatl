@@ -1,0 +1,37 @@
+<% form_for(@venue) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :street_address %><br />
+    <%= f.text_area :street_address, :cols => 30, :rows => 2 %>
+  </p>
+  <p>
+    <%= f.label :city %><br />
+    <%= f.text_field :city %>
+  </p>
+  <p>
+    <%= f.label :state %><br />
+    <%= f.text_field :state %>
+  </p>
+  <p>
+    <%= f.label :zip %><br />
+    <%= f.text_field :zip %>
+  </p>
+  <p>
+    <%= f.label :seating_capacity %><br />
+    <%= f.text_field :seating_capacity %>
+  </p>
+  <p>
+    <%= f.label :notes %><br />
+    <%= f.text_area :notes, :cols => 65, :rows => 18 %>
+  </p>
+  <p>
+    <%= f.submit submit_label %>&nbsp;
+    or&nbsp;
+    <%= link_to 'Cancel', venues_path %>
+  </p>
+<% end %>

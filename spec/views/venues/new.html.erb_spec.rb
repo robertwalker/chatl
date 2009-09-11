@@ -21,12 +21,13 @@ describe "/venues/new.html.erb" do
 
     response.should have_tag("form[action=?][method=post]", venues_path) do
       with_tag("input#venue_name[name=?]", "venue[name]")
-      with_tag("input#venue_street_address[name=?]", "venue[street_address]")
+      with_tag('textarea#venue_street_address[name=?]', "venue[street_address]")
       with_tag("input#venue_city[name=?]", "venue[city]")
       with_tag("input#venue_state[name=?]", "venue[state]")
       with_tag("input#venue_zip[name=?]", "venue[zip]")
       with_tag("input#venue_seating_capacity[name=?]", "venue[seating_capacity]")
       with_tag("textarea#venue_notes[name=?]", "venue[notes]")
+      with_tag("input#venue_submit[type=?][value=?]", "submit", "Create")
     end
   end
 end
