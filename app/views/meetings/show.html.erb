@@ -9,7 +9,7 @@
       <%= @meeting.scheduled_at.strftime("%b") %>
     </div>
     <div class="calendar_icon_day">
-      <%= @meeting.scheduled_at.strftime("%d") %>
+      <%= @meeting.scheduled_at.day %>
     </div>
     <div class="calendar_icon_time">
       <%= @meeting.scheduled_at.strftime("%a") %> 
@@ -50,16 +50,16 @@
       <div class="form_labels">
         <p>What:</p>
         <p>When:</p>
-        <div>Where:</div>
+        <p>Where:</p>
       </div>
       <div class="form_fields">
-        <p>CocoaHeads <%= @meeting.scheduled_at.strftime("%B") %> meeting</p>
+        <p>CocoaHeads monthly meeting</p>
         <% if @meeting.venue %>
-        <p><%= @meeting.scheduled_at.strftime("%A, %B %d, %Y") %></p>
+        <p><%= @meeting.scheduled_at.strftime("%A, %B %e, %Y") %></p>
         <div><%= @meeting.venue.name %></div>
         <div><% address_formatter(@meeting.venue) %></div>
-        <div><%= city_state_zip_formatter(@meeting.venue) %></div>
-        <div><a href="http://example.com">Show on map</a></div>
+        <div><%= city_state_zip_formatter(@meeting.venue) %> 
+          &nbsp;&nbsp;<a href="http://example.com">(map)</a></div>
         <% end %>
       </div>
   </div>
