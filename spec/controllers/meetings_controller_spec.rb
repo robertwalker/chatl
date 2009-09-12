@@ -12,7 +12,7 @@ describe MeetingsController do
 
   describe "GET index" do
     it "assigns all meetings as @meetings" do
-      Meeting.stub!(:find).with(:all).and_return([mock_meeting])
+      Meeting.stub!(:recent_past).and_return([mock_meeting])
       mock_meeting.stub!(:attendee_with_user).and_return(nil)
       get :index
       assigns[:meetings].should == [mock_meeting]

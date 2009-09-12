@@ -22,6 +22,10 @@ TEMPLATE
     { :conditions => [ 'scheduled_at >= ?', Time.now ], :order => "scheduled_at", :limit => 1 }
   }
 
+  named_scope :recent_past, lambda {
+    { :conditions => [ 'scheduled_at < ?', Time.now ], :order => "scheduled_at DESC", :limit => 6 }
+  }
+
   validates_presence_of :venue_id, :scheduled_at, :details
 
   def attendee_with_user(user)

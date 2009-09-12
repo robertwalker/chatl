@@ -1,34 +1,32 @@
-<h1>Listing meetings</h1>
+<h1>Past meetings</h1>
 
 <table style="width: 100%">
   <tr>
-    <th>Venue</th>
     <th>Date</th>
+    <th>Venue</th>
+    <% if logged_in? && current_user.admin? %>
     <th colspan="3">&nbsp;</th>
+    <% else %>
+    <th>&nbsp;</th>
+    <% end %>
   </tr>
 
 <% @meetings.each do |meeting| %>
   <tr>
+    <td><%=h meeting.scheduled_at.strftime("%A, %B %e, %Y") %></td>
     <td>
       <%=h meeting.venue.name if meeting.venue %>
       <%= map_link(meeting.venue) if meeting.venue %>
     </td>
-    <td><%=h meeting.scheduled_at.strftime("%A, %B %e, %Y") %></td>
     <td><%= link_to 'Show', meeting %></td>
+    <% if logged_in? && current_user.admin? %>
     <td>
-      <% if logged_in? && current_user.admin? %>
       <%= link_to 'Edit', edit_meeting_path(meeting) %>
-      <% else %>
-      &nbsp;
-      <% end %>
     </td>
     <td>
-      <% if logged_in? && current_user.admin? %>
       <%= link_to 'Destroy', meeting, :confirm => 'Are you sure?', :method => :delete %>
-      <% else %>
-      &nbsp;
-      <% end %>
     </td>
+    <% end %>
   </tr>
 <% end %>
 </table>

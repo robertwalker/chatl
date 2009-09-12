@@ -4,7 +4,7 @@ class MeetingsController < ApplicationController
   # GET /meetings
   # GET /meetings.xml
   def index
-    @meetings = Meeting.all
+    @meetings = Meeting.recent_past
 
     respond_to do |format|
       format.html # index.html.erb
