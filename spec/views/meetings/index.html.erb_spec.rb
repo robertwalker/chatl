@@ -16,12 +16,6 @@ describe "/meetings/index.html.erb" do
     ]
   end
 
-  it "renders a list of meetings" do
-    render
-    response.should have_tag("tr>td", 1.to_s, 2)
-    response.should have_tag("tr>td", "value for details".to_s, 2)
-  end
-
   describe "not signed in as an admin" do
     it "hides link for creating new meetings" do
       render

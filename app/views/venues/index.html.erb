@@ -1,14 +1,10 @@
 <h1>Listing venues</h1>
 
-<table>
+<table style="width: 100%">
   <tr>
     <th>Name</th>
     <th>Street address</th>
-    <th>City</th>
-    <th>State</th>
-    <th>Zip</th>
     <th>Seating capacity</th>
-    <th>Notes</th>
     <th colspan="3">&nbsp;</th>
   </tr>
 
@@ -16,11 +12,7 @@
   <tr class="<%= cycle("odd_row", "even_row") %>">
     <td><%=h venue.name %></td>
     <td><%=h venue.street_address %></td>
-    <td><%=h venue.city %></td>
-    <td><%=h venue.state %></td>
-    <td><%=h venue.zip %></td>
-    <td><%=h venue.seating_capacity %></td>
-    <td><%=h venue.notes %></td>
+    <td class="center"><%=h venue.seating_capacity %></td>
     <td><%= link_to 'Show', venue %></td>
     <td><%= link_to 'Edit', edit_venue_path(venue) %></td>
     <td><%= link_to 'Destroy', venue, :confirm => 'Are you sure?', :method => :delete %></td>

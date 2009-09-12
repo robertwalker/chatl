@@ -30,10 +30,10 @@ describe "/venues/index.html.erb" do
     render
     response.should have_tag("tr>td", "value for name".to_s, 2)
     response.should have_tag("tr>td", "value for street_address".to_s, 2)
-    response.should have_tag("tr>td", "value for city".to_s, 2)
-    response.should have_tag("tr>td", "value for state".to_s, 2)
-    response.should have_tag("tr>td", "value for zip".to_s, 2)
+    response.should_not have_tag("tr>td", "value for city".to_s, 2)
+    response.should_not have_tag("tr>td", "value for state".to_s, 2)
+    response.should_not have_tag("tr>td", "value for zip".to_s, 2)
     response.should have_tag("tr>td", 1.to_s, 2)
-    response.should have_tag("tr>td", "value for notes".to_s, 2)
+    response.should_not have_tag("tr>td", "value for notes".to_s, 2)
   end
 end

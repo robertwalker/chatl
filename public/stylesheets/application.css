@@ -14,7 +14,9 @@ p {
 h1 {
 	color: #5d2a11;
 	margin-top: 0;
-	margin-bottom: 0.5em;
+	margin-bottom: 4px;
+	padding-bottom: 0.1em;
+	font: italic 16pt Georgia, "Times New Roman", Times, serif;
 }
 
 .left {
@@ -224,7 +226,7 @@ td {
 	color: #5d2a11;
 	margin-top: 0;
 	margin-bottom: 4px;
-	padding-bottom: 0.25em;
+	padding-bottom: 0.2em;
 	border-bottom: 1px solid #2d190f;
 	font: italic x-large Georgia, "Times New Roman", Times, serif;
 }

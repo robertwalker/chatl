@@ -43,6 +43,11 @@
   </div>
   <% end %>
   </div>
+  <% else %>
+  <div id="rsvp_panel">
+    <h3>Want to become a CocoaHead?</h3>
+    <%= link_to "Signup now", signup_path %>
+  </div>
   <% end %>
 
   <!-- Venue Details -->
@@ -68,7 +73,7 @@
 <!-- Meeting Details -->
 <div id="meeting_details">
   <% if @meeting.venue && !@meeting.venue.notes.blank? %>
-  <h3>Venue Notes</h3>
+  <h1>Venue Notes</h1>
   <div><%= render_textile(@meeting.venue.notes) %></div>
   <% end %>
   <div><%= render_textile(@meeting.details) %></div>
