@@ -25,6 +25,7 @@ describe "/venues/edit.html.erb" do
       with_tag('input#venue_city[name=?]', "venue[city]")
       with_tag('input#venue_state[name=?]', "venue[state]")
       with_tag('input#venue_zip[name=?]', "venue[zip]")
+      with_tag("textarea#venue_map_url[name=?]", "venue[map_url]")
       with_tag('input#venue_seating_capacity[name=?]', "venue[seating_capacity]")
       with_tag('textarea#venue_notes[name=?]', "venue[notes]")
       with_tag("input#venue_submit[type=?][value=?]", "submit", "Update")

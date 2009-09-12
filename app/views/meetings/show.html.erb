@@ -58,8 +58,8 @@
         <p><%= @meeting.scheduled_at.strftime("%A, %B %e, %Y") %></p>
         <div><%= @meeting.venue.name %></div>
         <div><% address_formatter(@meeting.venue) %></div>
-        <div><%= city_state_zip_formatter(@meeting.venue) %> 
-          &nbsp;&nbsp;<a href="http://example.com">(map)</a></div>
+        <div><%= city_state_zip_formatter(@meeting.venue) %></div>
+        <div><%= map_link(@meeting.venue) %></div>
         <% end %>
       </div>
   </div>
@@ -67,8 +67,10 @@
 
 <!-- Meeting Details -->
 <div id="meeting_details">
+  <% if @meeting.venue && !@meeting.venue.notes.blank? %>
   <h3>Venue Notes</h3>
-  <div><%= render_textile(@meeting.venue.notes) if @meeting.venue %></div>
+  <div><%= render_textile(@meeting.venue.notes) %></div>
+  <% end %>
   <div><%= render_textile(@meeting.details) %></div>
 </div>
 

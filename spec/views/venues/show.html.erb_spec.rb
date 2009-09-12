@@ -21,6 +21,7 @@ describe "/venues/show.html.erb" do
     response.should have_text(/value\ for\ city/)
     response.should have_text(/value\ for\ state/)
     response.should have_text(/value\ for\ zip/)
+    response.should have_tag("a", "(Show on Map)")
     response.should have_text(/1/)
     response.should have_text(/value\ for\ notes/)
   end

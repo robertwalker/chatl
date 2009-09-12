@@ -1,3 +1,5 @@
+require 'cgi'
+
 # The admin role
 Factory.define :role do |f|
   f.name 'admin'
@@ -19,6 +21,7 @@ Factory.define :venue do |f|
   f.city 'Atlanta'
   f.state 'GA'
   f.zip '30303'
+  f.map_url 'Venue map URL'
 end
 
 # A meeting

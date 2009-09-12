@@ -21,6 +21,13 @@
     <%= f.label :zip %><br />
     <%= f.text_field :zip %>
   </p>
+  <% unless @venue.new_record? %>
+  <p>
+    <%= f.label :map_url, "Map URL" %>&nbsp;
+    <%= map_link(@venue) %><br />
+    <%= f.text_area :map_url, :cols => 30, :rows => 4 %>
+  </p>
+  <% end %>
   <p>
     <%= f.label :seating_capacity %><br />
     <%= f.text_field :seating_capacity %>
