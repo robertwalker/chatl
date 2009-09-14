@@ -45,9 +45,9 @@ describe "/layouts/application" do
   it "should contain the tab bar" do
     response.should have_tag('div#tab_bar') do
       with_tag('div#meetings_tab', "Meetings")
-      with_tag('div#presentations_tab', "Presentations")
-      with_tag('div#files_tab', "Files")
-      with_tag('div#members_tab', "Members")
+      # with_tag('div#presentations_tab', "Presentations")
+      # with_tag('div#files_tab', "Files")
+      # with_tag('div#members_tab', "Members")
     end
   end
 

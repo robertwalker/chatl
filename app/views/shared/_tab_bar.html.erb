@@ -1,7 +1,9 @@
 <div id="tab_bar">
   <% content_tag(:div, :id => "meetings_tab", :class => tab_class_for('meetings')) do -%>
-    <%= link_to "Meetings", meeting_path(Meeting.next_scheduled) %>
+    <%= link_to "Meetings", next_scheduled_meetings_path %>
   <% end -%>
+  <!-- TODO: Show these tabs once the feature has been implemented -->
+  <% if false -%>
   <% content_tag(:div, :id => "presentations_tab", :class => tab_class_for('presentations')) do -%>
     Presentations
   <% end -%>
@@ -10,6 +12,7 @@
   <% end -%>
   <% content_tag(:div, :id => "members_tab", :class => tab_class_for('members')) do -%>
     Members
+  <% end -%>
   <% end -%>
   <% if current_user && current_user.admin? %>
   <% content_tag(:div, :id => "venues_tab", :class => tab_class_for('venues')) do -%>

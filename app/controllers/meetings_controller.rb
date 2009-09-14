@@ -1,5 +1,5 @@
 class MeetingsController < ApplicationController
-  require_role "admin", :except => [ "index", "show" ]
+  require_role "admin", :except => [ "index", "show", "next_scheduled" ]
 
   # GET /meetings
   # GET /meetings.xml
@@ -84,5 +84,11 @@ class MeetingsController < ApplicationController
       format.html { redirect_to(meetings_url) }
       format.xml  { head :ok }
     end
+  end
+
+  # GET /meetings/next_scheduled
+  def next_scheduled
+    @meeting = Meeting.next_scheduled
+    redirect_to meeting_path(@meeting)
   end
 end

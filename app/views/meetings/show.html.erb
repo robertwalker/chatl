@@ -79,7 +79,8 @@
   <div><%= render_textile(@meeting.details) %></div>
 </div>
 
-<% if logged_in? && current_user.admin? %>
-<%= link_to 'Edit', edit_meeting_path(@meeting) %> |
-<% end %>
 <%= link_to 'Past Meetings', meetings_path %>
+<% if logged_in? && current_user.admin? %> |
+<%= link_to 'Edit', edit_meeting_path(@meeting) %> |
+<%= link_to 'New Meeting', new_meeting_path %>
+<% end %>
