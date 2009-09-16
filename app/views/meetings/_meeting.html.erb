@@ -1,0 +1,32 @@
+<div id="meeting_header">
+  <%= render :partial => 'calendar_icon', :locals => { :meeting => meeting } %>
+  <%= render :partial => 'rsvp_panel', :locals => { :meeting => meeting } %>
+
+  <!-- Meeting Header -->
+  <div id="venue_details">
+      <div class="form_labels">
+        <p>What:</p>
+        <p>When:</p>
+        <p>Where:</p>
+      </div>
+      <div class="form_fields">
+        <p>CocoaHeads monthly meeting</p>
+        <% if meeting.venue %>
+        <p><%= meeting.scheduled_at.strftime("%A, %B %e, %Y") %></p>
+        <div><%= meeting.venue.name %></div>
+        <div><% address_formatter(meeting.venue) %></div>
+        <div><%= city_state_zip_formatter(meeting.venue) %></div>
+        <div><%= map_link(meeting.venue) %></div>
+        <% end %>
+      </div>
+  </div>
+</div>
+
+<!-- Meeting Details -->
+<div id="meeting_details">
+  <% if meeting.venue && !meeting.venue.notes.blank? %>
+  <h1>Venue Notes</h1>
+  <div><%= render_textile(meeting.venue.notes) %></div>
+  <% end %>
+  <div><%= render_textile(meeting.details) %></div>
+</div>

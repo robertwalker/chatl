@@ -2,85 +2,11 @@
 <div class="flash_notice"><%= flash[:notice] %></div>
 <% end %>
 
-<div>
-  <!-- TODO: Move this to a partial -->
-  <div class="calendar_icon">
-    <div class="calendar_icon_month">
-      <%= @meeting.scheduled_at.strftime("%b") %>
-    </div>
-    <div class="calendar_icon_day">
-      <%= @meeting.scheduled_at.day %>
-    </div>
-    <div class="calendar_icon_time">
-      <%= @meeting.scheduled_at.strftime("%a") %> 
-      <%= @meeting.scheduled_at.strftime("%I:%M %p") %>
-    </div>
-  </div>
+<%= render :partial => 'meeting', :object => @meeting %>
 
-  <!-- TODO: Move this to a partial -->
-  <% if current_user %>
-  <div id="rsvp_panel">
-  <% if @meeting.users.include?(current_user) %>
-  <h3>You RSVPed</h3>
-  <%= rsvp_state %>
-  <p>
-    <%= link_to "Change your mind?", meeting_attendee_path(@meeting), :method => :delete %>
-  </p>
-  <% else %>
-  <p>Do you plan to attend?</p>
-  <div id="rsvp_options">
-    <% form_for [@meeting, @attendee] do |f| %>
-    <p class="center">
-      <%= f.radio_button("rsvp", "Yes", :checked => true) %>
-      <%= f.label(:rsvp_yes, "Yes", :class => "attendee_rsvp_yes") %>
-      <%= f.radio_button("rsvp", "No") %>
-      <%= f.label(:rsvp_no, "No", :class => "attendee_rsvp_no") %>
-      <%= f.radio_button("rsvp", "Maybe") %>
-      <%= f.label(:rsvp_maybe, "Maybe", :class => "attendee_rsvp_maybe") %>
-    </p>
-    <p class="center"><%= f.submit "Accept" %></p>
-    <% end -%>
-  </div>
-  <% end %>
-  </div>
-  <% else %>
-  <div id="rsvp_panel">
-    <h3>Want to become a CocoaHead?</h3>
-    <%= link_to "Signup now", signup_path %>
-  </div>
-  <% end %>
-
-  <!-- Venue Details -->
-  <div id="venue_details">
-      <div class="form_labels">
-        <p>What:</p>
-        <p>When:</p>
-        <p>Where:</p>
-      </div>
-      <div class="form_fields">
-        <p>CocoaHeads monthly meeting</p>
-        <% if @meeting.venue %>
-        <p><%= @meeting.scheduled_at.strftime("%A, %B %e, %Y") %></p>
-        <div><%= @meeting.venue.name %></div>
-        <div><% address_formatter(@meeting.venue) %></div>
-        <div><%= city_state_zip_formatter(@meeting.venue) %></div>
-        <div><%= map_link(@meeting.venue) %></div>
-        <% end %>
-      </div>
-  </div>
-</div>
-
-<!-- Meeting Details -->
-<div id="meeting_details">
-  <% if @meeting.venue && !@meeting.venue.notes.blank? %>
-  <h1>Venue Notes</h1>
-  <div><%= render_textile(@meeting.venue.notes) %></div>
-  <% end %>
-  <div><%= render_textile(@meeting.details) %></div>
-</div>
-
+<!-- Navigation Controls -->
 <%= link_to 'Past Meetings', meetings_path %>
-<% if logged_in? && current_user.admin? %> |
-<%= link_to 'Edit', edit_meeting_path(@meeting) %> |
+<% if logged_in? && current_user.admin? %>
+| <%= link_to 'Edit', edit_meeting_path(@meeting) %> |
 <%= link_to 'New Meeting', new_meeting_path %>
 <% end %>

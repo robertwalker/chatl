@@ -1,5 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :meetings, :has_many => :attendees, :collection => { :next_scheduled => :get }
+  map.next_meeting 'meetings/next_meeting', :controller => 'meetings', :action => 'next_scheduled'
+
+  map.resources :meetings, :has_many => :attendees
 
   map.resources :venues
 
@@ -53,7 +55,7 @@ ActionController::Routing::Routes.draw do |map|
   #   end
 
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
-  map.root :controller => "meetings", :action => "next_scheduled"
+  map.root :controller => "welcome"
 
   # See how all your routes lay out with "rake routes"
 

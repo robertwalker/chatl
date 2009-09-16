@@ -2,10 +2,11 @@ require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
 describe "/meetings/show.html.erb" do
   include MeetingsHelper
+
   before(:each) do
     assigns[:meeting] = @meeting = stub_model(Meeting,
-      :venue_id => 1,
-      :details => "value for details"
+    :venue_id => 1,
+    :details => "value for details"
     )
     assigns[:attendee] = @attendee = stub_model(Attendee)
   end

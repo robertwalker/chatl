@@ -16,7 +16,18 @@ describe "/meetings/index.html.erb" do
     ]
   end
 
-  describe "not signed in as an admin" do
+  describe "with no meetings (the blank state)" do
+    before(:each) do
+      assigns[:meetings] = @meetings = []
+    end
+
+    it "shows blank state image" do
+      render
+      response.should have_tag("img#blank_state[src=?]", %r{/images/meeting_blank_state.jpg.*})
+    end
+  end
+
+  describe "not logged in" do
     it "hides link for creating new meetings" do
       render
       response.should_not have_tag("a[href=?]", "/meetings/new")

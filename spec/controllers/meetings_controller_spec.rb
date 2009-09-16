@@ -11,7 +11,7 @@ describe MeetingsController do
   end
 
   describe "GET index" do
-    it "assigns all meetings as @meetings" do
+    it "assigns recent past meetings as @meetings" do
       Meeting.stub!(:recent_past).and_return([mock_meeting])
       mock_meeting.stub!(:attendee_with_user).and_return(nil)
       get :index
@@ -33,6 +33,22 @@ describe MeetingsController do
       mock_meeting.stub!(:attendee_with_user).and_return(nil)
       get :show, :id => "37"
       assigns[:attendee].should equal(mock_attendee)
+    end
+  end
+
+  describe "GET next_scheduled" do
+    it "assigns next scheduled meeting as @meeting" do
+      Meeting.stub!(:next_scheduled).and_return([ mock_meeting ])
+      mock_meeting.stub!(:attendee_with_user).and_return(nil)
+      get :next_scheduled
+      assigns[:meeting].should equal(mock_meeting)
+    end
+
+    it "renders show template for @meeting" do
+      Meeting.stub!(:next_scheduled).and_return([ mock_meeting ])
+      mock_meeting.stub!(:attendee_with_user).and_return(nil)
+      get :next_scheduled
+      response.should render_template("meetings/show")
     end
   end
 

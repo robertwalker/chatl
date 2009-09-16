@@ -1,0 +1,12 @@
+  <div class="calendar_icon">
+    <div class="calendar_icon_month">
+      <%= @meeting.scheduled_at.strftime("%b") %>
+    </div>
+    <div class="calendar_icon_day">
+      <%= @meeting.scheduled_at.day %>
+    </div>
+    <div class="calendar_icon_time">
+      <%= @meeting.scheduled_at.strftime("%a") %> 
+      <%= @meeting.scheduled_at.strftime("%I:%M %p") %>
+    </div>
+  </div>

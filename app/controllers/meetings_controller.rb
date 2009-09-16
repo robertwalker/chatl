@@ -1,5 +1,5 @@
 class MeetingsController < ApplicationController
-  require_role "admin", :except => [ "index", "show", "next_scheduled" ]
+  require_role "admin", :except => [ :index, :show, :next_scheduled ]
 
   # GET /meetings
   # GET /meetings.xml
@@ -15,8 +15,8 @@ class MeetingsController < ApplicationController
   # GET /meetings/1
   # GET /meetings/1.xml
   def show
-    @meeting = Meeting.find(params[:id])
-    @attendee = @meeting.attendee_with_user(current_user) || Attendee.new
+    @meeting = Meeting.find(params[:id]) unless params[:id] == "0"
+    @attendee = @meeting.attendee_with_user(current_user) || Attendee.new if @meeting
 
     respond_to do |format|
       format.html # show.html.erb
@@ -88,7 +88,18 @@ class MeetingsController < ApplicationController
 
   # GET /meetings/next_scheduled
   def next_scheduled
-    @meeting = Meeting.next_scheduled
-    redirect_to meeting_path(@meeting)
+    @meetings = Meeting.next_scheduled
+    @meeting = @meetings[0]
+    @attendee = @meeting.attendee_with_user(current_user) || Attendee.new if @meeting
+
+    respond_to do |format|
+      if @meeting
+        format.html { render :action => "show" }
+        format.xml  { render :xml => @meeting }
+      else
+        format.html { render :action => "index" }
+        format.xml  { render :xml => [] }
+      end
+    end
   end
 end
