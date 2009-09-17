@@ -223,6 +223,10 @@ td {
 	clear: left;
 }
 
+#meeting_blank_state {
+	margin-bottom: 0.5em;
+}
+
 .post_title {
 	color: #5d2a11;
 	margin-top: 0;
