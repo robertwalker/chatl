@@ -1,4 +1,4 @@
-<% form_for(@venue) do |f| %>
+<% form_for(venue) do |f| %>
   <%= f.error_messages %>
 
   <p>
@@ -21,10 +21,10 @@
     <%= f.label :zip %><br />
     <%= f.text_field :zip %>
   </p>
-  <% unless @venue.new_record? %>
+  <% unless venue.new_record? %>
   <p>
     <%= f.label :map_url, "Map URL" %>&nbsp;
-    <%= map_link(@venue) %><br />
+    <%= map_link(venue) %><br />
     <%= f.text_area :map_url, :cols => 65, :rows => 4 %>
   </p>
   <% end %>

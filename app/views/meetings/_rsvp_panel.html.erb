@@ -1,15 +1,15 @@
-  <% if current_user %>
-  <div id="rsvp_panel">
-  <% if @meeting.users.include?(current_user) %>
+<% if current_user %>
+<div id="rsvp_panel">
+  <% if meeting.users.include?(current_user) %>
   <h3>You RSVPed</h3>
   <%= rsvp_state %>
   <p>
-    <%= link_to "Change your mind?", meeting_attendee_path(@meeting), :method => :delete %>
+    <%= link_to "Change your mind?", meeting_attendee_path(meeting), :method => :delete %>
   </p>
   <% else %>
   <p>Do you plan to attend?</p>
   <div id="rsvp_options">
-    <% form_for [@meeting, @attendee] do |f| %>
+    <% form_for [meeting, attendee] do |f| %>
     <p class="center">
       <%= f.radio_button("rsvp", "Yes", :checked => true) %>
       <%= f.label(:rsvp_yes, "Yes", :class => "attendee_rsvp_yes") %>
@@ -22,10 +22,10 @@
     <% end -%>
   </div>
   <% end %>
-  </div>
-  <% else %>
-  <div id="rsvp_panel">
-    <h3>Want to become a CocoaHead?</h3>
-    <%= link_to "Signup now", signup_path %>
-  </div>
-  <% end %>
+</div>
+<% else %>
+<div id="rsvp_panel">
+  <h3>Want to become a CocoaHead?</h3>
+  <%= link_to "Signup now", signup_path %>
+</div>
+<% end %>

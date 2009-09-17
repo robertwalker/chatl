@@ -1,6 +1,7 @@
 <div id="meeting_header">
   <%= render :partial => 'calendar_icon', :locals => { :meeting => meeting } %>
-  <%= render :partial => 'rsvp_panel', :locals => { :meeting => meeting } %>
+  <%= render :partial => 'rsvp_panel',
+             :locals => { :meeting => meeting, :attendee => attendee } %>
 
   <!-- Meeting Header -->
   <div id="venue_details">

@@ -1,3 +1,4 @@
 <h1>Editing venue</h1>
 
-<%= render :partial => 'form', :locals => { :submit_label => "Update" } %>
+<%= render :partial => 'form',
+           :locals => { :venue => @venue, :submit_label => "Update" } %>

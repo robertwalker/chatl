@@ -1,4 +1,5 @@
-<%= render :partial => 'meeting', :object => @meeting %>
+<%= render :partial => 'meeting',
+           :locals => {:meeting => @meeting, :attendee => @attendee } %>
 
 <!-- Navigation Controls -->
 <%= link_to 'Past Meetings', meetings_path %>
