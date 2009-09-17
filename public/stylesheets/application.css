@@ -195,6 +195,17 @@ td {
 	-moz-border-radius: 6px;
 }
 
+.flash_error {
+	font-weight: bold;
+	background-color: #f3fb80;
+	border: 1px solid green;
+	margin-bottom: 6px;
+	padding: 8px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	color: #c00;
+}
+
 #main_content {
 	margin-right: 215px;
 	padding: 12px;
