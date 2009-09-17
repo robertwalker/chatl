@@ -1,4 +1,4 @@
 <p>The <%=h @meeting.scheduled_at.strftime("%B") %> CocoaHeads Atlanta meeting is scheduled for tomorrow night.</p>
 <p>Please <%= link_to "update your RSVP", meeting_url(@meeting, :host => "localhost", :port => 3000) %> if you're not able to attend.</p>
 
-<%= render :partial => 'meeting_details' %>
+<%= render :partial => 'meeting', :object => @meeting %>
