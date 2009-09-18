@@ -27,6 +27,14 @@ h2, h3 {
 	margin-bottom: 10px;
 }
 
+a {
+	color: #333;
+}
+
+a:hover {
+	color: #d28b44;
+}
+
 .left {
 	text-align: left;
 }
@@ -392,7 +400,7 @@ td {
 	margin-right: 0.5em;
 }
 
-p.attendee_rsvp {
+.attendee_rsvp {
 	font-size: 14pt;
 	font-weight: bold;
 	font-style: italic;
