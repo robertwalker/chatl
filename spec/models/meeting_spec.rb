@@ -65,6 +65,10 @@ TEMPLATE
     meeting.should respond_to(:users)
   end
 
+  it "should have named_route 'next_scheduled'" do
+    Meeting.should respond_to(:next_scheduled)
+  end
+
   it "responds to 'attendee_with_user'" do
     # FIXME: This spec could probably be cleaned up
     meeting = Factory(:meeting)
@@ -73,5 +77,19 @@ TEMPLATE
     meeting.reload
     meeting.should respond_to(:attendee_with_user)
     meeting.attendee_with_user(user).should == meeting.attendees.first
+  end
+
+  describe "named scopes" do
+    it "should have 'next_scheduled'" do
+      Meeting.should respond_to(:next_scheduled)
+    end
+
+    it "should have 'recent_past'" do
+      Meeting.should respond_to(:recent_past)
+    end
+
+    it "should have 'upcoming'" do
+      Meeting.should respond_to(:upcoming)
+    end
   end
 end

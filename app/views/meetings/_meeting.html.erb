@@ -12,8 +12,8 @@
       </div>
       <div class="form_fields">
         <p>CocoaHeads monthly meeting</p>
-        <% if meeting.venue %>
         <p><%= meeting.scheduled_at.strftime("%A, %B %e, %Y") %></p>
+        <% if meeting.venue %>
         <div><%= meeting.venue.name %></div>
         <div><% address_formatter(meeting.venue) %></div>
         <div><%= city_state_zip_formatter(meeting.venue) %></div>

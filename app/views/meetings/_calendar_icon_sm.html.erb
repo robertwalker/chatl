@@ -1,0 +1,8 @@
+<div class="calendar_icon_sm" onclick="window.location = '<%= meeting_url(meeting) %>'">
+  <div class="calendar_icon_month_sm">
+    <%= meeting.scheduled_at.strftime("%b") %>
+  </div>
+  <div class="calendar_icon_day_sm">
+    <%= meeting.scheduled_at.day %>
+  </div>
+</div>

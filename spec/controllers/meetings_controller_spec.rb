@@ -119,6 +119,16 @@ describe MeetingsController do
       login_as(@admin_user)
     end
 
+    describe "GET index" do
+      it "assigns upcoming meetings as @upcoming_meetings" do
+        Meeting.stub!(:recent_past).and_return([mock_meeting])
+        Meeting.should_receive(:upcoming).and_return([mock_meeting])
+        mock_meeting.stub!(:attendee_with_user).and_return(nil)
+        get :index
+        assigns[:upcoming_meetings].should == [mock_meeting]
+      end
+    end
+
     describe "GET new" do
       it "assigns a new meeting as @meeting" do
         Meeting.stub!(:new).and_return(mock_meeting)
@@ -218,6 +228,16 @@ describe MeetingsController do
         Meeting.stub!(:find).and_return(mock_meeting(:destroy => true))
         delete :destroy, :id => "1"
         response.should redirect_to(meetings_url)
+      end
+    end
+
+    describe "GET next_scheduled" do
+      it "assigns upcoming meetings as @upcoming_meetings" do
+        Meeting.stub!(:recent_past).and_return([mock_meeting])
+        Meeting.should_receive(:upcoming).and_return([mock_meeting])
+        mock_meeting.stub!(:attendee_with_user).and_return(nil)
+        get :next_scheduled
+        assigns[:upcoming_meetings].should == [mock_meeting]
       end
     end
   end

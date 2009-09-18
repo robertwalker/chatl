@@ -1,0 +1,22 @@
+<% meetings.each do |meeting| %>
+<div class="meeting_row">
+  <%= render :partial => "calendar_icon_sm", :locals => { :meeting => meeting } %>
+  <div class="meeting_row_controls">
+    <%= link_to 'Show', meeting %>
+    <% if logged_in? && current_user.admin? -%>
+    | <%= link_to 'Edit', edit_meeting_path(meeting) %>
+    | <%= link_to 'Destroy', meeting, :confirm => 'Are you sure?', :method => :delete %>
+    <% end -%>
+  </div>
+  <div class="meeting_row_content">
+    <div class="meeting_row_title">CocoaHeads monthly meeting</div>
+    <div class="meeting_row_date"><%= meeting.scheduled_at.strftime("%A, %B %e, %Y") %></div>
+    <% if meeting.venue %>
+    <div>
+      <%= meeting.venue.name %>
+      <span style="margin-left: 1.5em;"><%= map_link(meeting.venue) %></span>
+    </div>
+    <% end -%>
+  </div>
+</div>
+<% end %>

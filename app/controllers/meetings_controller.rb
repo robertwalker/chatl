@@ -1,5 +1,6 @@
 class MeetingsController < ApplicationController
   require_role "admin", :except => [ :index, :show, :next_scheduled ]
+  before_filter :load_upcoming, :only => [ :index, :next_scheduled ]
 
   # GET /meetings
   # GET /meetings.xml
@@ -100,6 +101,14 @@ class MeetingsController < ApplicationController
         format.html { render :action => "index" }
         format.xml  { render :xml => [] }
       end
+    end
+  end
+
+  protected
+
+  def load_upcoming
+    if logged_in? && current_user.admin?
+      @upcoming_meetings = Meeting.upcoming
     end
   end
 end

@@ -14,6 +14,16 @@ describe "/meetings/index.html.erb" do
         :details => "value for details"
       )
     ]
+    assigns[:upcoming_meetings] = [
+      stub_model(Meeting,
+        :venue_id => 1,
+        :details => "value for details"
+      ),
+      stub_model(Meeting,
+        :venue_id => 1,
+        :details => "value for details"
+      )
+    ]
   end
 
   describe "with no meetings (the blank state)" do
