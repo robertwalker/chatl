@@ -37,18 +37,11 @@ describe MeetingsController do
   end
 
   describe "GET next_scheduled" do
-    it "assigns next scheduled meeting as @meeting" do
+    it "redirects to show page for next upcoming meeting" do
       Meeting.stub!(:next_scheduled).and_return([ mock_meeting ])
       mock_meeting.stub!(:attendee_with_user).and_return(nil)
       get :next_scheduled
-      assigns[:meeting].should equal(mock_meeting)
-    end
-
-    it "renders show template for @meeting" do
-      Meeting.stub!(:next_scheduled).and_return([ mock_meeting ])
-      mock_meeting.stub!(:attendee_with_user).and_return(nil)
-      get :next_scheduled
-      response.should render_template("meetings/show")
+      response.should redirect_to(meeting_path(mock_meeting))
     end
   end
 

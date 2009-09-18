@@ -89,14 +89,12 @@ class MeetingsController < ApplicationController
 
   # GET /meetings/next_scheduled
   def next_scheduled
-    @meetings = Meeting.next_scheduled
-    @meeting = @meetings[0]
-    @attendee = @meeting.attendee_with_user(current_user) || Attendee.new if @meeting
+    meeting = Meeting.next_scheduled[0]
 
     respond_to do |format|
-      if @meeting
-        format.html { render :action => "show" }
-        format.xml  { render :xml => @meeting }
+      if meeting
+        format.html { redirect_to meeting_path(meeting) }
+        format.xml  { render :xml => meeting }
       else
         format.html { render :action => "index" }
         format.xml  { render :xml => [] }
