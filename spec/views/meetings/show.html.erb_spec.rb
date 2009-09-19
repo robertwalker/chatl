@@ -11,6 +11,30 @@ describe "/meetings/show.html.erb" do
     assigns[:attendee] = @attendee = stub_model(Attendee)
   end
 
+  it "renders the calendar icon" do
+    render
+    response.should have_tag('div.calendar_icon')
+  end
+
+  it "renders the RSVP panel" do
+    render
+    response.should have_tag('div#rsvp_panel')
+  end
+
+  it "renders the venue details" do
+    render
+    response.should have_tag('div#venue_details') do
+      with_tag('div.layout_labels')
+      with_tag('div.layout_fields')
+    end
+  end
+
+  it "renders the meeting details" do
+    render
+    response.should have_tag('div#meeting_details') do
+    end
+  end
+
   describe "not signed in as an admin" do
     it "hides link for editing meetings" do
       render

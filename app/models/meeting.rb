@@ -18,10 +18,6 @@ TEMPLATE
   has_many :users, :through => :attendees
   belongs_to :venue
 
-  named_scope :next_scheduled, lambda {
-    { :conditions => [ 'scheduled_at >= ?', Time.now ], :order => "scheduled_at", :limit => 1 }
-  }
-
   named_scope :recent_past, lambda {
     { :conditions => [ 'scheduled_at < ?', Time.now ], :order => "scheduled_at DESC", :limit => 6 }
   }
@@ -30,7 +26,7 @@ TEMPLATE
     { :conditions => [ 'scheduled_at >= ?', Time.now ], :order => "scheduled_at" }
   }
 
-  validates_presence_of :venue_id, :scheduled_at, :details
+  validates_presence_of :title, :venue_id, :scheduled_at, :details
 
   def attendee_with_user(user)
     self.attendees.find_by_user_id(user.id) if user

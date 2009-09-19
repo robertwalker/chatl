@@ -12,10 +12,10 @@ describe MeetingsController do
 
   describe "GET index" do
     it "assigns recent past meetings as @meetings" do
-      Meeting.stub!(:recent_past).and_return([mock_meeting])
+      Meeting.stub!(:recent_past).and_return([ mock_meeting ])
       mock_meeting.stub!(:attendee_with_user).and_return(nil)
       get :index
-      assigns[:meetings].should == [mock_meeting]
+      assigns[:meetings].should == [ mock_meeting ]
     end
   end
 
@@ -38,10 +38,16 @@ describe MeetingsController do
 
   describe "GET next_scheduled" do
     it "redirects to show page for next upcoming meeting" do
-      Meeting.stub!(:next_scheduled).and_return([ mock_meeting ])
+      Meeting.stub!(:upcoming).and_return([ mock_meeting ])
       mock_meeting.stub!(:attendee_with_user).and_return(nil)
       get :next_scheduled
       response.should redirect_to(meeting_path(mock_meeting))
+    end
+
+    it "redirects to index page with (blank state) when no upcoming meetings found" do
+      Meeting.stub!(:upcoming).and_return([])
+      get :next_scheduled
+      response.should render_template('meetings/index')
     end
   end
 
@@ -226,11 +232,11 @@ describe MeetingsController do
 
     describe "GET next_scheduled" do
       it "assigns upcoming meetings as @upcoming_meetings" do
-        Meeting.stub!(:recent_past).and_return([mock_meeting])
+        Meeting.stub!(:recent_past).and_return([ mock_meeting ])
         Meeting.should_receive(:upcoming).and_return([mock_meeting])
-        mock_meeting.stub!(:attendee_with_user).and_return(nil)
+        # mock_meeting.stub!(:attendee_with_user).and_return(nil)
         get :next_scheduled
-        assigns[:upcoming_meetings].should == [mock_meeting]
+        assigns[:upcoming_meetings].should == [ mock_meeting ]
       end
     end
   end

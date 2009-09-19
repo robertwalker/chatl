@@ -9,11 +9,11 @@
     <% end -%>
   </div>
   <div class="meeting_row_content">
-    <div class="meeting_row_title">CocoaHeads monthly meeting</div>
-    <div class="meeting_row_date"><%= meeting.scheduled_at.strftime("%A, %B %e, %Y") %></div>
+    <div class="meeting_row_title"><%=h meeting.title %></div>
+    <div class="meeting_row_date"><%=h meeting.scheduled_at.strftime("%A, %B %e, %Y") %></div>
     <% if meeting.venue %>
     <div>
-      <%= meeting.venue.name %>
+      <%=h meeting.venue.name %>
       <span style="margin-left: 1.5em;"><%= map_link(meeting.venue) %></span>
     </div>
     <% end -%>

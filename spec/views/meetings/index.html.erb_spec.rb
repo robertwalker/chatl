@@ -6,24 +6,42 @@ describe "/meetings/index.html.erb" do
   before(:each) do
     assigns[:meetings] = [
       stub_model(Meeting,
+        :title => "value for title",
         :venue_id => 1,
         :details => "value for details"
       ),
       stub_model(Meeting,
+        :title => "value for title",
         :venue_id => 1,
         :details => "value for details"
       )
     ]
     assigns[:upcoming_meetings] = [
       stub_model(Meeting,
+        :title => "value for title",
         :venue_id => 1,
         :details => "value for details"
       ),
       stub_model(Meeting,
+        :title => "value for title",
         :venue_id => 1,
         :details => "value for details"
       )
     ]
+  end
+
+  it "should render 'Past Meetings' header" do
+    render
+    response.should have_tag("h1", "Past Meetings")
+  end
+
+  it "should render the a list of meetings" do
+    render
+    response.should have_tag("div.meeting_row") do
+      with_tag("div.calendar_icon_sm")
+      with_tag("div.meeting_row_controls")
+      with_tag("div.meeting_row_content")
+    end
   end
 
   describe "with no meetings (the blank state)" do
@@ -61,6 +79,11 @@ describe "/meetings/index.html.erb" do
       @admin_user.roles << admin_role
       @admin_user.save
       login_as(@admin_user)
+    end
+
+    it "should render 'Upcoming Meetings header" do
+      render
+      response.should have_tag("h1", "Upcoming Meetings")
     end
 
     it "renders a link for creating new meetings" do

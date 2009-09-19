@@ -5,14 +5,14 @@
 </div>
 <% else -%>
 
-<h1>Past meetings</h1>
+<h1>Past Meetings</h1>
 <div style="border-top: 1px solid #aaa"></div>
 <%= render :partial => 'meetings', :object => @meetings %>
 <% end -%>
 
 <% if logged_in? && current_user.admin? && @upcoming_meetings.count > 0 -%>
 <br />
-<h1>Upcoming meetings</h1>
+<h1>Upcoming Meetings</h1>
 <div style="border-top: 1px solid #aaa"></div>
 <%= render :partial => 'meetings', :object => @upcoming_meetings %>
 <% end -%>

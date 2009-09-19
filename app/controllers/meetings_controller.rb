@@ -89,7 +89,9 @@ class MeetingsController < ApplicationController
 
   # GET /meetings/next_scheduled
   def next_scheduled
-    meeting = Meeting.next_scheduled[0]
+    # Set meetings to an empty array to handle blank state
+    @meetings = []
+    meeting = @upcoming_meetings ? @upcoming_meetings.first : Meeting.upcoming.first
 
     respond_to do |format|
       if meeting

@@ -21,6 +21,12 @@ describe Meeting do
     meeting.should have(:no).errors
   end
 
+  it "requires a title" do
+    meeting = Factory.build(:meeting, :title => nil)
+    meeting.should_not be_valid
+    meeting.should have(1).errors_on(:title)
+  end
+
   it "requires a venue" do
     meeting = Factory.build(:meeting, :venue => nil)
     meeting.should_not be_valid
@@ -65,10 +71,6 @@ TEMPLATE
     meeting.should respond_to(:users)
   end
 
-  it "should have named_route 'next_scheduled'" do
-    Meeting.should respond_to(:next_scheduled)
-  end
-
   it "responds to 'attendee_with_user'" do
     # FIXME: This spec could probably be cleaned up
     meeting = Factory(:meeting)
@@ -80,10 +82,6 @@ TEMPLATE
   end
 
   describe "named scopes" do
-    it "should have 'next_scheduled'" do
-      Meeting.should respond_to(:next_scheduled)
-    end
-
     it "should have 'recent_past'" do
       Meeting.should respond_to(:recent_past)
     end

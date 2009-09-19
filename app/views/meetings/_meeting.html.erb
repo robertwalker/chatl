@@ -5,16 +5,16 @@
 
   <!-- Meeting Header -->
   <div id="venue_details">
-      <div class="form_labels">
+      <div class="layout_labels">
         <p>What:</p>
         <p>When:</p>
         <p>Where:</p>
       </div>
-      <div class="form_fields">
-        <p>CocoaHeads monthly meeting</p>
-        <p><%= meeting.scheduled_at.strftime("%A, %B %e, %Y") %></p>
+      <div class="layout_fields">
+        <p><%=h meeting.title %></p>
+        <p><%=h meeting.scheduled_at.strftime("%A, %B %e, %Y") %></p>
         <% if meeting.venue %>
-        <div><%= meeting.venue.name %></div>
+        <div><%=h meeting.venue.name %></div>
         <div><% address_formatter(meeting.venue) %></div>
         <div><%= city_state_zip_formatter(meeting.venue) %></div>
         <div><%= map_link(meeting.venue) %></div>

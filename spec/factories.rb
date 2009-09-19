@@ -26,6 +26,7 @@ end
 
 # A meeting
 Factory.define :meeting do |f|
+  f.title "Meeting title"
   def f.default_venue
     @default_venue ||= Factory(:venue)
   end

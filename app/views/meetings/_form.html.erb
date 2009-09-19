@@ -2,6 +2,10 @@
   <%= f.error_messages %>
 
   <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
     <%= f.label :venue_id %><br />
     <%= f.select("venue_id", Venue.all.collect {|v| [ v.name, v.id ] },
                  {:include_blank => 'Select a venue'}) %>

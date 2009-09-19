@@ -6,7 +6,7 @@ describe "/layouts/application" do
   end
 
   before(:each) do
-    Meeting.stub!(:next_scheduled).and_return(mock_meeting)
+    Meeting.stub!(:upcoming).and_return([ mock_meeting ])
     render 'layouts/application'
   end
 

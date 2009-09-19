@@ -28,11 +28,13 @@ h2, h3 {
 }
 
 a {
-	color: #333;
+	color: #009;
+	text-decoration: none;
 }
 
 a:hover {
-	color: #d28b44;
+	color: #88f;
+	text-decoration: underline;
 }
 
 .left {
@@ -96,14 +98,14 @@ td {
 	height: 80px;
 }
 
-.form_labels {
+.layout_labels {
 	width: 60px;
 	text-align: right;
 	font-weight: bold;
 	float: left;
 }
 
-.form_fields {
+.layout_fields {
 	margin-left: 65px;
 }
 
