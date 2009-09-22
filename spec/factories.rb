@@ -45,3 +45,10 @@ Factory.define :attendee do |f|
   f.meeting_id { f.default_meeting }
   f.rsvp 'Yes'
 end
+
+# A Presentation
+Factory.define :presentation do |f|
+  f.title 'Presentation title'
+  f.presented_on Date.today
+  f.narrative 'Presentation narrative'
+end
