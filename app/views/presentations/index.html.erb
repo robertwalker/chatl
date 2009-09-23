@@ -1,0 +1,24 @@
+<h1>Listing presentations</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Presented on</th>
+    <th>Narrative</th>
+  </tr>
+
+<% @presentations.each do |presentation| %>
+  <tr>
+    <td><%=h presentation.title %></td>
+    <td><%=h presentation.presented_on %></td>
+    <td><%=h presentation.narrative %></td>
+    <td><%= link_to 'Show', presentation %></td>
+    <td><%= link_to 'Edit', edit_presentation_path(presentation) %></td>
+    <td><%= link_to 'Destroy', presentation, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New presentation', new_presentation_path %>
