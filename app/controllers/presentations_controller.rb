@@ -1,4 +1,6 @@
 class PresentationsController < ApplicationController
+  require_role "admin", :except => :index
+
   # GET /presentations
   # GET /presentations.xml
   def index
