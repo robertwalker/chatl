@@ -1,0 +1,19 @@
+<div class="post_content">
+  <h2 class="post_title">
+    <%=h presentation.title %>
+  </h2>
+  <% if logged_in? && current_user.admin? -%>
+  <div class="meeting_row_controls">
+    <%= link_to 'Show', presentation_path(presentation) %>
+    | <%= link_to 'Edit', edit_presentation_path(presentation) %>
+    | <%= link_to 'Destroy', presentation, :confirm => 'Are you sure?', :method => :delete %>
+  </div>
+  <% end -%>
+  <div class="post_date_line">
+    <%= image_tag "date.gif" %>
+    <span class="post_date"><%=h presentation.presented_on.strftime("%A, %B %e, %Y") %></span>
+  </div>
+  <div class="post_narrative">
+    <%= render_textile(presentation.narrative) %>
+  </div>
+</div>

@@ -5,6 +5,7 @@ describe "/presentations/show.html.erb" do
   before(:each) do
     assigns[:presentation] = @presentation = stub_model(Presentation,
       :title => "value for title",
+      :presented_on => Date.today,
       :narrative => "value for narrative"
     )
   end
