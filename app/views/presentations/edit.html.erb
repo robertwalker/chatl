@@ -1,24 +1,4 @@
 <h1>Editing presentation</h1>
 
-<% form_for(@presentation) do |f| %>
-  <%= f.error_messages %>
-
-  <p>
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </p>
-  <p>
-    <%= f.label :presented_on %><br />
-    <%= f.date_select :presented_on %>
-  </p>
-  <p>
-    <%= f.label :narrative %><br />
-    <%= f.text_area :narrative %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
-<% end %>
-
-<%= link_to 'Show', @presentation %> |
-<%= link_to 'Back', presentations_path %>
+<%= render :partial => 'form',
+           :locals => { :presentation => @presentation, :submit_label => "Update" } %>

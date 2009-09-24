@@ -2,11 +2,11 @@
   <% content_tag(:div, :id => "meetings_tab", :class => tab_class_for('meetings')) do -%>
     <%= link_to "Meetings", next_meeting_path %>
   <% end -%>
+  <% content_tag(:div, :id => "presentations_tab", :class => tab_class_for('presentations')) do -%>
+    <%= link_to "Presentations", presentations_path %>
+  <% end -%>
   <!-- TODO: Show these tabs once the feature has been implemented -->
   <% if false -%>
-  <% content_tag(:div, :id => "presentations_tab", :class => tab_class_for('presentations')) do -%>
-    Presentations
-  <% end -%>
   <% content_tag(:div, :id => "files_tab", :class => tab_class_for('files')) do -%>
     Files
   <% end -%>

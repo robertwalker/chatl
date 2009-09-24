@@ -1,0 +1,21 @@
+<% form_for(presentation) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :presented_on %><br />
+    <%= f.date_select :presented_on %>
+  </p>
+  <p>
+    <%= f.label :narrative %><br />
+    <%= f.text_area :narrative, :cols => 65, :rows => 18 %>
+  </p>
+  <p>
+    <%= f.submit submit_label %>&nbsp;
+    or&nbsp;
+    <%= link_to 'Cancel', presentations_path %>
+  </p>
+<% end %>
