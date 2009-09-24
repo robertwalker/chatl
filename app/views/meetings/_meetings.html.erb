@@ -1,7 +1,7 @@
 <% meetings.each do |meeting| %>
 <div class="meeting_row">
   <%= render :partial => "calendar_icon_sm", :locals => { :meeting => meeting } %>
-  <div class="meeting_row_controls">
+  <div class="row_controls">
     <%= link_to 'Show', meeting %>
     <% if logged_in? && current_user.admin? -%>
     | <%= link_to 'Edit', edit_meeting_path(meeting) %>

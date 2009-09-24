@@ -43,7 +43,7 @@ describe "/presentations/index.html.erb" do
       render
       response.should have_tag("div.post_content") do
         # TODO: Refactor this CSS class so it's not referencing meeting
-        with_tag("div.meeting_row_controls", 2) do
+        with_tag("div.row_controls", 2) do
           with_tag("a[href=?]", %r{/presentations/\d+}, "Show")
           with_tag("a[href=?]", %r{/presentations/\d+/edit}, "Edit")
           with_tag("a[href=?]", %r{/presentations/\d+}, "Destroy")

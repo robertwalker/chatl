@@ -39,7 +39,7 @@ describe "/meetings/index.html.erb" do
     render
     response.should have_tag("div.meeting_row") do
       with_tag("div.calendar_icon_sm")
-      with_tag("div.meeting_row_controls")
+      with_tag("div.row_controls")
       with_tag("div.meeting_row_content")
     end
   end

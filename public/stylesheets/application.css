@@ -230,6 +230,10 @@ td {
 	-moz-border-radius: 6px;
 }
 
+.row_controls {
+	float: right;
+}
+
 #venue_details {
 	height: 100px;
 	margin-left: 110px;
@@ -259,10 +263,6 @@ td {
 
 .meeting_row_content {
 	margin-left: 65px;
-}
-
-.meeting_row_controls {
-	float: right;
 }
 
 .meeting_row_title {

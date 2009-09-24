@@ -3,7 +3,7 @@
     <%=h presentation.title %>
   </h2>
   <% if logged_in? && current_user.admin? -%>
-  <div class="meeting_row_controls">
+  <div class="row_controls">
     <%= link_to 'Show', presentation_path(presentation) %>
     | <%= link_to 'Edit', edit_presentation_path(presentation) %>
     | <%= link_to 'Destroy', presentation, :confirm => 'Are you sure?', :method => :delete %>
