@@ -28,9 +28,9 @@ config.action_mailer.delivery_method = :test
 # config.active_record.schema_format = :sql
 
 # Gem dependencies for test environment
-config.gem 'rspec', :lib => false, :version => '>=1.2.8'
-config.gem 'rspec-rails', :lib => false, :version => '>=1.2.7.1'
-config.gem 'cucumber', :lib => false, :version => '>=0.3.104'
+config.gem 'rspec', :lib => false, :version => '>=1.2.9'
+config.gem 'rspec-rails', :lib => false, :version => '>=1.2.9'
+config.gem 'cucumber', :lib => false, :version => '>=0.4'
 config.gem 'webrat', :lib => false, :version => '>=0.5.3'
 config.gem "thoughtbot-factory_girl", :lib => "factory_girl", 
                                       :version => ">=1.2.2", 
