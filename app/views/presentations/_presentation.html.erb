@@ -1,7 +1,7 @@
 <div class="post_content">
-  <h2 class="post_title">
+  <h1 class="post_title">
     <%=h presentation.title %>
-  </h2>
+  </h1>
   <% if logged_in? && current_user.admin? -%>
   <div class="row_controls">
     <%= link_to 'Show', presentation_path(presentation) %>

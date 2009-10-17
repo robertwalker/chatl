@@ -3,7 +3,7 @@ html {
 }
 
 body {
-	font: small Georgia, "Times New Roman", Times, serif;
+	font: 10pt Georgia, "Times New Roman", Times, serif;
 	margin: 2em 0;
 }
 
@@ -16,7 +16,7 @@ h1 {
 	margin-top: 0;
 	margin-bottom: 4px;
 	padding-bottom: 0.1em;
-	font: italic 16pt Georgia, "Times New Roman", Times, serif;
+	font: 18pt "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
 }
 
 h2, h3 {
@@ -28,7 +28,7 @@ h2, h3 {
 }
 
 a {
-	color: #009;
+	color: blue;
 	text-decoration: none;
 }
 
@@ -188,7 +188,7 @@ td {
 	width: 200px;
 	padding: 8px;
 	float: right;
-	font: 9pt "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	font: 10pt "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
 }
 
 /* @end */
@@ -269,7 +269,7 @@ td {
 	font-size: 12pt;
 	font-weight: bold;
 	color: #5d2a11;
-	margin-bottom: 0.25em;
+	margin-bottom: 0.15em;
 }
 
 .meeting_row_date {
@@ -282,7 +282,7 @@ td {
 	margin-bottom: 4px;
 	padding-bottom: 0.2em;
 	border-bottom: 1px solid #2d190f;
-	font: italic x-large Georgia, "Times New Roman", Times, serif;
+	font: 18pt "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
 }
 
 .post_date_line {
