@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090922172556) do
+ActiveRecord::Schema.define(:version => 20091027171957) do
 
   create_table "attendees", :id => false, :force => true do |t|
     t.integer  "user_id"
@@ -20,6 +20,14 @@ ActiveRecord::Schema.define(:version => 20090922172556) do
   end
 
   add_index "attendees", ["user_id", "meeting_id"], :name => "idx_user_meeting", :unique => true
+
+  create_table "data_files", :force => true do |t|
+    t.string   "comment"
+    t.string   "name"
+    t.string   "content_type", :default => "application/octetstream"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "meetings", :force => true do |t|
     t.integer  "venue_id"
