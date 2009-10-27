@@ -52,3 +52,10 @@ Factory.define :presentation do |f|
   f.presented_on Date.today
   f.narrative 'Presentation narrative'
 end
+
+# A Data File
+Factory.define :data_file do |f|
+  f.comment 'DataFile comment'
+  f.name 'DataFile name'
+  f.content_type 'DataFile content_type'
+end

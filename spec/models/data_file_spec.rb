@@ -1,15 +1,27 @@
 require 'spec_helper'
 
 describe DataFile do
-  before(:each) do
-    @valid_attributes = {
-      :comment => "value for comment",
-      :name => "value for name",
-      :content_type => "value for content_type"
-    }
+  it "should create a new instance given valid attributes" do
+    @data_file = Factory.build(:data_file)
+    @data_file.should be_valid
+    @data_file.should have(:no).errors
   end
 
-  it "should create a new instance given valid attributes" do
-    DataFile.create!(@valid_attributes)
+  it "should require 'comment'" do
+    @data_file = Factory.build(:data_file, :comment => nil)
+    @data_file.should_not be_valid
+    @data_file.errors.should_not be_empty
+  end
+
+  it "should require 'name'" do
+    @data_file = Factory.build(:data_file, :name => nil)
+    @data_file.should_not be_valid
+    @data_file.errors.should_not be_empty
+  end
+
+  it "should require 'content_type'" do
+    @data_file = Factory.build(:data_file, :content_type => nil)
+    @data_file.should_not be_valid
+    @data_file.errors.should_not be_empty
   end
 end
