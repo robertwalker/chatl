@@ -5,11 +5,11 @@
   <% content_tag(:div, :id => "presentations_tab", :class => tab_class_for('presentations')) do -%>
     <%= link_to "Presentations", presentations_path %>
   <% end -%>
+  <% content_tag(:div, :id => "files_tab", :class => tab_class_for('data_files')) do -%>
+  <%= link_to "Files", data_files_path %>
+  <% end -%>
   <!-- TODO: Show these tabs once the feature has been implemented -->
   <% if false -%>
-  <% content_tag(:div, :id => "files_tab", :class => tab_class_for('files')) do -%>
-    Files
-  <% end -%>
   <% content_tag(:div, :id => "members_tab", :class => tab_class_for('members')) do -%>
     Members
   <% end -%>
