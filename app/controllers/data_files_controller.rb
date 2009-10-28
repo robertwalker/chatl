@@ -1,4 +1,6 @@
 class DataFilesController < ApplicationController
+  require_role "admin", :except => :index
+
   # GET /data_files
   # GET /data_files.xml
   def index
