@@ -7,18 +7,22 @@
     <th>Content type</th>
   </tr>
 
-<% @data_files.each do |data_file| %>
+  <% @data_files.each do |data_file| %>
   <tr>
     <td><%=h data_file.comment %></td>
     <td><%=h data_file.name %></td>
     <td><%=h data_file.content_type %></td>
+    <% if logged_in? && current_user.admin? -%>
     <td><%= link_to 'Show', data_file %></td>
     <td><%= link_to 'Edit', edit_data_file_path(data_file) %></td>
     <td><%= link_to 'Destroy', data_file, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end -%>
   </tr>
-<% end %>
+  <% end %>
 </table>
 
 <br />
 
+<% if logged_in? && current_user.admin? -%>
 <%= link_to 'New data_file', new_data_file_path %>
+<% end -%>
