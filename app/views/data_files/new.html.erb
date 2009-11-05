@@ -1,6 +1,6 @@
 <h1>New data_file</h1>
 
-<% form_for(@data_file) do |f| %>
+<% form_for(@data_file, :html => { :multipart => true }) do |f| %>
   <%= f.error_messages %>
 
   <p>
@@ -8,12 +8,7 @@
     <%= f.text_field :comment %>
   </p>
   <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :content_type %><br />
-    <%= f.text_field :content_type %>
+    <%= f.file_field :uploaded_file %>
   </p>
   <p>
     <%= f.submit 'Create' %>

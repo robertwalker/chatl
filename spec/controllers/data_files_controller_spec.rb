@@ -14,6 +14,17 @@ describe DataFilesController do
     end
   end
 
+  describe "GET download" do
+    it "assigns the requested data_file as @data_file" do
+      DataFile.stub!(:find).with("37").and_return(mock_data_file)
+      mock_data_file.should_receive(:absolute_path).and_return("/system/downloads/text.txt")
+      mock_file = mock(File)
+      controller.stub!(:send_file).and_return(mock_file)
+      get :download, :id => "37"
+      assigns[:data_file].should equal(mock_data_file)
+    end
+  end
+
   describe "not logged in" do
     it "denies access to 'show'" do
       get :show, :id => "1"

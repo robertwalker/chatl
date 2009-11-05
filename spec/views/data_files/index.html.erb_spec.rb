@@ -22,7 +22,6 @@ describe "/data_files/index.html.erb" do
     render
     response.should have_tag("tr>td", "value for comment".to_s, 2)
     response.should have_tag("tr>td", "value for name".to_s, 2)
-    response.should have_tag("tr>td", "value for content_type".to_s, 2)
   end
 
   it "should not render show data_file link" do
@@ -71,7 +70,7 @@ describe "/data_files/index.html.erb" do
 
     it "renders new data_file link" do
       render
-      response.should have_tag("a[href=?]", "/data_files/new")
+      response.should have_tag("a[href=?]", "/data_files/new", "Upload File")
     end
   end
 end

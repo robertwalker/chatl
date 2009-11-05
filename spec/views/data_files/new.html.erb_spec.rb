@@ -15,10 +15,9 @@ describe "/data_files/new.html.erb" do
   it "renders new data_file form" do
     render
 
-    response.should have_tag("form[action=?][method=post]", data_files_path) do
+    response.should have_tag("form[action=?][enctype=?][method=post]", data_files_path, "multipart/form-data") do
       with_tag("input#data_file_comment[name=?]", "data_file[comment]")
-      with_tag("input#data_file_name[name=?]", "data_file[name]")
-      with_tag("input#data_file_content_type[name=?]", "data_file[content_type]")
+      with_tag("input#data_file_uploaded_file[name=?][type=file]", "data_file[uploaded_file]")
     end
   end
 end

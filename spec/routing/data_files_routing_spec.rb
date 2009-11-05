@@ -29,5 +29,9 @@ describe DataFilesController do
     it "recognizes and generates #destroy" do
       { :delete => "/data_files/1" }.should route_to(:controller => "data_files", :action => "destroy", :id => "1") 
     end
+    
+    it "recognizes and generates #download" do
+      { :get => "/data_files/1/download" }.should route_to(:controller => "data_files", :action => "download", :id => "1")
+    end
   end
 end

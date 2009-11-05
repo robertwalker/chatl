@@ -1,5 +1,5 @@
 class DataFilesController < ApplicationController
-  require_role "admin", :except => :index
+  require_role "admin", :except => [ :index, :download ]
 
   # GET /data_files
   # GET /data_files.xml
@@ -83,5 +83,11 @@ class DataFilesController < ApplicationController
       format.html { redirect_to(data_files_url) }
       format.xml  { head :ok }
     end
+  end
+
+  # GET /data_files/1/download
+  def download
+    @data_file = DataFile.find(params[:id])
+    send_file(@data_file.absolute_path)
   end
 end

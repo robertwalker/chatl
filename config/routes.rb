@@ -11,8 +11,9 @@ ActionController::Routing::Routes.draw do |map|
                                              :activation_code => nil
 
   # Resource routes
-  map.resources :venues, :presentations, :data_files
+  map.resources :venues, :presentations
   map.resources :meetings, :has_many => :attendees
+  map.resources :data_files, :member => { :download => :get }
   map.resources :users, :member => { :suspend   => :put,
                                      :unsuspend => :put,
                                      :purge     => :delete } 
