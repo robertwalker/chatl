@@ -88,6 +88,10 @@ class DataFilesController < ApplicationController
   # GET /data_files/1/download
   def download
     @data_file = DataFile.find(params[:id])
-    send_file(@data_file.absolute_path)
+    begin
+      send_file(@data_file.absolute_path)
+    rescue ActionController::MissingFile
+      render :file => "#{RAILS_ROOT}/public/404.html", :status => 404 and return
+    end
   end
 end

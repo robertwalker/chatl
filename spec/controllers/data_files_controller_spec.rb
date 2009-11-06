@@ -19,9 +19,19 @@ describe DataFilesController do
       DataFile.stub!(:find).with("37").and_return(mock_data_file)
       mock_data_file.should_receive(:absolute_path).and_return("/system/downloads/text.txt")
       mock_file = mock(File)
-      controller.stub!(:send_file).and_return(mock_file)
+      controller.should_receive(:send_file).and_return(mock_file)
       get :download, :id => "37"
       assigns[:data_file].should equal(mock_data_file)
+      response.should be_success
+    end
+
+    it "should present error and redirect to 'index' when file is not found" do
+      DataFile.stub!(:find).with("37").and_return(mock_data_file)
+      mock_data_file.should_receive(:absolute_path).and_return("/system/downloads/text.txt")
+      controller.should_receive(:send_file).and_raise(ActionController::MissingFile)
+      get :download, :id => "37"
+      response.should render_template("#{RAILS_ROOT}/public/404.html")
+      response.response_code.should == 404
     end
   end
 
