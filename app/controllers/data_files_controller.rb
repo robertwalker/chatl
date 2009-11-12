@@ -12,17 +12,6 @@ class DataFilesController < ApplicationController
     end
   end
 
-  # GET /data_files/1
-  # GET /data_files/1.xml
-  def show
-    @data_file = DataFile.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @data_file }
-    end
-  end
-
   # GET /data_files/new
   # GET /data_files/new.xml
   def new
@@ -47,7 +36,7 @@ class DataFilesController < ApplicationController
     respond_to do |format|
       if @data_file.save
         flash[:notice] = 'DataFile was successfully created.'
-        format.html { redirect_to(@data_file) }
+        format.html { redirect_to(data_files_url) }
         format.xml  { render :xml => @data_file, :status => :created, :location => @data_file }
       else
         format.html { render :action => "new" }

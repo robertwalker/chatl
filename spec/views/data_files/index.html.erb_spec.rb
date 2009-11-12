@@ -30,9 +30,9 @@ describe "/data_files/index.html.erb" do
     end
   end
 
-  it "should not render show data_file link" do
+  it "renders download data_file link" do
     render
-    response.should_not have_tag("a[href=?]", %r{/data_files/\d+}, "Show")
+    response.should_not have_tag("a[href=?]", %r{/data_files/\d+}, "Download")
   end
 
   it "should not render edit data_file link" do
@@ -45,7 +45,7 @@ describe "/data_files/index.html.erb" do
     response.should_not have_tag("a[href=?]", %r{/data_files/\d+}, "Destroy")
   end
 
-  it "should not render new link" do
+  it "should not render new data_file link" do
     render
     response.should_not have_tag("a[href=?]", "/data_files/new")
   end
@@ -57,11 +57,6 @@ describe "/data_files/index.html.erb" do
       @admin_user.roles << admin_role
       @admin_user.save
       login_as(@admin_user)
-    end
-
-    it "renders show data_file link" do
-      render
-      response.should have_tag("a[href=?]", %r{/data_files/\d+}, "Show")
     end
 
     it "renders edit data_file link" do
@@ -77,6 +72,11 @@ describe "/data_files/index.html.erb" do
     it "renders new data_file link" do
       render
       response.should have_tag("a[href=?]", "/data_files/new", "Upload File")
+    end
+
+    it "renders new data file link" do
+      render
+      response.should have_tag("a[href=?]", "/data_files/new")
     end
   end
 end

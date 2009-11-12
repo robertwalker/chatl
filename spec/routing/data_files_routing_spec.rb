@@ -10,10 +10,6 @@ describe DataFilesController do
       { :get => "/data_files/new" }.should route_to(:controller => "data_files", :action => "new")
     end
 
-    it "recognizes and generates #show" do
-      { :get => "/data_files/1" }.should route_to(:controller => "data_files", :action => "show", :id => "1")
-    end
-
     it "recognizes and generates #edit" do
       { :get => "/data_files/1/edit" }.should route_to(:controller => "data_files", :action => "edit", :id => "1")
     end

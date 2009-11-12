@@ -1,18 +1,23 @@
-<h1>New data_file</h1>
+<h1>Select a File to Upload</h1>
 
 <% form_for(@data_file, :html => { :multipart => true }) do |f| %>
   <%= f.error_messages %>
 
   <p>
-    <%= f.label :comment %><br />
+    <%= f.label :comment, "Briefly describe the file being uploaded" %><br />
     <%= f.text_field :comment %>
+  </p>
+  <div style="border-top: 1px solid #aaa; margin: 0.25em 0;"></div>
+  <p>
+    Select the file you wish to upload:
   </p>
   <p>
     <%= f.file_field :uploaded_file %>
   </p>
+  <div style="border-top: 1px solid #aaa; margin-bottom: 1em;"></div>
   <p>
-    <%= f.submit 'Create' %>
+    <%= f.submit 'Upload File' %>&nbsp;
+    or&nbsp;
+    <%= link_to 'Cancel', data_files_path %>
   </p>
 <% end %>
-
-<%= link_to 'Back', data_files_path %>

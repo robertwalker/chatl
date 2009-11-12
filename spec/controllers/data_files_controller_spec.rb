@@ -36,11 +36,6 @@ describe DataFilesController do
   end
 
   describe "not logged in" do
-    it "denies access to 'show'" do
-      get :show, :id => "1"
-      response.should redirect_to(new_session_url)
-    end
-
     it "denies access to 'new'" do
       get :new
       response.should redirect_to(new_session_url)
@@ -76,14 +71,6 @@ describe DataFilesController do
       login_as(@admin_user)
     end
 
-    describe "GET show" do
-      it "assigns the requested data_file as @data_file" do
-        DataFile.stub!(:find).with("37").and_return(mock_data_file)
-        get :show, :id => "37"
-        assigns[:data_file].should equal(mock_data_file)
-      end
-    end
-
     describe "GET new" do
       it "assigns a new data_file as @data_file" do
         DataFile.stub!(:new).and_return(mock_data_file)
@@ -108,10 +95,10 @@ describe DataFilesController do
           assigns[:data_file].should equal(mock_data_file)
         end
 
-        it "redirects to the created data_file" do
+        it "redirects to the data_files index" do
           DataFile.stub!(:new).and_return(mock_data_file(:save => true))
           post :create, :data_file => {}
-          response.should redirect_to(data_file_url(mock_data_file))
+          response.should redirect_to(data_files_url)
         end
       end
 
