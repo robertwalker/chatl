@@ -35,7 +35,7 @@ class DataFilesController < ApplicationController
 
     respond_to do |format|
       if @data_file.save
-        flash[:notice] = 'DataFile was successfully created.'
+        flash[:notice] = 'File was successfully created.'
         format.html { redirect_to(data_files_url) }
         format.xml  { render :xml => @data_file, :status => :created, :location => @data_file }
       else
@@ -52,8 +52,8 @@ class DataFilesController < ApplicationController
 
     respond_to do |format|
       if @data_file.update_attributes(params[:data_file])
-        flash[:notice] = 'DataFile was successfully updated.'
-        format.html { redirect_to(@data_file) }
+        flash[:notice] = 'File was successfully updated.'
+        format.html { redirect_to(data_files_url) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

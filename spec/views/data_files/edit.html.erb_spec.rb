@@ -17,8 +17,6 @@ describe "/data_files/edit.html.erb" do
 
     response.should have_tag("form[action=#{data_file_path(@data_file)}][method=post]") do
       with_tag('input#data_file_comment[name=?]', "data_file[comment]")
-      with_tag('input#data_file_name[name=?]', "data_file[name]")
-      with_tag('input#data_file_content_type[name=?]', "data_file[content_type]")
     end
   end
 end

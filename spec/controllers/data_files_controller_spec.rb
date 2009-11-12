@@ -134,7 +134,7 @@ describe DataFilesController do
         it "redirects to the data_file" do
           DataFile.stub!(:find).and_return(mock_data_file(:update_attributes => true))
           put :update, :id => "1"
-          response.should redirect_to(data_file_url(mock_data_file))
+          response.should redirect_to(data_files_url)
         end
       end
 
