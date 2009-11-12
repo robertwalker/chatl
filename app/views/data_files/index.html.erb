@@ -1,24 +1,31 @@
-<h1>Listing data_files</h1>
-
-<table>
-  <tr>
-    <th>Comment</th>
-    <th>Name</th>
-  </tr>
-
-  <% @data_files.each do |data_file| %>
-  <tr>
-    <td><%=h data_file.comment %></td>
-    <td><%= link_to data_file.name, download_data_file_path(data_file) %></td>
+<!-- Handle the blank state -->
+<% if @data_files.count == 0 -%>
+<div id="data_files_blank_state">
+  No files are available for download.
+</div>
+<% else -%>
+<h1>Public Downloads</h1>
+<div style="border-top: 1px solid #aaa"></div>
+<% @data_files.each do |data_file| %>
+<div class="data_file_row">
+  <div class="row_controls">
+    <%= link_to 'Download', download_data_file_path(data_file) %>
     <% if logged_in? && current_user.admin? -%>
-    <td><%= link_to 'Show', data_file %></td>
-    <td><%= link_to 'Edit', edit_data_file_path(data_file) %></td>
-    <td><%= link_to 'Destroy', data_file, :confirm => 'Are you sure?', :method => :delete %></td>
+    | <%= link_to 'Show', data_file %>
+    | <%= link_to 'Edit', edit_data_file_path(data_file) %>
+    | <%= link_to 'Destroy', data_file, :confirm => 'Are you sure?', :method => :delete %>
     <% end -%>
-  </tr>
-  <% end %>
-</table>
-
+  </div>
+  <div class="data_file_row_icon">
+    <img src="<%= data_file_icon_src(data_file.content_type) %>" />
+  </div>
+  <div class="data_file_row_content">
+    <div class="data_file_row_title"><%=h data_file.comment %></div>
+    <div class="data_file_row_name"><%=h data_file.name %></div>
+  </div>
+</div>
+<% end -%>
+<% end -%>
 <br />
 
 <% if logged_in? && current_user.admin? -%>

@@ -298,6 +298,30 @@ td {
 	color: #2d190f;
 }
 
+.data_file_row {
+	height: 50px;
+	margin-bottom: 0.25em;
+	padding-top: 0.25em;
+	padding-left: 2px;
+	padding-right: 2px;
+	border-bottom: 1px solid #aaa;
+}
+
+.data_file_row_content {
+	margin-left: 55px;	
+}
+
+.data_file_row_icon {
+	float: left;
+}
+
+.data_file_row_title {
+	font-size: 12pt;
+	font-weight: bold;
+	color: #5d2a11;
+	margin-bottom: 0.15em;
+}
+
 /* @end */
 
 /* @group Calendar Icons */

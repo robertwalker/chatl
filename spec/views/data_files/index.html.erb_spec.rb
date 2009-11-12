@@ -20,8 +20,14 @@ describe "/data_files/index.html.erb" do
 
   it "renders a list of data_files" do
     render
-    response.should have_tag("tr>td", "value for comment".to_s, 2)
-    response.should have_tag("tr>td", "value for name".to_s, 2)
+    response.should have_tag("div.data_file_row", 2) do
+      with_tag("div.row_controls")
+      with_tag("div.data_file_row_icon")
+      with_tag("div.data_file_row_content") do
+        with_tag("div.data_file_row_title")
+        with_tag("div.data_file_row_name")
+      end
+    end
   end
 
   it "should not render show data_file link" do
