@@ -30,6 +30,15 @@ describe "/meetings/index.html.erb" do
     ]
   end
 
+  it "should render the empty state image when not meetings found" do
+    assigns[:meetings] = []
+    assigns[:upcoming_meetings] = []
+    render
+    response.should have_tag("img#blank_state[src=?][alt=?]",
+                             %r{/images/meeting_blank_state.jpg.*},
+                             "Meeting_blank_state")
+  end
+
   it "should render 'Past Meetings' header" do
     render
     response.should have_tag("h1", "Past Meetings")
