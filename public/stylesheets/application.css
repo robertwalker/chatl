@@ -322,6 +322,12 @@ td {
 	margin-bottom: 0.15em;
 }
 
+.data_file_row_date {
+	font-style: italic;
+	color: #999;
+	float: right;
+}
+
 /* @end */
 
 /* @group Calendar Icons */

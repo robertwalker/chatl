@@ -25,6 +25,7 @@ describe "/data_files/index.html.erb" do
       with_tag("div.data_file_row_icon")
       with_tag("div.data_file_row_content") do
         with_tag("div.data_file_row_title")
+        with_tag("div.data_file_row_date")
         with_tag("div.data_file_row_name")
       end
     end

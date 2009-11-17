@@ -20,6 +20,9 @@
   </div>
   <div class="data_file_row_content">
     <div class="data_file_row_title"><%=h data_file.comment %></div>
+    <div class="data_file_row_date">
+      <%=h data_file.created_at.strftime("%m/%e/%Y") if data_file.created_at %>
+    </div>
     <div class="data_file_row_name"><%=h data_file.name %></div>
   </div>
 </div>
