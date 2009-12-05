@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091027171957) do
+ActiveRecord::Schema.define(:version => 20091205194210) do
 
   create_table "attendees", :id => false, :force => true do |t|
     t.integer  "user_id"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(:version => 20091027171957) do
     t.text     "narrative"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "presented_by"
   end
 
   create_table "roles", :force => true do |t|

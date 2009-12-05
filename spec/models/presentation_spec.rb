@@ -1,16 +1,10 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Presentation do
-  before(:each) do
-    @valid_attributes = {
-      :title => "value for title",
-      :presented_on => Date.today,
-      :narrative => "value for narrative"
-    }
-  end
-
   it "should create a new instance given valid attributes" do
-    Presentation.create!(@valid_attributes)
+    presentation = Factory.build(:presentation)
+    presentation.should be_valid
+    presentation.should have(:no).errors
   end
 
   it "requires 'title'" do
@@ -23,6 +17,12 @@ describe Presentation do
     presentation = Factory.build(:presentation, :presented_on => nil)
     presentation.should_not be_valid
     presentation.should have(1).errors_on(:presented_on)
+  end
+
+  it "requires 'presented_by'" do
+    presentation = Factory.build(:presentation, :presented_by => nil)
+    presentation.should_not be_valid
+    presentation.should have(1).errors_on(:presented_by)
   end
 
   it "requires 'narrative'" do

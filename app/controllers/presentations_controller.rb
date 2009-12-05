@@ -4,7 +4,7 @@ class PresentationsController < ApplicationController
   # GET /presentations
   # GET /presentations.xml
   def index
-    @presentations = Presentation.all
+    @presentations = Presentation.find(:all, :order => "presented_on DESC")
 
     respond_to do |format|
       format.html # index.html.erb

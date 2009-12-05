@@ -11,7 +11,8 @@
   <% end -%>
   <div class="post_date_line">
     <%= image_tag "date.gif" %>
-    <span class="post_date"><%=h presentation.presented_on.strftime("%A, %B %e, %Y") %></span>
+    <span class="post_date"><%=h presentation.presented_on.strftime("%A, %B %e, %Y") %>
+    &mdash; Presented by <%=h presentation.presented_by %></span>
   </div>
   <div class="post_narrative">
     <%= render_textile(presentation.narrative) %>

@@ -8,7 +8,8 @@ describe PresentationsController do
 
   describe "GET index" do
     it "assigns all presentations as @presentations" do
-      Presentation.stub!(:find).with(:all).and_return([mock_presentation])
+      Presentation.stub!(:find).with(:all,
+                  :order => "presented_on DESC").and_return([mock_presentation])
       get :index
       assigns[:presentations].should == [mock_presentation]
     end

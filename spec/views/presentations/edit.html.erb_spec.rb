@@ -16,6 +16,10 @@ describe "/presentations/edit.html.erb" do
 
     response.should have_tag("form[action=#{presentation_path(@presentation)}][method=post]") do
       with_tag('input#presentation_title[name=?]', "presentation[title]")
+      with_tag("select#presentation_presented_on_1i[name=?]", "presentation[presented_on(1i)]")
+      with_tag("select#presentation_presented_on_2i[name=?]", "presentation[presented_on(2i)]")
+      with_tag("select#presentation_presented_on_3i[name=?]", "presentation[presented_on(3i)]")
+      with_tag("input#presentation_presented_by[name=?]", "presentation[presented_by]")
       with_tag('textarea#presentation_narrative[name=?]', "presentation[narrative]")
     end
   end

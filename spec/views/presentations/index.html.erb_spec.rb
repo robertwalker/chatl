@@ -23,7 +23,7 @@ describe "/presentations/index.html.erb" do
     response.should have_tag("div.post_content") do
       with_tag("h1.post_title", "value for title".to_s, 2)
       with_tag("div.post_date_line") do
-        with_tag("img[src=?]", %r{/images/date.gif.*})
+        with_tag("img[src=?]", %r{/images/date\.gif.*})
         with_tag("span.post_date", /.+/)
       end
       with_tag("div.post_narrative", "value for narrative".to_s, 2)

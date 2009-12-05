@@ -50,6 +50,7 @@ end
 Factory.define :presentation do |f|
   f.title 'Presentation title'
   f.presented_on Date.today
+  f.presented_by 'Presenation presented_by'
   f.narrative 'Presentation narrative'
 end
 
