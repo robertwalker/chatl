@@ -122,26 +122,51 @@ describe User do
     end
   end
 
-  describe 'allows legitimate names:' do
+  describe 'allows legitimate first names:' do
     ['Andre The Giant (7\'4", 520 lb.) -- has a posse',
      '', '1234567890_234567890_234567890_234567890_234567890_234567890_234567890_234567890_234567890_234567890',
     ].each do |name_str|
       it "'#{name_str}'" do
         lambda do
-          u = create_user(:name => name_str)
-          u.errors.on(:name).should     be_nil
+          u = create_user(:first_name => name_str)
+          u.errors.on(:first_name).should     be_nil
         end.should change(User, :count).by(1)
       end
     end
   end
-  describe "disallows illegitimate names" do
+  describe "disallows illegitimate first names" do
     ["tab\t", "newline\n",
      '1234567890_234567890_234567890_234567890_234567890_234567890_234567890_234567890_234567890_234567890_',
      ].each do |name_str|
       it "'#{name_str}'" do
         lambda do
-          u = create_user(:name => name_str)
-          u.errors.on(:name).should_not be_nil
+          u = create_user(:first_name => name_str)
+          u.errors.on(:first_name).should_not be_nil
+        end.should_not change(User, :count)
+      end
+    end
+  end
+
+  describe 'allows legitimate last names:' do
+    ['Andre The Giant (7\'4", 520 lb.) -- has a posse',
+     '', '1234567890_234567890_234567890_234567890_234567890_234567890_234567890_234567890_234567890_234567890',
+    ].each do |name_str|
+      it "'#{name_str}'" do
+        lambda do
+          u = create_user(:last_name => name_str)
+          u.errors.on(:last_name).should     be_nil
+        end.should change(User, :count).by(1)
+      end
+    end
+  end
+  describe "disallows illegitimate last names" do
+    ["tab\t", "newline\n",
+     '1234567890_234567890_234567890_234567890_234567890_234567890_234567890_234567890_234567890_234567890_',
+     ].each do |name_str|
+      it "'#{name_str}'" do
+        lambda do
+          u = create_user(:last_name => name_str)
+          u.errors.on(:last_name).should_not be_nil
         end.should_not change(User, :count)
       end
     end

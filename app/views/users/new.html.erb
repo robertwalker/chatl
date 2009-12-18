@@ -15,5 +15,11 @@
 <p><%= label_tag 'password_confirmation', 'Confirm Password' %><br/>
 <%= f.password_field :password_confirmation %></p>
 
+<p><%= label_tag 'first_name' %><br/>
+<%= f.text_field :first_name %></p>
+
+<p><%= label_tag 'last_name' %><br/>
+<%= f.text_field :last_name %></p>
+
 <p><%= submit_tag 'Sign up' %></p>
 <% end -%>
