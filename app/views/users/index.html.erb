@@ -1,0 +1,16 @@
+<h1>Chapter Members</h1>
+<div style="border-top: 1px solid #aaa"></div>
+<% @users.each do |user| %>
+<div class="user_row">
+  <div class="gravatar_image">
+    <%= image_tag user.gravatar_url, :alt => "Gravatar image", :size => "48x48" %> 
+  </div>
+  <div class="row_controls">
+    <% if logged_in? && current_user.admin? -%>
+    <%= link_to 'Edit', edit_user_path(user) %>
+    | <%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %>
+    <% end -%>
+  </div>
+  <div><%= user.login %></div>
+</div>
+<% end -%>

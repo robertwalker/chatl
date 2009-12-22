@@ -13,9 +13,10 @@ member_role = Role.create(:name => "member")
 # Create Robert Walker as an administrator
 robert = User.create(:login => 'robertwalker',
                  :email => 'robert4723@me.com',
-                 :name => "Robert Walker",
                  :password => "railsdev",
-                 :password_confirmation => "railsdev")
+                 :password_confirmation => "railsdev",
+                 :first_name => "Robert",
+                 :last_name => "Walker")
 robert.roles << admin_role
 robert.state = "active"
 robert.save
