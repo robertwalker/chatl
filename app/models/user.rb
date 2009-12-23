@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   has_many :meetings, :through => :attendances
 
   # Gravatar support
-  is_gravtastic
+  is_gravtastic :default => :wavatar, :size => 40
 
   validates_presence_of     :login
   validates_length_of       :login,         :within => 3..40
@@ -74,6 +74,10 @@ class User < ActiveRecord::Base
 
   def email=(value)
     write_attribute :email, (value ? value.downcase : nil)
+  end
+
+  def full_name
+    [ self.first_name || '', self.last_name || '' ].join(' ').strip
   end
 
   protected

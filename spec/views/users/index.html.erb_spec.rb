@@ -7,17 +7,22 @@ describe "/users/index.html.erb" do
     assigns[:users] = [
       stub_model(User,
         :login => "a_user",
+        :first_name => "First",
+        :last_name => "Last",
         :email => "a_user@example.com",
         :password => "monkey",
         :password_confirmation => "monkey",
-        :state => "active"
+        :state => "active",
+        :gravatar_url => "http://example.com"
       ),
       stub_model(User,
       :login => "a_user",
+      :first_name => "First",
+      :last_name => "Last",
       :email => "a_user@example.com",
       :password => "monkey",
-      :password_confirmation => "monkey",
-      :state => "active"
+      :state => "active",
+      :gravatar_url => "http://example.com"
       )
     ]
   end
@@ -26,7 +31,7 @@ describe "/users/index.html.erb" do
     render
     response.should have_tag("div.user_row", 2) do
       with_tag("div.gravatar_image") do
-        with_tag("img[alt=?][width=?][height=?]", "Gravatar image", "48", "48")
+        with_tag("img[src=?][alt=?]", "http://example.com", "Gravatar image")
       end
       with_tag("div.row_controls")
       # with_tag("div.data_file_row_icon")

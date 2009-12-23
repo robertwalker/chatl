@@ -8,6 +8,8 @@ end
 # A user
 Factory.define :user do |f|
   f.login 'a_user'
+  f.first_name 'First'
+  f.last_name 'Last'
   f.email 'a_user@example.com'
   f.password 'monkey'
   f.password_confirmation 'monkey'

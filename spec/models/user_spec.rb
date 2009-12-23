@@ -4,6 +4,44 @@ require File.dirname(__FILE__) + '/../spec_helper'
 describe User do
   fixtures :users
 
+  it 'maintains a list of meetings through attendances' do
+    user = Factory(:user)
+    user.should respond_to(:attendances)
+    user.should respond_to(:meetings)
+  end
+
+  describe 'full_name method' do
+    it 'provides full_name with first_name and last_name present' do
+      user = Factory.build(:user)
+      user.full_name.should == 'First Last'
+    end
+
+    it 'provides full_name with last_name nil' do
+      user = Factory.build(:user, :last_name => nil)
+      user.full_name.should == 'First'
+    end
+
+    it 'provides full_name with last_name the empty string' do
+      user = Factory.build(:user, :last_name => '')
+      user.full_name.should == 'First'
+    end
+
+    it 'provides full_name with first_name nil' do
+      user = Factory.build(:user, :first_name => nil)
+      user.full_name.should == 'Last'
+    end
+
+    it 'provides full_name with first_name the empty string' do
+      user = Factory.build(:user, :first_name => '')
+      user.full_name.should == 'Last'
+    end
+
+    it 'returns the empty string if first_name and last_name are blank' do
+      user = Factory.build(:user, :first_name => nil, :last_name => nil)
+      user.full_name.should == ''
+    end
+  end
+
   describe 'being created' do
     before do
       @user = nil
@@ -28,12 +66,6 @@ describe User do
       @user.reload
       @user.should be_pending
     end
-  end
-
-  it 'maintains a list of meetings through attendances' do
-    user = Factory(:user)
-    user.should respond_to(:attendances)
-    user.should respond_to(:meetings)
   end
 
   #
@@ -307,7 +339,7 @@ describe User do
       @user.should be_pending
     end
   end
-  
+
   describe "using gravtastic" do
     fixtures :users
     
