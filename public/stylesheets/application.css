@@ -346,6 +346,8 @@ td {
 }
 
 .gravatar_image img {
+	width: 40px;
+	height: 40px;
 	border: 1px solid gray;
 }
 
@@ -357,6 +359,7 @@ td {
 }
 
 .user_row_date {
+	font-size: 8px;
 	font-style: italic;
 	color: #999;
 	float: right;

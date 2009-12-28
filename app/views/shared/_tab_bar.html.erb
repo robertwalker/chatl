@@ -8,12 +8,14 @@
   <% content_tag(:div, :id => "files_tab", :class => tab_class_for('data_files')) do -%>
   <%= link_to "Files", data_files_path %>
   <% end -%>
+  <% if current_user %>
   <% content_tag(:div, :id => "members_tab", :class => tab_class_for('users')) do -%>
     <%= link_to "Members", users_path %>
+  <% end -%>
   <% end -%>
   <% if current_user && current_user.admin? %>
   <% content_tag(:div, :id => "venues_tab", :class => tab_class_for('venues')) do -%>
     <%= link_to "Venues", venues_path %>
   <% end -%>
-  <% end %>
+  <% end -%>
 </div>
