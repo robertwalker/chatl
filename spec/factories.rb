@@ -62,3 +62,13 @@ Factory.define :data_file do |f|
   f.name 'DataFile name'
   f.content_type 'DataFile content_type'
 end
+
+# A Social Network
+Factory.define :social_network do |f|
+  def f.default_user
+    @default_user ||= Factory(:user)
+  end
+  f.user_id { f.default_user }
+  f.network "SocialNetwork network"
+  f.username "SocialNetwork username"
+end

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091216181503) do
+ActiveRecord::Schema.define(:version => 20091229180430) do
 
   create_table "attendees", :id => false, :force => true do |t|
     t.integer  "user_id"
@@ -58,6 +58,15 @@ ActiveRecord::Schema.define(:version => 20091216181503) do
 
   add_index "roles_users", ["role_id"], :name => "index_roles_users_on_role_id"
   add_index "roles_users", ["user_id"], :name => "index_roles_users_on_user_id"
+
+  create_table "social_networks", :force => true do |t|
+    t.integer  "user_id",                        :null => false
+    t.string   "network",                        :null => false
+    t.string   "username",                       :null => false
+    t.boolean  "make_public", :default => false, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "login",                     :limit => 40

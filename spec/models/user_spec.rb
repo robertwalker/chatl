@@ -10,6 +10,11 @@ describe User do
     user.should respond_to(:meetings)
   end
 
+  it 'maintains a list of social networks' do
+    user = Factory(:user)
+    user.should respond_to(:social_networks)
+  end
+
   describe 'full_name method' do
     it 'provides full_name with first_name and last_name present' do
       user = Factory.build(:user)

@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :roles
   has_many :attendances, :class_name => "Attendee", :dependent => :destroy
   has_many :meetings, :through => :attendances
+  has_many :social_networks, :dependent => :destroy
 
   # Gravatar support
   is_gravtastic :default => :wavatar, :size => 40

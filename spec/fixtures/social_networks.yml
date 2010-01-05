@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user_id: 1
+  network: MyString
+  username: MyString
+  make_public: false
+
+two:
+  user_id: 1
+  network: MyString
+  username: MyString
+  make_public: false
