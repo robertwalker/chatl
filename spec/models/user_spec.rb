@@ -40,6 +40,13 @@ describe User do
   # Validations
   #
 
+  it 'requires identity_url' do
+    lambda do
+      u = create_user(:identity_url => nil)
+      u.errors.on(:identity_url).should_not be_nil
+    end.should_not change(User, :count)
+  end
+
   it 'requires login' do
     lambda do
       u = create_user(:login => nil)
@@ -322,7 +329,12 @@ describe User do
 
 protected
   def create_user(options = {})
-    record = User.new({ :login => 'quire', :email => 'quire@example.com', :password => 'quire69', :password_confirmation => 'quire69' }.merge(options))
+    record = User.new({
+      :identity_url => 'http://quire.example.com/',
+      :login => 'quire',
+      :email => 'quire@example.com',
+      :password => 'quire69',
+      :password_confirmation => 'quire69'}.merge(options))
     record.register! if record.valid?
     record
   end
