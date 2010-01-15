@@ -11,7 +11,9 @@ admin_role = Role.create(:name => "admin")
 member_role = Role.create(:name => "member")
 
 # Create Robert Walker as an administrator
-robert = User.create(:login => 'robertwalker',
+robert = User.create(
+                 :identity_url => 'http://robertwalker.pip.verisignlabs.com/',
+                 :login => 'robertwalker',
                  :email => 'robert4723@me.com',
                  :name => "Robert Walker",
                  :password => "railsdev",

@@ -47,11 +47,11 @@ describe User do
     end.should_not change(User, :count)
   end
 
-  it 'requires login' do
+  it 'makes a fake login on create when not provided' do
     lambda do
       u = create_user(:login => nil)
-      u.errors.on(:login).should_not be_nil
-    end.should_not change(User, :count)
+      u.errors.on(:login).should be_nil
+    end.should change(User, :count).by(1)
   end
 
   describe 'allows legitimate logins:' do
@@ -78,18 +78,18 @@ describe User do
     end
   end
 
-  it 'requires password' do
+  it 'makes a fake password when not provided' do
     lambda do
       u = create_user(:password => nil)
-      u.errors.on(:password).should_not be_nil
-    end.should_not change(User, :count)
+      u.errors.on(:password).should be_nil
+    end.should change(User, :count).by(1)
   end
 
-  it 'requires password confirmation' do
+  it 'makes a fake password confirmation when password not provided' do
     lambda do
-      u = create_user(:password_confirmation => nil)
-      u.errors.on(:password_confirmation).should_not be_nil
-    end.should_not change(User, :count)
+      u = create_user(:password => nil)
+      u.errors.on(:password_confirmation).should be_nil
+    end.should change(User, :count).by(1)
   end
 
   it 'requires email' do
@@ -262,14 +262,6 @@ describe User do
     users(:quentin).remember_token.should_not be_nil
     users(:quentin).remember_token_expires_at.should_not be_nil
     users(:quentin).remember_token_expires_at.between?(before, after).should be_true
-  end
-
-  it 'registers passive user' do
-    user = create_user(:password => nil, :password_confirmation => nil)
-    user.should be_passive
-    user.update_attributes(:password => 'new password', :password_confirmation => 'new password')
-    user.register!
-    user.should be_pending
   end
 
   it 'suspends user' do

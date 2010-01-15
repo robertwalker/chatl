@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
   # Gravatar support
   is_gravtastic
 
+  before_validation_on_create :make_fake_login_password
+
   validates_presence_of     :identity_url
   validates_presence_of     :login
   validates_length_of       :login,         :within => 3..40
@@ -82,5 +84,11 @@ class User < ActiveRecord::Base
   def make_activation_code
     self.deleted_at = nil
     self.activation_code = self.class.make_token
+  end
+
+  def make_fake_login_password
+    self.login = self.class.make_token if self.login.blank?
+    self.password = self.class.make_token if self.password.blank?
+    self.password_confirmation = self.password
   end
 end
