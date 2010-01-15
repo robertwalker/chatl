@@ -9,6 +9,8 @@ end
 Factory.define :user do |f|
   f.identity_url 'http://a_user.example.com/'
   f.login 'a_user'
+  f.first_name 'First'
+  f.last_name 'Last'
   f.email 'a_user@example.com'
   f.password 'monkey'
   f.password_confirmation 'monkey'
@@ -60,4 +62,14 @@ Factory.define :data_file do |f|
   f.comment 'DataFile comment'
   f.name 'DataFile name'
   f.content_type 'DataFile content_type'
+end
+
+# A Social Network
+Factory.define :social_network do |f|
+  def f.default_user
+    @default_user ||= Factory(:user)
+  end
+  f.user_id { f.default_user }
+  f.network "SocialNetwork network"
+  f.username "SocialNetwork username"
 end

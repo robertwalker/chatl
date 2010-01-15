@@ -15,9 +15,10 @@ robert = User.create(
                  :identity_url => 'http://robertwalker.pip.verisignlabs.com/',
                  :login => 'robertwalker',
                  :email => 'robert4723@me.com',
-                 :name => "Robert Walker",
                  :password => "railsdev",
-                 :password_confirmation => "railsdev")
+                 :password_confirmation => "railsdev",
+                 :first_name => "Robert",
+                 :last_name => "Walker")
 robert.roles << admin_role
 robert.state = "active"
 robert.save

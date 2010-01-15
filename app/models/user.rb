@@ -9,9 +9,10 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :roles
   has_many :attendances, :class_name => "Attendee", :dependent => :destroy
   has_many :meetings, :through => :attendances
+  has_many :social_networks, :dependent => :destroy
 
   # Gravatar support
-  is_gravtastic
+  is_gravtastic :default => :wavatar, :size => 40
 
   before_validation_on_create :make_fake_login_password
 
@@ -77,6 +78,10 @@ class User < ActiveRecord::Base
 
   def email=(value)
     write_attribute :email, (value ? value.downcase : nil)
+  end
+
+  def full_name
+    [ self.first_name || '', self.last_name || '' ].join(' ').strip
   end
 
   protected

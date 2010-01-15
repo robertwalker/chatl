@@ -74,6 +74,15 @@ ActiveRecord::Schema.define(:version => 20100111170730) do
   add_index "roles_users", ["role_id"], :name => "index_roles_users_on_role_id"
   add_index "roles_users", ["user_id"], :name => "index_roles_users_on_user_id"
 
+  create_table "social_networks", :force => true do |t|
+    t.integer  "user_id",                        :null => false
+    t.string   "network",                        :null => false
+    t.string   "username",                       :null => false
+    t.boolean  "make_public", :default => false, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", :force => true do |t|
     t.string   "login",                     :limit => 40
     t.string   "email",                     :limit => 100

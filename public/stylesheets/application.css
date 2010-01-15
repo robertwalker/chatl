@@ -328,6 +328,43 @@ td {
 	float: right;
 }
 
+.user_row {
+	height: 46px;
+	margin-bottom: 0.25em;
+	padding-top: 0.5em;
+	padding-left: 2px;
+	padding-right: 2px;
+	border-bottom: 1px solid #aaa;
+}
+
+.user_row_content {
+	margin-left: 55px;
+}
+
+.gravatar_image {
+	float: left;
+}
+
+.gravatar_image img {
+	width: 40px;
+	height: 40px;
+	border: 1px solid gray;
+}
+
+.user_row_title {
+	font-size: 12pt;
+	font-weight: bold;
+	color: #5d2a11;
+	margin-bottom: 0.15em;
+}
+
+.user_row_date {
+	font-size: 8px;
+	font-style: italic;
+	color: #999;
+	float: right;
+}
+
 /* @end */
 
 /* @group Calendar Icons */
