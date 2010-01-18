@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   # Gravatar support
   is_gravtastic :default => :wavatar, :size => 40
 
-  before_validation_on_create :make_fake_login_password
+  before_validation_on_create :make_fake_login_password, :normalize_identity
 
   validates_presence_of     :identity_url
   validates_presence_of     :login
@@ -89,6 +89,12 @@ class User < ActiveRecord::Base
   def make_activation_code
     self.deleted_at = nil
     self.activation_code = self.class.make_token
+  end
+
+  def normalize_identity
+    if self.identity_url
+      self.identity_url = OpenIdAuthentication.normalize_identifier(self.identity_url)
+    end
   end
 
   def make_fake_login_password

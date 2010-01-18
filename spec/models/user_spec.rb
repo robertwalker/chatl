@@ -71,6 +71,11 @@ describe User do
       @user.reload
       @user.should be_pending
     end
+
+    it 'norimalizes the identity_url' do
+      user = Factory(:user, :identity_url => 'example.com')
+      user.identity_url.should == 'http://example.com/'
+    end
   end
 
   #

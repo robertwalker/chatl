@@ -7,7 +7,7 @@ end
 
 # A user
 Factory.define :user do |f|
-  f.identity_url 'http://a_user.example.com/'
+  f.identity_url 'http://user.example.com/'
   f.login 'a_user'
   f.first_name 'First'
   f.last_name 'Last'
