@@ -14,7 +14,8 @@ class User < ActiveRecord::Base
   # Gravatar support
   is_gravtastic :default => :wavatar, :size => 40
 
-  before_validation_on_create :make_fake_login_password, :normalize_identity
+  before_validation :normalize_identity
+  before_validation_on_create :make_fake_login_password
 
   validates_presence_of     :identity_url
   validates_presence_of     :login

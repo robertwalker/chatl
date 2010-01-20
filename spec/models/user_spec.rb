@@ -71,11 +71,6 @@ describe User do
       @user.reload
       @user.should be_pending
     end
-
-    it 'norimalizes the identity_url' do
-      user = Factory(:user, :identity_url => 'example.com')
-      user.identity_url.should == 'http://example.com/'
-    end
   end
 
   #
@@ -87,6 +82,18 @@ describe User do
       u = create_user(:identity_url => nil)
       u.errors.on(:identity_url).should_not be_nil
     end.should_not change(User, :count)
+  end
+
+  it 'norimalizes the identity_url on create' do
+    user = Factory(:user, :identity_url => 'example.com')
+    user.identity_url.should == 'http://example.com/'
+  end
+
+  it 'norimalizes the identity_url on update' do
+    user = Factory(:user)
+    user.identity_url = 'example.com'
+    user.save
+    user.identity_url.should == 'http://example.com/'
   end
 
   it 'makes a fake login on create when not provided' do
