@@ -2,6 +2,13 @@
 
 <% form_tag session_path do -%>
 <p>
+  Log in using:
+  <a href="#" onclick="loginUsingGoogle(); return false;">My Google Account</a>
+  or
+  <a href="#" onclick="loginUsingYahoo(); return false;">My Yahoo Account</a>
+</p>
+
+<p>
   <label for="openid_identifier">OpenID:</label>
   <%= text_field_tag "openid_identifier", nil, :size => 50 %>
 </p>

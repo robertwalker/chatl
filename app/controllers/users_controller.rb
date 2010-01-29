@@ -1,4 +1,9 @@
 class UsersController < ApplicationController
+  OPEN_ID_PROVIDERS = [
+    'https://www.google.com/accounts/o8/id',
+    'http://yahoo.com/'
+  ]
+
   require_role "admin", :only => [:suspend, :unsuspend, :destroy, :purge]
   before_filter :find_user, :only => [:suspend, :unsuspend, :destroy, :purge]
   before_filter :login_required, :only => :index
@@ -21,15 +26,20 @@ class UsersController < ApplicationController
  
   def create
     logout_keeping_session!
-    @user = User.new(params[:user])
-    @user.register! if @user && @user.valid?
-    success = @user && @user.valid?
-    if success && @user.errors.empty?
-      redirect_back_or_default('/')
-      flash[:notice] = "Thanks for signing up!  We're sending you an email with your activation code."
+    openid_identifier = params[:user][:identity_url] if params[:user]
+    if require_openid_verification?(openid_identifier)
+      open_id_authentication(openid_identifier)
     else
-      flash[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
-      render :action => 'new'
+      @user = User.new(params[:user])
+      @user.register! if @user && @user.valid?
+      success = @user && @user.valid?
+      if success && @user.errors.empty?
+        redirect_back_or_default('/')
+        flash[:notice] = "Thanks for signing up!  We're sending you an email with your activation code."
+      else
+        flash[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
+        render :action => 'new'
+      end
     end
   end
 
@@ -74,8 +84,55 @@ class UsersController < ApplicationController
   # smart -- make sure you check that the visitor is authorized to do so, that they
   # supply their old password along with a new one to update it, etc.
 
-protected
+  protected
+  def require_openid_verification?(openid_identifier)
+    OPEN_ID_PROVIDERS.include?(openid_identifier) || params[:open_id_complete]
+  end
+
+  def open_id_authentication(openid_identifier)
+    success = true
+    if params[:open_id_complete].blank?
+      success = create_user
+      session[:open_id_user_id] = @user.id
+    end
+
+    if success
+      authenticate_with_open_id(openid_identifier) do |result, identity_url|
+        if result.successful? && @user = User.find(session[:open_id_user_id])
+          successful_signup(identity_url)
+        else
+          failed_signup result.message
+        end
+      end
+    else
+      flash[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
+      render :action => 'new'
+    end
+  end
+
+  private
   def find_user
     @user = User.find(params[:id])
+  end
+
+  def create_user
+    @user = User.new(params[:user])
+    @user.register! if @user && @user.valid?
+    @user && @user.valid? && @user.errors.empty?
+  end
+
+  def successful_signup(identity_url)
+    @user.identity_url = identity_url
+    @user.save
+    session.delete(:open_id_user_id)
+    flash[:notice] = "Thanks for signing up!  We're sending you an email with your activation code."
+    redirect_to root_url
+  end
+
+  def failed_signup(message)
+    @user.destroy
+    session.delete(:open_id_user_id)
+    flash[:error] = message
+    redirect_to new_user_url
   end
 end

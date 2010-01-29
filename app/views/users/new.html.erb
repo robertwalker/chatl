@@ -4,6 +4,13 @@
 <%= error_messages_for :user %>
 
 <% form_for :user, :url => users_path do |f| -%>
+<p>
+  Signup using:
+  <a href="#" onclick="signupUsingGoogle(); return false;">My Google Account</a>
+  or
+  <a href="#" onclick="signupUsingYahoo(); return false;">My Yahoo Account</a>
+</p>
+
 <p><%= label_tag 'identity_url', 'OpenID URL' %><br/>
 <%= f.text_field :identity_url, :size => 50 %></p>
 
