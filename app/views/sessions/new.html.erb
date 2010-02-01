@@ -13,7 +13,7 @@
   <%= text_field_tag "openid_identifier", nil, :size => 50 %>
 </p>
 
-<% if request.host == 'localhost' -%>
+<% if request.port == 3000 -%>
 <p><%= label_tag 'login' %><br />
 <%= text_field_tag 'login', @login %></p>
 
