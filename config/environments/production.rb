@@ -25,13 +25,11 @@ config.action_view.cache_template_loading            = true
 # config.action_mailer.raise_delivery_errors = false
 
 # ActionMailer configuration
+ActionMailer::Base.delivery_method = :smtp
 ActionMailer::Base.smtp_settings = {
-  :address        => "smtp.gmail.com",
-  :port           => 587,
+  :address        => "localhost",
+  :port           => 25,
   :domain         => "cocoaheadsatlanta.org",
-  :user_name      => "devlists4723@gmail.com",
-  :password       => "MR6MaBbuHe48pbu74FHR",
-  :authentication => :plain
 }
 
 # Enable threaded mode
