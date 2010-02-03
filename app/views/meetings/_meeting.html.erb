@@ -12,7 +12,7 @@
       </div>
       <div class="layout_fields">
         <p><%=h meeting.title %></p>
-        <p><%=h meeting.scheduled_at.strftime("%A, %B %e, %Y") %></p>
+        <p><%=h meeting.scheduled_at.strftime("%a, %b %e, %Y %I:%M %p") %></p>
         <% if meeting.venue %>
         <div><%=h meeting.venue.name %></div>
         <div><% address_formatter(meeting.venue) %></div>
