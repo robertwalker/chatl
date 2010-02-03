@@ -460,6 +460,7 @@ td {
 
 #rsvp_panel h3 {
 	font-size: 12pt;
+	text-decoration: none;
 	margin-top: 0;
 	margin-bottom: 0.25em;
 }
