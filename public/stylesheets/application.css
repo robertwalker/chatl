@@ -19,12 +19,19 @@ h1 {
 	font: 18pt "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
 }
 
-h2, h3 {
-	font-size: 12pt;
-	font-weight: bold;
+h2 {
 	color: #5d2a11;
 	margin-top: 0;
-	margin-bottom: 10px;
+	margin-bottom: 0.5em;
+	font: bold 14pt "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+}
+
+h3 {
+	font-size: 12pt;
+	font-weight: bold;
+	text-decoration: underline;
+	margin-top: 0;
+	margin-bottom: 0.25em;
 }
 
 a {
