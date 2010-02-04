@@ -222,6 +222,13 @@ td {
 	color: #c00;
 }
 
+#open_id_assist_bar {
+	color: #da8;
+	padding: 4px;
+	background-color: #fda;
+	border: 1px solid #da8;
+}
+
 #main_content {
 	margin-right: 215px;
 	padding: 12px;

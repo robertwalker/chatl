@@ -1,15 +1,11 @@
 <h1>Welcome to CocoaHeads: Atlanta.</h1>
 
 <% form_tag session_path do -%>
-<p>
-  <p>Log in using one of the following OpenID providers:</p>
-  <a href="#" onclick="loginUsingGoogle(); return false;">My Google Account</a>
-  |
-  <a href="#" onclick="loginUsingYahoo(); return false;">My Yahoo Account</a>
-</p>
+<p>Log in using one of the following OpenID providers, or enter your OpenID URL:</p>
+<%= open_id_link_bar(:login) %><br />
 
 <p>
-  <label for="openid_identifier">OpenID:</label>
+  <%= label_tag 'openid_identifier', 'OpenID URL' %><br />
   <%= text_field_tag "openid_identifier", nil, :size => 50 %>
 </p>
 

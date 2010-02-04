@@ -20,35 +20,34 @@ module ApplicationHelper
     h(addressable.city) + ", " + h(addressable.state) + " &nbsp;" + h(addressable.zip)
   end
 
-  def open_id_link_bar
-    content_tag(:div) do
-      link_to_known_open_id(:google) +
-      " | " +
-      link_to_known_open_id(:yahoo) +
-      " | " +
-      link_to_known_open_id(:aol) +
-      " | " +
-      link_to_known_open_id(:myopenid) +
-      " | " +
-      link_to_known_open_id(:verisign) +
-      " | " +
-      link_to_known_open_id(:wordpress) +
-      " | " +
-      link_to_known_open_id(:blogger)
+  # OpenID assist bar (mode is one of :signup or :login)
+  def open_id_link_bar(mode)
+    content_tag(:div, :id => "open_id_assist_bar") do
+      link_to_known_open_id(:google, mode) + " | " +
+      link_to_known_open_id(:yahoo, mode) + " | " +
+      link_to_known_open_id(:aol, mode) + " | " +
+      link_to_known_open_id(:myopenid, mode) + " | " +
+      link_to_known_open_id(:verisign, mode) + " | " +
+      link_to_known_open_id(:wordpress, mode) + " | " +
+      link_to_known_open_id(:blogger, mode)
     end
   end
 
   private
-  def link_to_known_open_id(provider)
-    options = {}
+  def link_to_known_open_id(provider, mode)
+    options = {:shared_url => false}
 
     case provider
     when :google
-      options[:js_function] = "signupUsingGoogle()"
+      options[:placehoder_url] = "https://www.google.com/accounts/o8/id"
+      options[:range] = 0..options[:placehoder_url].length
+      options[:shared_url] = true
       options[:link_text] = "Google"
     when :yahoo
-      options[:js_function] = "signupUsingYahoo()"
-      options[:link_text] = "Yahoo"
+      options[:placehoder_url] = "http://yahoo.com/"
+      options[:range] = 0..options[:placehoder_url].length
+      options[:shared_url] = true
+      options[:link_text] = "Yahoo!"
     when :aol
       options[:placehoder_url] = "http://openid.aol.com/<screenname>"
       options[:range] = 22..33
@@ -71,12 +70,9 @@ module ApplicationHelper
       options[:link_text] = "Blogger"
     end
 
-    if options[:js_function]
-      js_func = "#{options[:js_function]};"
-    else
-      js_func = "signupUsingOpenID('#{options[:placehoder_url]}', "
-      js_func << "#{options[:range].begin}, #{options[:range].end});"
-    end
+    js_func = "openIDUsing('#{options[:placehoder_url]}', "
+    js_func << "'#{mode}', #{options[:shared_url]}, "
+    js_func << "#{options[:range].begin}, #{options[:range].end});"
     js_func << " return false;"
 
     content_tag(:span) do

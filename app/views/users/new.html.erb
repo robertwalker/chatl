@@ -4,17 +4,11 @@
 <%= error_messages_for :user %>
 
 <% form_for :user, :url => users_path do |f| -%>
-<p>
-  <h3>Welcome to CocoaHeads: Atlanta</h3>
-  <p>
-    Registration for this site requires the use of an OpenID provider. It is likely you already have one.
-  </p >
-  <p>
-    You have an OpenID if you have a Google account (gmail), a Yahoo account, an AOL account, etc.
-  </p>
-  <p>Select your OpenID provider or enter your identity URL below:</p>
-  <%= open_id_link_bar %>
-</p>
+<h3>Welcome to CocoaHeads: Atlanta</h3>
+<p>Registration for this site requires the use of an OpenID provider.</p>
+<p>It is likely you already have one. OpenID services are provided for Google accounts (including gmail accounts), Yahoo accounts, AOL accounts and many other providers. Several of the most common providers are listed below. If you already use one of these then clicking the link will assist in filling out your OpenID identity URL. If you use a provider not listed, then enter the unique identity URL supplied by your provider. If you have any problems using your OpenID please contact the group organizer for further assistance.</p>
+<p>Select your OpenID provider or enter your identity URL below:</p>
+<%= open_id_link_bar(:signup) %><br />
 
 <p><%= label_tag 'identity_url', 'OpenID URL' %><br/>
 <%= f.text_field :identity_url, :size => 50 %></p>
