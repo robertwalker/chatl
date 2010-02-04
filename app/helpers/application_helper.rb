@@ -60,7 +60,7 @@ module ApplicationHelper
     when :verisign
       options[:placehoder_url] = "http://<username>.pip.verisignlabs.com/"
       options[:range] = 7..16
-      options[:link_text] = "Verisign PIP"
+      options[:link_text] = "VeriSign PIP"
     when :wordpress
       options[:placehoder_url] = "http://<username>.wordpress.com/"
       options[:range] = 7..16
