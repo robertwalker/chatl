@@ -11,6 +11,11 @@ function signupUsingYahoo() {
   $('user_email').focus();
 }
 
+function signupUsingOpenID(placholder_url, i, j) {
+  $("user_identity_url").setValue(placholder_url);
+  $("user_identity_url").setSelectionRange(i, j + 1);
+}
+
 function loginUsingGoogle() {
   $("openid_identifier").setValue("https://www.google.com/accounts/o8/id");
   $('openid_identifier').focus();

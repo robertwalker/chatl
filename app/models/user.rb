@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   before_validation_on_create :make_fake_login_password
 
   validates_presence_of     :identity_url
+  validates_uniqueness_of   :identity_url
   validates_presence_of     :login
   validates_length_of       :login,         :within => 3..40
   validates_uniqueness_of   :login          

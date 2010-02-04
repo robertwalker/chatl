@@ -1,14 +1,19 @@
-<h1>Sign up as a new user</h1>
+<h1>Sign up as a new member</h1>
 <% @user.password = @user.password_confirmation = nil %>
 
 <%= error_messages_for :user %>
 
 <% form_for :user, :url => users_path do |f| -%>
 <p>
-  Signup using:
-  <a href="#" onclick="signupUsingGoogle(); return false;">My Google Account</a>
-  or
-  <a href="#" onclick="signupUsingYahoo(); return false;">My Yahoo Account</a>
+  <h3>Welcome to CocoaHeads: Atlanta</h3>
+  <p>
+    Registration for this site requires the use of an OpenID provider. It is likely you already have one.
+  </p >
+  <p>
+    You have an OpenID if you have a Google account (gmail), a Yahoo account, an AOL account, etc.
+  </p>
+  <p>Select your OpenID provider or enter your identity URL below:</p>
+  <%= open_id_link_bar %>
 </p>
 
 <p><%= label_tag 'identity_url', 'OpenID URL' %><br/>

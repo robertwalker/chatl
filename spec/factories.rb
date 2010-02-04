@@ -17,6 +17,18 @@ Factory.define :user do |f|
   f.state 'active'
 end
 
+# Another user
+Factory.define :steve, :class => User do |f|
+  f.identity_url 'http://steve.example.com/'
+  f.login 'steve'
+  f.first_name 'Steve'
+  f.last_name 'Smith'
+  f.email 'steve@example.com'
+  f.password 'monkey'
+  f.password_confirmation 'monkey'
+  f.state 'active'
+end
+
 # A regular venue
 Factory.define :venue do |f|
   f.name 'Venue name'

@@ -96,6 +96,16 @@ describe User do
     user.identity_url.should == 'http://example.com/'
   end
 
+  it 'requires identity_url to be unique' do
+    lambda do
+      user = Factory(:user, :identity_url => 'example.com')
+      user.should be_valid
+      steve = Factory.build(:steve, :identity_url => 'example.com')
+      steve.save
+      steve.should have(1).error_on(:identity_url)
+    end.should change(User, :count).by(1)
+  end
+
   it 'makes a fake login on create when not provided' do
     lambda do
       u = create_user(:login => nil)
