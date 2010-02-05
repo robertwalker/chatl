@@ -4,8 +4,7 @@
 <div class="user_row">
   <div class="row_controls">
     <% if logged_in? && current_user.admin? -%>
-    <%= link_to 'Edit', edit_user_path(user) %>
-    | <%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %>
+    <%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %>
     <% end -%>
   </div>
   <div class="gravatar_image">
