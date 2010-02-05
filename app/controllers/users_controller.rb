@@ -11,7 +11,11 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.xml
   def index
-    @users = User.all
+    if logged_in? && current_user.admin?
+      @users = User.not_deleted
+    else
+      @users = User.active
+    end
 
     respond_to do |format|
       format.html # index.html.erb

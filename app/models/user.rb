@@ -6,6 +6,9 @@ class User < ActiveRecord::Base
   include Authentication::ByCookieToken
   include Authorization::AasmRoles
 
+  named_scope :active, :conditions => { :state => "active" }
+  named_scope :not_deleted, :conditions => "state <> 'deleted'"
+
   has_and_belongs_to_many :roles
   has_many :attendances, :class_name => "Attendee", :dependent => :destroy
   has_many :meetings, :through => :attendances
