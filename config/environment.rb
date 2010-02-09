@@ -22,9 +22,6 @@ Rails::Initializer.run do |config|
   config.gem 'aasm', :version => '>=2.1'
   config.gem 'RedCloth', :version => '>=4.2.2'
   config.gem 'gravtastic', :version => '>= 2.2.0'
-  config.gem "openrain-action_mailer_tls", :lib => "smtp_tls.rb",
-                                           :source => "http://gems.github.com",
-                                           :verson => ">=1.1.3"
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
