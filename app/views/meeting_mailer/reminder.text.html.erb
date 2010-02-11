@@ -25,7 +25,7 @@
     <%=h @meeting.title %> is <%= @meeting_at %>.
   </p>
   <p>
-    Please <%= link_to "update your RSVP", login_url(@meeting, :host => "cocoaheadsatlanta.org") %> if you have not yet responded, or have changed your mind about attending.
+    Please <%= link_to "update your RSVP", login_url(:host => "cocoaheadsatlanta.org") %> if you have not yet responded, or have changed your mind about attending.
   </p>
 
   <%= render :partial => 'meeting', :object => @meeting %>
