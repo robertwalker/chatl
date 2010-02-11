@@ -1,21 +1,18 @@
 <p>
-  <b>What:</b><br />
-  CocoaHeads Atlanta Meeting
+  <h2>What:</h2>
+  <%= meeting.title %>
 </p>
 <p>
-  <b>Where:</b><br />
+  <h2>Where:</h2>
   <%=h meeting.venue.name %><br />
   <%= address_formatter(meeting.venue) %><br />
   <%= city_state_zip_formatter(meeting.venue) %>
 </p>
 <p>
-  <b>When:</b>
-  <%=h meeting.scheduled_at.strftime("%A, %B %d, %Y at %I:%M %p")%>
+  <h2>When:</h2>
+  <%=h meeting.scheduled_at.strftime("%A, %B %d, %Y at %I:%M %p") %>
 </p>
 
-<!-- Meeting Details -->
-<div id="meeting_details">
-  <h3>Venue Notes</h3>
-  <div><%= render_textile(meeting.venue.notes) if meeting.venue %></div>
-  <div><%= render_textile(meeting.details) %></div>
-</div>
+<h2>Venue Notes</h2>
+<%= render_textile(meeting.venue.notes) if meeting.venue %>
+<%= render_textile(meeting.details) %>

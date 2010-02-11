@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>CocoaHeads Atlanta -- Scheduled Email Notification</title>
+
+  <style type="text/css" media="screen">
+    * {
+      font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+      font-size: 10pt;
+    }
+
+    h2 {
+      font-size: 14pt;
+      color: #5d2a11;
+      margin-top: 0;
+      margin-bottom: 0.5em;
+    }
+  </style>
+</head>
+<body>
+  <p>The <%=h @meeting.title %> has been scheduled. Here are the details:</p>
+
+  <%= render :partial => 'meeting', :object => @meeting %>
+</body>
+</html>

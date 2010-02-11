@@ -81,6 +81,11 @@ TEMPLATE
     meeting.attendee_with_user(user).should == meeting.attendees.first
   end
 
+  it "should provide the next upcoming meeting" do
+    meeting = Factory(:meeting)
+    Meeting.next_upcoming.should == meeting
+  end
+
   describe "named scopes" do
     it "should have 'recent_past'" do
       Meeting.should respond_to(:recent_past)

@@ -28,6 +28,10 @@ TEMPLATE
 
   validates_presence_of :title, :venue_id, :scheduled_at, :details
 
+  def self.next_upcoming
+    Meeting.upcoming.first
+  end
+
   def attendee_with_user(user)
     self.attendees.find_by_user_id(user.id) if user
   end
