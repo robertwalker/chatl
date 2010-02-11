@@ -17,6 +17,8 @@ class MeetingMailer < ActionMailer::Base
       meeting_at = "in one week"
     when 1
       meeting_at = "tomorrow"
+    when 0
+      meeting_at = "today"
     else
       meeting_at = "#{days_from_now} days"
     end

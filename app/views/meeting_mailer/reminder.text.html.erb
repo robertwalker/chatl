@@ -22,7 +22,7 @@
 </head>
 <body>
   <p>
-    <%=h @meeting.title %> is coming up in <%= @meeting_at %>.
+    <%=h @meeting.title %> is <%= @meeting_at %>.
   </p>
   <p>
     Please <%= link_to "update your RSVP", meeting_url(@meeting, :host => "cocoaheadsatlanta.org") %> if you have not yet responded, or have changed your mind about attending.
