@@ -1,8 +1,33 @@
-<p>
-  <%=h @meeting.title %> is coming up in <%= @meeting_at %>.
-</p>
-<p>
-  Please <%= link_to "update your RSVP", meeting_url(@meeting) %> if you're not able to attend.
-</p>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<%= render :partial => 'meeting', :object => @meeting %>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>CocoaHeads Atlanta -- Scheduled Email Notification</title>
+
+  <style type="text/css" media="screen">
+    * {
+      font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+      font-size: 10pt;
+    }
+
+    h2 {
+      font-size: 14pt;
+      color: #5d2a11;
+      margin-top: 0;
+      margin-bottom: 0.5em;
+    }
+  </style>
+</head>
+<body>
+  <p>
+    <%=h @meeting.title %> is coming up in <%= @meeting_at %>.
+  </p>
+  <p>
+    Please <%= link_to "update your RSVP", meeting_url(@meeting, :host => "cocoaheadsatlanta.org") %> if you have not yet responded, or have changed your mind about attending.
+  </p>
+
+  <%= render :partial => 'meeting', :object => @meeting %>
+</body>
+</html>
