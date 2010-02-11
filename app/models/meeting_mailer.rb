@@ -3,8 +3,8 @@ class MeetingMailer < ActionMailer::Base
 
   def scheduled(meeting)
     subject    "The #{meeting.title} has been scheduled"
-    recipients 'robert4723@me.com'
-    from       'noreply@cocoaheadsatlanta.org'
+    recipients 'Robert Walker <robert4723@me.com>'
+    from       'CocoaHeads Atlanta <noreply@cocoaheadsatlanta.org>'
     sent_on    Time.now
 
     body       :meeting => meeting
@@ -21,8 +21,8 @@ class MeetingMailer < ActionMailer::Base
       meeting_at = "#{days_from_now} days"
     end
     subject    "Reminder: #{meeting.title} is #{meeting_at}"
-    recipients 'robert4723@me.com'
-    from       'noreply@cocoaheadsatlanta.org'
+    recipients 'Robert Walker <robert4723@me.com>'
+    from       'CocoaHeads Atlanta <noreply@cocoaheadsatlanta.org>'
     sent_on    Time.now
 
     body       :meeting => meeting, :meeting_at => meeting_at
