@@ -13,9 +13,12 @@
   <div class="user_row_content">
     <div class="user_row_title"><%= user.full_name %></div>
     <div class="user_row_date">
-      Member since <%= user.created_at.strftime("%m/%e/%Y") if user.created_at %>
+      Member since <%=h user.created_at.strftime("%m/%e/%Y") if user.created_at %>
       <% if logged_in? && current_user.admin? -%>
-      <span style="color: #800">(<%= user.state %>)</span>
+      <span style="color: #800">
+        (<%=h user.state %>)<br />
+        <%=h user.identity_url %>
+      </span>
       <% end -%>
     </div>
   </div>

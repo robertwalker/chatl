@@ -374,6 +374,7 @@ td {
 .user_row_date {
 	font-size: 8px;
 	font-style: italic;
+	text-align: right;
 	color: #999;
 	float: right;
 }
