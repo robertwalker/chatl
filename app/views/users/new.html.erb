@@ -10,6 +10,10 @@
 <p>Select your OpenID provider or enter your identity URL below:</p>
 <%= open_id_link_bar(:signup) %><br />
 
+<p id="attention">
+  Attention: We are currently experience unexpected problems with activating accounts with Google. We are investigating the problem. If you want to use your Google account for registration please wait until we resolve the issue. We will notify here once the problem is resolved.
+</p>
+
 <p><%= label_tag 'identity_url', 'OpenID URL' %><br/>
 <%= f.text_field :identity_url, :size => 50 %></p>
 
