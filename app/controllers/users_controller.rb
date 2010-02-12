@@ -30,11 +30,12 @@ class UsersController < ApplicationController
  
   def create
     logout_keeping_session!
-    openid_identifier = params[:user][:identity_url] if params[:user]
+    openid_identifier = params[:openid_identifier]
     if require_openid_verification?(openid_identifier)
       open_id_authentication(openid_identifier)
     else
       @user = User.new(params[:user])
+      @user.identity_url ||= openid_identifier
       @user.register! if @user && @user.valid?
       success = @user && @user.valid?
       if success && @user.errors.empty?
@@ -96,7 +97,7 @@ class UsersController < ApplicationController
   def open_id_authentication(openid_identifier)
     success = true
     if params[:open_id_complete].blank?
-      success = create_user
+      success = create_user(openid_identifier)
       session[:open_id_user_id] = @user.id
     end
 
@@ -119,8 +120,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def create_user
+  def create_user(open_id_user_id)
     @user = User.new(params[:user])
+    @user.identity_url ||= open_id_user_id + "_" + @user.email + "_pending"
     @user.register! if @user && @user.valid?
     @user && @user.valid? && @user.errors.empty?
   end

@@ -11,13 +11,12 @@
 <%= open_id_link_bar(:signup) %><br />
 
 <div id="attention">
-  <p>Attention: We are currently experience unexpected problems with activating accounts with Google. We are investigating the problem.</p>
-  <p>If you want to use your Google account for registration please wait until we resolve the issue, or use your unique Google OpenID or <a href="http://www.google.com/profiles" title="Google Profiles" target="_blank">Google Profile URL</a>.</p>
-  </p>
+  <p>Update: The Google OpenID registration appears to be working correctly now. If you have any further problems please contact me on Twitter @robertdwalker.</p>
+  <div>You may, of course, still use your unique Google OpenID or <a href="http://www.google.com/profiles" title="Google Profiles" target="_blank">Google Profile URL</a> if you so choose.</div>
 </div>
 
 <p><%= label_tag 'identity_url', 'OpenID URL' %><br/>
-<%= f.text_field :identity_url, :size => 50 %></p>
+<%= text_field_tag "openid_identifier", nil, :size => 50 %></p>
 
 <p><%= label_tag 'email' %><br/>
 <%= f.text_field :email %></p>

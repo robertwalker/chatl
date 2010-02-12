@@ -15,10 +15,8 @@
     <div class="user_row_date">
       Member since <%=h user.created_at.strftime("%m/%e/%Y") if user.created_at %>
       <% if logged_in? && current_user.admin? -%>
-      <span style="color: #800">
-        (<%=h user.state %>)<br />
-        <%=h user.identity_url %>
-      </span>
+      <span style="color: #800">(<%=h user.state %>)</span>
+      <div><%=h user.identity_url %></div>
       <% end -%>
     </div>
   </div>
