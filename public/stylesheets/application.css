@@ -224,6 +224,7 @@ td {
 
 #attention {
 	color: #a00;
+	margin-bottom: 0.75em;
 	padding: 4px;
 	background-color: #ddd;
 	border: 2px solid #777;
