@@ -53,8 +53,12 @@ class SessionsController < ApplicationController
   end
 
   def failed_login(message)
-    flash[:error] = message
-    redirect_to new_session_url
+    flash[:error] = message || "Please sign up before attempting to log in!"
+    if message
+      redirect_to new_session_url
+    else
+      redirect_to signup_url
+    end
   end
 
   # Track failed login attempts
