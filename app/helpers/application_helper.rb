@@ -24,6 +24,7 @@ module ApplicationHelper
   def open_id_link_bar(mode)
     content_tag(:div, :id => "open_id_assist_bar") do
       link_to_known_open_id(:google, mode) + " | " +
+      link_to_known_open_id(:google_profile, mode) + " | " +
       link_to_known_open_id(:yahoo, mode) + " | " +
       link_to_known_open_id(:aol, mode) + " | " +
       link_to_known_open_id(:myopenid, mode) + " | " +
@@ -43,6 +44,10 @@ module ApplicationHelper
       options[:range] = 0..options[:placehoder_url].length
       options[:shared_url] = true
       options[:link_text] = "Google"
+    when :google_profile
+      options[:placehoder_url] = "http://www.google.com/profiles/<username>"
+      options[:range] = 31..40
+      options[:link_text] = "Google Profile"
     when :yahoo
       options[:placehoder_url] = "http://yahoo.com/"
       options[:range] = 0..options[:placehoder_url].length

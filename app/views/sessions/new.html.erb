@@ -1,7 +1,12 @@
+<div>
+  <%= link_to image_tag("openid_logo_with_text.png",
+      :alt => "OpenID Logo", :class => "openid_logo"), "http://openid.net/" %>
+</div>
+
 <h1>Welcome to CocoaHeads: Atlanta.</h1>
 
 <% form_tag session_path do -%>
-<p>Log in using one of the following OpenID providers, or enter your OpenID URL:</p>
+<p class="emphasize">Select one of the following OpenID providers, or enter your OpenID URL:</p>
 <%= open_id_link_bar(:login) %><br />
 
 <p>

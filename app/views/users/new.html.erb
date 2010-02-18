@@ -1,33 +1,39 @@
+<div>
+  <%= link_to image_tag("openid_logo_with_text.png",
+      :alt => "OpenID Logo", :class => "openid_logo"), "http://openid.net/" %>
+</div>
+
 <h1>Sign up as a new member</h1>
 <% @user.password = @user.password_confirmation = nil %>
 
 <%= error_messages_for :user %>
 
-<% form_for :user, :url => users_path do |f| -%>
 <h3>Welcome to CocoaHeads: Atlanta</h3>
-<p>Registration for this site requires the use of an OpenID provider.</p>
-<p>It is likely you already have one. OpenID services are provided for Google accounts (including gmail accounts), Yahoo accounts, AOL accounts and many other providers. Several of the most common providers are listed below. If you already use one of these then clicking the link will assist in filling out your OpenID identity URL. If you use a provider not listed, then enter the unique identity URL supplied by your provider. If you have any problems using your OpenID please contact the group organizer for further assistance.</p>
-<p>Select your OpenID provider or enter your identity URL below:</p>
+<p>Registration for this site requires the use of an <a href="http://openid.net/" title="OpenID Foundation website">OpenID</a> provider.</p>
+<p>It is likely you already have one. OpenID services are provided for Google accounts (including gmail accounts), Yahoo accounts, AOL/AIM accounts and many other providers. Several of the most common providers are listed below. If you already use one of these then clicking the link will assist in filling out your OpenID identity URL. If you use a provider not listed, then enter the unique identity URL supplied by your provider.</p>
+<p>If you have any problems using your OpenID please contact the group organizer for further assistance.</p>
+
+<!-- <div id="attention">
+  <div>Update: ...</div>
+</div> -->
+
+<p class="emphasize">Select your OpenID provider or enter your identity URL below:</p>
 <%= open_id_link_bar(:signup) %><br />
 
-<div id="attention">
-  <p>Update: The Google OpenID registration appears to be working correctly now. If you have any further problems please contact me on Twitter @robertdwalker.</p>
-  <div>You may, of course, still use your unique Google OpenID or <a href="http://www.google.com/profiles" title="Google Profiles" target="_blank">Google Profile URL</a> if you so choose.</div>
-</div>
+<% form_for :user, :url => users_path do |f| -%>
+  <p><%= label_tag 'identity_url', 'OpenID URL' %><br/>
+  <%= text_field_tag "openid_identifier", nil, :size => 50 %></p>
 
-<p><%= label_tag 'identity_url', 'OpenID URL' %><br/>
-<%= text_field_tag "openid_identifier", nil, :size => 50 %></p>
+  <p><%= label_tag 'email' %><br/>
+  <%= f.text_field :email %></p>
 
-<p><%= label_tag 'email' %><br/>
-<%= f.text_field :email %></p>
+  <p><%= label_tag 'first_name' %><br/>
+  <%= f.text_field :first_name %></p>
 
-<p><%= label_tag 'first_name' %><br/>
-<%= f.text_field :first_name %></p>
+  <p><%= label_tag 'last_name' %><br/>
+  <%= f.text_field :last_name %></p>
 
-<p><%= label_tag 'last_name' %><br/>
-<%= f.text_field :last_name %></p>
-
-<p><%= submit_tag 'Sign up' %></p>
+  <p><%= submit_tag 'Sign up' %></p>
 <% end -%>
 
 <p>Add your profile picture using <a href="http://gravatar.com/">Gravatar &mdash; Globally Recognized Avatar</a>.</p>

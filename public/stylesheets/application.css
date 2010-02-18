@@ -55,6 +55,11 @@ a:hover {
 	text-align: right;
 }
 
+.emphasize {
+	font-weight: bold;
+	color: #5d2a11;
+}
+
 /* @group Standard Table */
 
 table {
@@ -230,6 +235,10 @@ td {
 	border: 2px solid #777;
 }
 
+.openid_logo {
+	float: right;
+}
+
 #open_id_assist_bar {
 	color: #da8;
 	padding: 4px;
@@ -383,7 +392,7 @@ td {
 	font-size: 8px;
 	font-style: italic;
 	text-align: right;
-	color: #999;
+	color: #777;
 	float: right;
 }
 
