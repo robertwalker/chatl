@@ -6,8 +6,12 @@ class User < ActiveRecord::Base
   include Authentication::ByCookieToken
   include Authorization::AasmRoles
 
-  named_scope :active, :conditions => { :state => "active" }, :order => "last_name, first_name"
-  named_scope :not_deleted, :conditions => "state <> 'deleted'", :order => "last_name, first_name"
+  def after_initialize
+    set_defaults
+  end
+
+  named_scope :active, :conditions => { :state => "active" }, :order => "logged_in_at DESC"
+  named_scope :not_deleted, :conditions => "state <> 'deleted'", :order => "logged_in_at DESC"
 
   has_and_belongs_to_many :roles
   has_many :attendances, :class_name => "Attendee", :dependent => :destroy
@@ -62,7 +66,8 @@ class User < ActiveRecord::Base
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :identity_url, :login, :email, :first_name, :last_name, :password, :password_confirmation
+  attr_accessible :identity_url, :login, :email, :first_name, :last_name,
+                  :password, :password_confirmation, :logged_in_at
 
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
@@ -90,7 +95,6 @@ class User < ActiveRecord::Base
   end
 
   protected
-
   def make_activation_code
     self.deleted_at = nil
     self.activation_code = self.class.make_token
@@ -106,5 +110,10 @@ class User < ActiveRecord::Base
     self.login = self.class.make_token if self.login.blank?
     self.password = self.class.make_token if self.password.blank?
     self.password_confirmation = self.password
+  end
+
+  private
+  def set_defaults
+    self.logged_in_at = Time.now
   end
 end

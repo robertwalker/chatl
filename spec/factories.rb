@@ -15,6 +15,7 @@ Factory.define :user do |f|
   f.password 'monkey'
   f.password_confirmation 'monkey'
   f.state 'active'
+  f.logged_in_at Time.now
 end
 
 # Another user

@@ -71,6 +71,11 @@ describe User do
       @user.reload
       @user.should be_pending
     end
+
+    it 'initializes logged_in_at with current time' do
+      @creating_user.call
+      @user.logged_in_at.should be_close(Time.now, 2.seconds)
+    end
   end
 
   #

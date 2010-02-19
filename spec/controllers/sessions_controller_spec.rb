@@ -34,6 +34,9 @@ describe SessionsController do
               @user.stub!(:remember_token).and_return(token_value)
               @user.stub!(:remember_token_expires_at).and_return(token_expiry)
               @user.stub!(:remember_token?).and_return(has_request_token == :valid)
+              @user.stub!(:update_attributes).and_return(true)
+              @user.stub!(:logged_in_at).and_return(Time.now - 1.week)
+
               if want_remember_me
                 @login_params[:remember_me] = '1'
               else
@@ -128,61 +131,69 @@ describe SessionsController do
                 end
               end
             end
+
+            it "updates user.logged_in_at" do
+              a_week_ago = Time.now - 1.week
+              returning_user = Factory(:user, :logged_in_at => a_week_ago)
+              User.should_receive(:authenticate).with('a_user', 'monkey').and_return(returning_user)
+              post :create, { :login => 'a_user', :password => 'monkey' }
+              returning_user.logged_in_at.should be_close(Time.now, 2.seconds)
+            end
           end # inner describe
         end
       end
     end
   end
 
-  # describe "on failed login" do
-  #   before do
-  #     User.should_receive(:authenticate).with(anything(), anything()).and_return(nil)
-  #     login_as :quentin
-  #   end
-  # 
-  #   it 'logs out keeping session' do
-  #     controller.should_receive(:logout_keeping_session!)
-  #     do_create
-  #   end
-  # 
-  #   it 'flashes an error' do
-  #     do_create
-  #     flash[:error].should =~ /Couldn't log you in as 'quentin'/
-  #   end
-  # 
-  #   it 'renders the log in page' do
-  #     do_create
-  #     response.should render_template('new')
-  #   end
-  # 
-  #   it "doesn't log me in" do
-  #     do_create
-  #     controller.send(:logged_in?).should == false
-  #   end
-  # 
-  #   it "doesn't send password back" do
-  #     @login_params[:password] = 'FROBNOZZ'
-  #     do_create
-  #     response.should_not have_text(/FROBNOZZ/i)
-  #   end
-  # end
-  # 
-  # describe "on signout" do
-  #   def do_destroy
-  #     get :destroy
-  #   end
-  # 
-  #   before do 
-  #     login_as :quentin
-  #   end
-  #   it 'logs me out' do
-  #     controller.should_receive(:logout_killing_session!)
-  #     do_destroy
-  #   end
-  # 
-  #   it 'redirects me to the home page' do
-  #     do_destroy
-  #     response.should be_redirect
-  #   end
-  # end
+  describe "on failed login" do
+    before do
+      User.should_receive(:authenticate).with(anything(), anything()).and_return(nil)
+      login_as :quentin
+    end
+
+    it 'logs out keeping session' do
+      controller.should_receive(:logout_keeping_session!)
+      do_create
+    end
+
+    it 'flashes an error' do
+      do_create
+      flash[:error].should =~ /Couldn't log you in as 'quentin'/
+    end
+
+    it 'renders the log in page' do
+      do_create
+      response.should render_template('new')
+    end
+
+    it "doesn't log me in" do
+      do_create
+      controller.send(:logged_in?).should == false
+    end
+
+    it "doesn't send password back" do
+      @login_params[:password] = 'FROBNOZZ'
+      do_create
+      response.should_not have_text(/FROBNOZZ/i)
+    end
+  end
+
+  describe "on signout" do
+    def do_destroy
+      get :destroy
+    end
+
+    before do 
+      login_as :quentin
+    end
+    it 'logs me out' do
+      controller.should_receive(:logout_killing_session!)
+      do_destroy
+    end
+
+    it 'redirects me to the home page' do
+      do_destroy
+      response.should be_redirect
+    end
+  end
 end
