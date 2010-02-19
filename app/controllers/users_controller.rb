@@ -128,8 +128,8 @@ class UsersController < ApplicationController
   end
 
   def successful_signup(identity_url)
-    @user.identity_url = identity_url
-    @user.save
+    UserMailer.deliver_signup_notification(@user) if @user.identity_url.ends_with?("_pending")
+    @user.update_attributes(:identity_url => identity_url)
     session.delete(:open_id_user_id)
     flash[:notice] = "Thanks for signing up!  We're sending you an email with your activation code."
     redirect_to root_url

@@ -4,12 +4,6 @@ class UserObserver < ActiveRecord::Observer
   end
 
   def after_save(user)
-    if user.recently_activated?
-      UserMailer.deliver_activation(user)
-    end
-
-    unless user.identity_url.ends_with?("_pending")
-      UserMailer.deliver_signup_notification(user)
-    end
+    UserMailer.deliver_activation(user) if user.recently_activated?
   end
 end
