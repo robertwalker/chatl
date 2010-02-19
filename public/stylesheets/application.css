@@ -20,15 +20,15 @@ h1 {
 }
 
 h2 {
+	font: bold 14pt "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
 	color: #5d2a11;
 	margin-top: 0;
 	margin-bottom: 0.5em;
-	font: bold 14pt "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
 }
 
 h3 {
-	font-size: 12pt;
-	font-weight: bold;
+	font: bold 12pt "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	color: #5d2a11;
 	margin-top: 0;
 	margin-bottom: 0.25em;
 }
