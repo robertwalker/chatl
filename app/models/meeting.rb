@@ -36,6 +36,24 @@ TEMPLATE
     self.attendees.find_by_user_id(user.id) if user
   end
 
+  def send_notification?
+    (self.scheduled_at.to_date - Time.now.to_date == 7 && 
+      self.notification_sent != "week") ||
+      (self.scheduled_at.to_date - Time.now.to_date == 1 &&
+      self.notification_sent != 'day')
+  end
+
+  def update_notification_sent
+    case self.scheduled_at.to_date - Time.now.to_date
+    when 7
+      self.update_attribute(:notification_sent, 'week')
+    when 1
+      self.update_attribute(:notification_sent, 'day')
+    else
+      return false
+    end
+  end
+
   protected
   def set_defaults
     self.scheduled_at ||= Time.time_at_wnum_wday_hour

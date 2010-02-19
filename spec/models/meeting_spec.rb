@@ -86,6 +86,55 @@ TEMPLATE
     Meeting.next_upcoming.should == meeting
   end
 
+  it "informs callers that a one week notification email should be sent" do
+    meeting = Factory(:meeting, :scheduled_at => Time.now + 1.week)
+    meeting.send_notification?.should == true
+  end
+
+  it "informs callers that a one day notification email should be sent" do
+    meeting = Factory(:meeting, :scheduled_at => Time.now + 1.day)
+    meeting.send_notification?.should == true
+  end
+
+  it "informs callers to not send notification email for other than one week or one day" do
+    [ 2.days, 6.days, 8.days, 2.weeks, 1.month].each do |offset|
+      meeting = Factory(:meeting, :scheduled_at => Time.now + offset)
+      meeting.send_notification?.should == false
+    end
+  end
+
+  it "informs callers to not send one week notification email if already sent" do
+    meeting = Factory(:meeting, :scheduled_at => Time.now + 1.week,
+                      :notification_sent => "week")
+    meeting.send_notification?.should == false
+  end
+
+  it "informs callers to not send one day notification email if already sent" do
+    meeting = Factory(:meeting, :scheduled_at => Time.now + 1.day,
+                      :notification_sent => "day")
+    meeting.send_notification?.should == false
+  end
+
+  it "updates notification_sent to 'week'" do
+    meeting = Factory(:meeting, :scheduled_at => Time.now + 1.week)
+    meeting.update_notification_sent
+    meeting.notification_sent.should == 'week'
+  end
+
+  it "updates notification_sent to 'day'" do
+    meeting = Factory(:meeting, :scheduled_at => Time.now + 1.day)
+    meeting.update_notification_sent.should == true
+    meeting.notification_sent.should == 'day'
+  end
+
+  it "does not update notification_sent if not a week or a day away" do
+    [ 2.days, 6.days, 8.days, 2.weeks, 1.month].each do |offset|
+      meeting = Factory(:meeting, :scheduled_at => Time.now + offset)
+      meeting.update_notification_sent.should == false
+      meeting.notification_sent.should be_nil
+    end
+  end
+
   describe "named scopes" do
     it "should have 'recent_past'" do
       Meeting.should respond_to(:recent_past)

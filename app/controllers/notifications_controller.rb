@@ -7,8 +7,13 @@ class NotificationsController < ApplicationController
   end
 
   def reminder
-    MeetingMailer.deliver_reminder(@meeting)
-    render :text => "Meeting reminder message sent.\n"
+    if @meeting.send_notification?
+      MeetingMailer.deliver_reminder(@meeting)
+      @meeting.update_notification_sent
+      render :text => "Meeting reminder message sent.\n"
+    else
+      render :text => "No meeting due for notification.\n"
+    end
   end
 
   private

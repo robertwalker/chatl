@@ -5,9 +5,13 @@ describe NotificationsController do
     @mock_venue = mock_model(Venue).as_null_object
     @mock_venue.stub!(:name).and_return("Venu name")
     @mock_venue.stub!(:notes).and_return("Venue notes")
-    @mock_meeting = mock_model(Meeting).as_null_object
+    @mock_meeting = mock_model(Meeting)
+    @mock_meeting.stub!(:title).and_return(@mock_venue)
     @mock_meeting.stub!(:venue).and_return(@mock_venue)
     @mock_meeting.stub!(:details).and_return("Meeting details")
+    @mock_meeting.stub!(:scheduled_at).and_return(Time.now + 1.week)
+    @mock_meeting.stub!(:send_notification?).and_return(true)
+    @mock_meeting.stub!(:update_notification_sent).and_return(true)
     Meeting.stub!(:next_upcoming).and_return(@mock_meeting)
     MeetingMailer.stub!(:deliver_scheduled)
   end
@@ -48,6 +52,7 @@ describe NotificationsController do
     end
 
     it "sould send the reminder email notification" do
+      @mock_meeting.should_receive(:update_notification_sent).and_return(true)
       MeetingMailer.should_receive(:deliver_reminder).with(@mock_meeting)
       post 'reminder'
     end
@@ -55,6 +60,13 @@ describe NotificationsController do
     it "should render text 'Meeting reminder message sent.'" do
       post 'reminder'
       response.body.should == "Meeting reminder message sent.\n"
+    end
+
+    it "should not send notification if not due" do
+      @mock_meeting.should_receive(:send_notification?).and_return(false)
+      MeetingMailer.should_not_receive(:deliver_reminder)
+      post 'reminder'
+      response.body.should == "No meeting due for notification.\n"
     end
   end
 end
