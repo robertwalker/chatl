@@ -37,6 +37,21 @@ describe NotificationsController do
       post 'scheduled'
       response.body.should == "Scheduled meeting message sent.\n"
     end
+
+    describe "when upcoming meeting not found" do
+      it "should assign nil to '@meeting'" do
+        Meeting.should_receive(:next_upcoming).and_return(nil)
+        post 'scheduled'
+        assigns(:meeting).should be_nil
+      end
+
+      it "should render text 'No scheduled meeting found for notification.'" do
+        Meeting.should_receive(:next_upcoming).and_return(nil)
+        MeetingMailer.should_not_receive(:deliver_scheduled)
+        post 'scheduled'
+        response.body.should == "No scheduled meeting found for notification.\n"
+      end
+    end
   end
 
   describe "POST 'reminder'" do
@@ -67,6 +82,21 @@ describe NotificationsController do
       MeetingMailer.should_not_receive(:deliver_reminder)
       post 'reminder'
       response.body.should == "No meeting due for notification.\n"
+    end
+
+    describe "when upcoming meeting not found" do
+      it "should assign nil to '@meeting'" do
+        Meeting.should_receive(:next_upcoming).and_return(nil)
+        post 'reminder'
+        assigns(:meeting).should be_nil
+      end
+
+      it "should render text 'No meeting due for notification.'" do
+        Meeting.should_receive(:next_upcoming).and_return(nil)
+        MeetingMailer.should_not_receive(:deliver_reminder)
+        post 'reminder'
+        response.body.should == "No meeting due for notification.\n"
+      end
     end
   end
 end
