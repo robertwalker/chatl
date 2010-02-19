@@ -33,6 +33,11 @@
   <p><%= label_tag 'last_name' %><br/>
   <%= f.text_field :last_name %></p>
 
+  <p>
+    <%= f.check_box :subscribe_to_chatter %>
+    <%= f.label :subscribe_to_chatter, "I would like to join the group mailing list" %>
+  </p>
+
   <p><%= submit_tag 'Sign up' %></p>
 <% end -%>
 

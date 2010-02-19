@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100219064157) do
+ActiveRecord::Schema.define(:version => 20100219190323) do
 
   create_table "attendees", :id => false, :force => true do |t|
     t.integer  "user_id"
@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(:version => 20100219064157) do
     t.string   "last_name",                 :limit => 100, :default => ""
     t.string   "identity_url"
     t.datetime "logged_in_at"
+    t.boolean  "subscribe_to_chatter",                     :default => false
   end
 
   add_index "users", ["identity_url"], :name => "index_users_on_identity_url", :unique => true

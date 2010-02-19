@@ -12,6 +12,13 @@ class UserMailer < ActionMailer::Base
     @body[:url]  = "http://cocoaheadsatlanta.org/"
   end
 
+  def chatter_list(user)
+    @recipients  = "chatter-join@lists.cocoaheadsatlanta.org"
+    @from        = "#{user.email}"
+    @subject     = ""
+    @sent_on     = Time.now
+  end
+
   protected
   def setup_email(user)
     @recipients  = "#{user.email}"
