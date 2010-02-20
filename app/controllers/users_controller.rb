@@ -42,7 +42,7 @@ class UsersController < ApplicationController
         redirect_back_or_default('/')
         flash[:notice] = "Thanks for signing up!  We're sending you an email with your activation code."
       else
-        flash[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
+        flash[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact the group organizer (link is in the sidebar)."
         render :action => 'new'
       end
     end
@@ -99,18 +99,21 @@ class UsersController < ApplicationController
     if params[:open_id_complete].blank?
       success = create_user(openid_identifier)
       session[:open_id_user_id] = @user.id
+    else
+      logger.debug "LOGGER: #{openid_identifier}"
     end
 
     if success
       authenticate_with_open_id(openid_identifier) do |result, identity_url|
-        if result.successful? && @user = User.find(session[:open_id_user_id])
+        @user = User.find(session[:open_id_user_id])
+        if result.successful? && @user
           successful_signup(identity_url)
         else
           failed_signup result.message
         end
       end
     else
-      flash[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
+      flash[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact the group organizer (link is in the sidebar)."
       render :action => 'new'
     end
   end
@@ -128,11 +131,16 @@ class UsersController < ApplicationController
   end
 
   def successful_signup(identity_url)
-    UserMailer.deliver_signup_notification(@user) if @user.identity_url.ends_with?("_pending")
-    @user.update_attributes(:identity_url => identity_url)
-    session.delete(:open_id_user_id)
-    flash[:notice] = "Thanks for signing up!  We're sending you an email with your activation code."
-    redirect_to root_url
+    identity_pending = @user.identity_url.ends_with?("_pending")
+    logger.debug "LOGGER: ID = #{@user.id}, #{@user.identity_url}"
+    if @user.update_attributes(:identity_url => identity_url)
+      UserMailer.deliver_signup_notification(@user) if identity_pending
+      flash[:notice] = "Thanks for signing up! We're sending you an email with your activation code."
+      session.delete(:open_id_user_id)
+      redirect_to root_url
+    else
+      failed_signup("We couldn't set up that account, sorry. If you are attempting to sign up with Google or Yahoo try signing out of your account then try again. If you still have trouble please contact the group organizer (link is in the sidebar).")
+    end
   end
 
   def failed_signup(message)

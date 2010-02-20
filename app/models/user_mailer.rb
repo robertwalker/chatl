@@ -9,7 +9,7 @@ class UserMailer < ActionMailer::Base
   def activation(user)
     setup_email(user)
     @subject    += 'Your account has been activated!'
-    @body[:url]  = "http://cocoaheadsatlanta.org/"
+    @body[:url]  = "http://cocoaheadsatlanta.org/login"
   end
 
   def chatter_list(user)
