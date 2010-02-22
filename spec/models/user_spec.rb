@@ -15,7 +15,12 @@ describe User do
     user.should respond_to(:social_networks)
   end
 
-  describe 'full_name method' do
+  it 'provides a Gravatar image' do
+    user = Factory.build(:user)
+    user.should respond_to("gravatar_url")
+  end
+
+  describe 'when getting full_name' do
     it 'provides full_name with first_name and last_name present' do
       user = Factory.build(:user)
       user.full_name.should == 'First Last'
@@ -368,18 +373,6 @@ describe User do
       User.update_all :activation_code => 'foo-bar', :activated_at => nil
       @user.reload.unsuspend!
       @user.should be_pending
-    end
-  end
-
-  describe "using gravtastic" do
-    fixtures :users
-    
-    before do
-      @user = users(:quentin)
-    end
-    
-    it 'responds to gravatar_url' do
-      @user.should respond_to("gravatar_url")
     end
   end
 
