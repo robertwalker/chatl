@@ -5,10 +5,13 @@ describe "/meetings/show.html.erb" do
 
   before(:each) do
     assigns[:meeting] = @meeting = stub_model(Meeting,
-    :venue_id => 1,
-    :details => "value for details"
+      :venue_id => 1,
+      :details => "value for details"
     )
-    assigns[:attendee] = @attendee = stub_model(Attendee)
+    assigns[:attendee] = @attendee = stub_model(Attendee,
+      :user => stub_model(User)
+    )
+    assigns[:attendees] = @attendees = [ @attendee ]
   end
 
   it "renders the calendar icon" do

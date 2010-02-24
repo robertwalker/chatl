@@ -1,7 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe MeetingsController do
-
   def mock_meeting(stubs = {})
     @mock_meeting ||= mock_model(Meeting, stubs)
   end
@@ -13,26 +12,34 @@ describe MeetingsController do
   describe "GET index" do
     it "assigns recent past meetings as @meetings" do
       Meeting.stub!(:recent_past).and_return([ mock_meeting ])
-      mock_meeting.stub!(:attendee_with_user).and_return(nil)
       get :index
       assigns[:meetings].should == [ mock_meeting ]
     end
   end
 
   describe "GET show" do
-    it "assigns the requested meeting as @meeting" do
+    before(:each) do
       Meeting.stub!(:find).with("37").and_return(mock_meeting)
-      mock_meeting.stub!(:attendee_with_user).and_return(nil)
+      Attendee.stub!(:new).and_return(mock_attendee)
+      mock_meeting.should_receive(:attendee_with_user).with(nil).and_return(nil)
+      attendees = [ mock_attendee ]
+      attendees.stub!(:find_all_by_rsvp).with('Yes').and_return(attendees)
+      mock_meeting.stub!(:attendees).and_return(attendees)
+    end
+
+    it "assigns the requested meeting as @meeting" do
       get :show, :id => "37"
       assigns[:meeting].should equal(mock_meeting)
     end
 
     it "assigns a new attendee as @attendee" do
-      Meeting.stub!(:find).with("37").and_return(mock_meeting)
-      Attendee.stub!(:new).and_return(mock_attendee)
-      mock_meeting.stub!(:attendee_with_user).and_return(nil)
       get :show, :id => "37"
       assigns[:attendee].should equal(mock_attendee)
+    end
+
+    it "assigns @attendees" do
+      get :show, :id => "37"
+      assigns[:attendees].should == [ mock_attendee ]
     end
   end
 
@@ -234,7 +241,6 @@ describe MeetingsController do
       it "assigns upcoming meetings as @upcoming_meetings" do
         Meeting.stub!(:recent_past).and_return([ mock_meeting ])
         Meeting.should_receive(:upcoming).and_return([mock_meeting])
-        # mock_meeting.stub!(:attendee_with_user).and_return(nil)
         get :next_scheduled
         assigns[:upcoming_meetings].should == [ mock_meeting ]
       end

@@ -16,8 +16,11 @@ class MeetingsController < ApplicationController
   # GET /meetings/1
   # GET /meetings/1.xml
   def show
-    @meeting = Meeting.find(params[:id]) unless params[:id] == "0"
-    @attendee = @meeting.attendee_with_user(current_user) || Attendee.new if @meeting
+    @meeting = Meeting.find(params[:id])
+    if @meeting
+      @attendee = @meeting.attendee_with_user(current_user) || Attendee.new
+      @attendees = @meeting.attendees.find_all_by_rsvp("Yes")
+    end
 
     respond_to do |format|
       format.html # show.html.erb

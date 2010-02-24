@@ -1,5 +1,49 @@
-<%= render :partial => 'meeting',
-           :locals => {:meeting => @meeting, :attendee => @attendee } %>
+<div id="meeting_header">
+  <%= render :partial => 'calendar_icon', :locals => { :meeting => @meeting } %>
+  <%= render :partial => 'rsvp_panel',
+             :locals => { :meeting => @meeting, :attendee => @attendee } %>
+
+  <!-- Meeting Header -->
+  <div id="venue_details">
+      <div class="layout_labels">
+        <p>What:</p>
+        <p>When:</p>
+        <p>Where:</p>
+      </div>
+      <div class="layout_fields">
+        <p><%=h @meeting.title %></p>
+        <p><%=h @meeting.scheduled_at.strftime("%a, %b %e, %Y %I:%M %p") %></p>
+        <% if @meeting.venue %>
+        <div><%=h @meeting.venue.name %></div>
+        <div><% address_formatter(@meeting.venue) %></div>
+        <div><%= city_state_zip_formatter(@meeting.venue) %></div>
+        <div><%= map_link(@meeting.venue) %></div>
+        <% end %>
+      </div>
+  </div>
+</div>
+
+<!-- Meeting Details -->
+<div id="meeting_details">
+  <% if @meeting.venue && !@meeting.venue.notes.blank? %>
+  <h2>Venue Information</h2>
+  <div><%= render_textile(@meeting.venue.notes) %></div>
+  <% end %>
+  <div><%= render_textile(@meeting.details) %></div>
+
+  <!-- Attendees -->
+  <div id="meeting_attendees">
+    <h3>Members planning to attend</h3>
+    <% @attendees.each do |attendee| -%>
+    <div class="gravatar_image">
+      <%= image_tag attendee.user.gravatar_url,
+          :alt => "#{attendee.user.full_name} avatar",
+          :title => attendee.user.full_name %>
+    </div>
+    <% end -%>
+    <div style="clear: left;"></div>
+  </div>
+</div>
 
 <!-- Navigation Controls -->
 <%= link_to 'Past Meetings', meetings_path %>

@@ -30,7 +30,7 @@ h3 {
 	font: bold 12pt "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
 	color: #5d2a11;
 	margin-top: 0;
-	margin-bottom: 0.25em;
+	margin-bottom: 0.5em;
 }
 
 a {
@@ -373,6 +373,8 @@ td {
 
 .gravatar_image {
 	float: left;
+	margin-right: 2px;
+	margin-bottom: 2px;
 }
 
 .gravatar_image img {
