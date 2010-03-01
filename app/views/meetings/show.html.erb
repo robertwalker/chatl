@@ -32,8 +32,13 @@
   <div><%= render_textile(@meeting.details) %></div>
 
   <!-- Attendees -->
+  <% if @attendees.count > 0 -%>
   <div id="meeting_attendees">
+    <% if @meeting.scheduled_at > Time.now -%>
     <h3>Members planning to attend</h3>
+    <% else -%>
+    <h3>Members who were there</h3>
+    <% end -%>
     <% @attendees.each do |attendee| -%>
     <div class="gravatar_image">
       <%= image_tag attendee.user.gravatar_url,
@@ -43,10 +48,14 @@
     <% end -%>
     <div style="clear: left;"></div>
   </div>
+  <% end -%>
 </div>
 
 <!-- Navigation Controls -->
 <%= link_to 'Past Meetings', meetings_path %>
+<% if @meeting.scheduled_at < Time.now %>
+| <%= link_to 'Next Scheduled Meeting', next_meeting_path %>
+<% end %>
 <% if logged_in? && current_user.admin? %>
 | <%= link_to 'Edit', edit_meeting_path(@meeting) %> |
 <%= link_to 'New Meeting', new_meeting_path %>
