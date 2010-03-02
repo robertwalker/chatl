@@ -136,7 +136,7 @@ describe VenuesController do
         it "redirects to the created venue" do
           Venue.stub!(:new).and_return(mock_venue(:save => true))
           post :create, :venue => {}
-          response.should redirect_to(venue_url(mock_venue))
+          response.should redirect_to(venues_url)
         end
       end
 
@@ -172,7 +172,7 @@ describe VenuesController do
         it "redirects to the venue" do
           Venue.stub!(:find).and_return(mock_venue(:update_attributes => true))
           put :update, :id => "1"
-          response.should redirect_to(venue_url(mock_venue))
+          response.should redirect_to(venues_url)
         end
       end
 
