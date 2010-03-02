@@ -538,9 +538,10 @@ td {
 /* @group Form Errors */
 
 .fieldWithErrors {
+	margin: 0;
 	padding: 2px;
 	background-color: red;
-	display: table;
+	display: inline-block;
 }
 
 #errorExplanation {
@@ -564,6 +565,7 @@ td {
 
 #errorExplanation p {
 	color: #333;
+	margin-top: 8px;
 	margin-bottom: 0;
 	padding: 5px;
 }
