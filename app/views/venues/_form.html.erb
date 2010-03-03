@@ -2,39 +2,46 @@
   <%= f.error_messages %>
 
   <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <div><%= label_tag "venue_name", "Name" %></div>
+    <div><%= f.text_field :name %></div>
   </p>
   <p>
-    <%= f.label :street_address %><br />
-    <%= f.text_area :street_address, :cols => 30, :rows => 2 %>
+    <div><%= label_tag "venue_street_address", "Street Address" %></div>
+    <div><%= f.text_area :street_address, :cols => 30, :rows => 2 %></div>
   </p>
   <p>
-    <%= f.label :city %><br />
-    <%= f.text_field :city %>
+    <div><%= label_tag "venue_city", "City" %></div>
+    <div><%= f.text_field :city %></div>
   </p>
   <p>
-    <%= f.label :state %><br />
-    <%= f.text_field :state %>
+    <div><%= label_tag "venue_state", "State" %></div>
+    <div><%= f.text_field :state %></div>
   </p>
   <p>
-    <%= f.label :zip %><br />
-    <%= f.text_field :zip %>
+    <div><%= label_tag "venue_zip", "Zip" %></div>
+    <div><%= f.text_field :zip %></div>
   </p>
   <% unless venue.new_record? %>
   <p>
-    <%= f.label :map_url, "Map URL" %>&nbsp;
-    <%= map_link(venue) %><br />
-    <%= f.text_area :map_url, :cols => 65, :rows => 4 %>
+    <div>
+      <%= label_tag "venue_map_url", "Map URL" %>&nbsp;
+      <%= map_link(venue) %>
+    </div>
+    <div><%= f.text_area :map_url, :cols => 65, :rows => 4 %></div>
   </p>
   <% end %>
   <p>
-    <%= f.label :seating_capacity %><br />
-    <%= f.text_field :seating_capacity %>
+    <div><%= label_tag "venue_seating_capacity", "Seating Capacity" %></div>
+    <div><%= f.text_field :seating_capacity %></div>
   </p>
   <p>
-    <%= f.label :notes %> <span><a href="http://redcloth.org/textile" title="Textile Reference Manual for RedCloth" target="_blank">(Textile Markup Guide)</a></span><br />
-    <%= f.text_area :notes, :cols => 65, :rows => 18 %>
+    <div>
+      <%= label_tag "venue_notes", "Notes" %>
+      <span>
+          <a href="http://redcloth.org/textile" title="Textile Reference Manual for RedCloth" target="_blank">(Textile Markup Guide)</a>
+      </span>
+    </div>
+    <div><%= f.text_area :notes, :cols => 65, :rows => 18 %></div>
   </p>
   <p>
     <%= f.submit submit_label %>&nbsp;
