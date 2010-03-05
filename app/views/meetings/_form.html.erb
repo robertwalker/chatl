@@ -2,22 +2,34 @@
   <%= f.error_messages %>
 
   <p>
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
+    <div><%= label_tag "meeting_title", "Title" %></div>
+    <div><%= f.text_field :title %></div>
   </p>
   <p>
-    <%= f.label :venue_id %><br />
-    <%= f.select("venue_id", Venue.all.collect {|v| [ v.name, v.id ] },
-                 {:include_blank => 'Select a venue'}) %>
-    <span style="margin-left: 0.5em;"><%= link_to "or create one", new_venue_path %></span>
+    <div><%= label_tag "meeting_venue_id", "Venue" %></div>
+    <div>
+      <%= f.select("venue_id", Venue.all.collect {|v| [ v.name, v.id ] },
+         {:include_blank => 'Select a venue'}) %>
+      <span style="margin-left: 0.5em;">
+        or &nbsp;<%= link_to "create one", new_venue_path %>
+      </span>
+    </div>
   </p>
   <p>
-    <%= f.label :scheduled_at %><br />
-    <%= f.datetime_select :scheduled_at %>
+    <div><%= label_tag "meeting_scheduled_at", "Meeting Date and Time" %></div>
+    <div><%= f.datetime_select :scheduled_at %></div>
   </p>
   <p>
-    <%= f.label :details %> <span><a href="http://redcloth.org/textile" title="Textile Reference Manual for RedCloth" target="_blank">(Textile Markup Guide)</a></span><br />
-    <%= f.text_area :details, :cols => 65, :rows => 18 %>
+    <div>
+      <%= label_tag "meeting_details", "Details" %>
+      <span>
+        <a href="http://redcloth.org/textile"
+           title="Textile Reference Manual for RedCloth" target="_blank">
+           (Textile Markup Guide)
+        </a>
+      </span>
+    </div>
+    <div><%= f.text_area :details, :cols => 65, :rows => 18 %></div>
   </p>
   <p>
     <%= f.submit 'Save Changes' %>&nbsp;
