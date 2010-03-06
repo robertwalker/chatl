@@ -21,24 +21,34 @@
 <%= open_id_link_bar(:signup) %><br />
 
 <% form_for :user, :url => users_path do |f| -%>
-  <p><%= label_tag 'identity_url', 'OpenID URL' %><br/>
-  <%= text_field_tag "openid_identifier", nil, :size => 50 %></p>
+  <div class="form_field">
+    <div><%= label_tag 'openid_identifier', 'OpenID URL' %></div>
+    <div><%= text_field_tag "openid_identifier", nil, :size => 50 %></div>
+  </div>
 
-  <p><%= label_tag 'email' %><br/>
-  <%= f.text_field :email %></p>
+  <div class="form_field">
+    <div><%= label_tag 'user_email', "Email" %></div>
+    <div><%= f.text_field :email %></div>
+  </div>
 
-  <p><%= label_tag 'first_name' %><br/>
-  <%= f.text_field :first_name %></p>
+  <div class="form_field">
+    <div><%= label_tag 'user_first_name', "First Name" %></div>
+    <div><%= f.text_field :first_name %></div>
+  </div>
 
-  <p><%= label_tag 'last_name' %><br/>
-  <%= f.text_field :last_name %></p>
+  <div class="form_field">
+    <div><%= label_tag 'user_last_name', "Last Name" %></div>
+    <div><%= f.text_field :last_name %></div>
+  </div>
 
-  <p>
+  <div class="form_field">
     <%= f.check_box :subscribe_to_chatter %>&nbsp;
-    <%= f.label :subscribe_to_chatter, "I would like to join the group mailing list" %>
-  </p>
+    <%= label_tag "user_subscribe_to_chatter", "I would like to join the group mailing list" %>
+  </div>
 
-  <p><%= submit_tag 'Sign up' %></p>
+  <div class="form_field">
+    <%= submit_tag 'Sign up' %>
+  </div>
 <% end -%>
 
 <p>Add your profile picture using <a href="http://gravatar.com/">Gravatar &mdash; Globally Recognized Avatar</a>.</p>
