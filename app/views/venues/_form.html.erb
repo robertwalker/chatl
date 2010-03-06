@@ -1,40 +1,40 @@
 <% form_for(venue) do |f| %>
   <%= f.error_messages %>
 
-  <p>
+  <div class="form_field">
     <div><%= label_tag "venue_name", "Name" %></div>
     <div><%= f.text_field :name %></div>
-  </p>
-  <p>
+  </div>
+  <div class="form_field">
     <div><%= label_tag "venue_street_address", "Street Address" %></div>
     <div><%= f.text_area :street_address, :cols => 30, :rows => 2 %></div>
-  </p>
-  <p>
+  </div>
+  <div class="form_field">
     <div><%= label_tag "venue_city", "City" %></div>
     <div><%= f.text_field :city %></div>
-  </p>
-  <p>
+  </div>
+  <div class="form_field">
     <div><%= label_tag "venue_state", "State" %></div>
     <div><%= f.text_field :state %></div>
-  </p>
-  <p>
+  </div>
+  <div class="form_field">
     <div><%= label_tag "venue_zip", "Zip" %></div>
     <div><%= f.text_field :zip %></div>
-  </p>
+  </div>
   <% unless venue.new_record? %>
-  <p>
+  <div class="form_field">
     <div>
       <%= label_tag "venue_map_url", "Map URL" %>&nbsp;
       <%= map_link(venue) %>
     </div>
     <div><%= f.text_area :map_url, :cols => 65, :rows => 4 %></div>
-  </p>
+  </div>
   <% end %>
-  <p>
+  <div class="form_field">
     <div><%= label_tag "venue_seating_capacity", "Seating Capacity" %></div>
     <div><%= f.text_field :seating_capacity %></div>
-  </p>
-  <p>
+  </div>
+  <div class="form_field">
     <div>
       <%= label_tag "venue_notes", "Notes" %>
       <span>
@@ -42,10 +42,10 @@
       </span>
     </div>
     <div><%= f.text_area :notes, :cols => 65, :rows => 18 %></div>
-  </p>
-  <p>
+  </div>
+  <div class="form_field">
     <%= f.submit submit_label %>&nbsp;
     or&nbsp;
     <%= link_to 'Cancel', venues_path %>
-  </p>
+  </div>
 <% end %>
