@@ -109,6 +109,10 @@ td {
 	height: 80px;
 }
 
+.form_field {
+	margin-bottom: 0.75em;
+}
+
 .layout_labels {
 	width: 60px;
 	text-align: right;
@@ -264,12 +268,12 @@ td {
 	float: right;
 }
 
-#venue_details {
+#venue_detail_section {
 	height: 100px;
 	margin-left: 110px;
 }
 
-#meeting_details {
+#meeting_detail_section {
 	margin-top: 0.75em;
 	margin-bottom: 0.75em;
 	padding-top: 0.75em;

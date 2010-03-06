@@ -26,7 +26,7 @@ describe "/meetings/show.html.erb" do
 
   it "renders the venue details" do
     render
-    response.should have_tag('div#venue_details') do
+    response.should have_tag('div#venue_detail_section') do
       with_tag('div.layout_labels')
       with_tag('div.layout_fields')
     end
@@ -34,7 +34,7 @@ describe "/meetings/show.html.erb" do
 
   it "renders the meeting details" do
     render
-    response.should have_tag('div#meeting_details') do
+    response.should have_tag('div#meeting_detail_section') do
     end
   end
 

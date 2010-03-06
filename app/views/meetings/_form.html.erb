@@ -1,11 +1,11 @@
 <% form_for(meeting) do |f| %>
   <%= f.error_messages %>
 
-  <p>
+  <div class="form_field">
     <div><%= label_tag "meeting_title", "Title" %></div>
     <div><%= f.text_field :title %></div>
-  </p>
-  <p>
+  </div>
+  <div class="form_field">
     <div><%= label_tag "meeting_venue_id", "Venue" %></div>
     <div>
       <%= f.select("venue_id", Venue.all.collect {|v| [ v.name, v.id ] },
@@ -14,12 +14,12 @@
         or &nbsp;<%= link_to "create one", new_venue_path %>
       </span>
     </div>
-  </p>
-  <p>
-    <div><%= label_tag "meeting_scheduled_at", "Meeting Date and Time" %></div>
+  </div>
+  <div class="form_field">
+    <div><%= label_tag "meeting_scheduled_at_1i", "Meeting Date and Time" %></div>
     <div><%= f.datetime_select :scheduled_at %></div>
-  </p>
-  <p>
+  </div>
+  <div class="form_field">
     <div>
       <%= label_tag "meeting_details", "Details" %>
       <span>
@@ -30,10 +30,10 @@
       </span>
     </div>
     <div><%= f.text_area :details, :cols => 65, :rows => 18 %></div>
-  </p>
-  <p>
+  </div>
+  <div class="form_field">
     <%= f.submit 'Save Changes' %>&nbsp;
     or&nbsp;
     <%= link_to 'Cancel', meetings_path %>
-  </p>
+  </div>
 <% end %>

@@ -4,7 +4,7 @@
              :locals => { :meeting => @meeting, :attendee => @attendee } %>
 
   <!-- Meeting Header -->
-  <div id="venue_details">
+  <div id="venue_detail_section">
       <div class="layout_labels">
         <p>What:</p>
         <p>When:</p>
@@ -24,7 +24,7 @@
 </div>
 
 <!-- Meeting Details -->
-<div id="meeting_details">
+<div id="meeting_detail_section">
   <% if @meeting.venue && !@meeting.venue.notes.blank? %>
   <h2>Venue Information</h2>
   <div><%= render_textile(@meeting.venue.notes) %></div>
