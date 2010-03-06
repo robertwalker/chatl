@@ -1,19 +1,19 @@
 <% form_for(presentation) do |f| %>
   <%= f.error_messages %>
 
-  <p>
+  <div class="form_field">
     <div><%= label_tag "presentation_title", "Title" %></div>
     <div><%= f.text_field :title %></div>
-  </p>
-  <p>
-    <div>Date of Presentation</div>
+  </div>
+  <div class="form_field">
+    <div><%= label_tag "presentation_presented_on_1i", "Date of Presentation" %></div>
     <div><%= f.date_select :presented_on %></div>
-  </p>
-  <p>
+  </div>
+  <div class="form_field">
     <div><%= label_tag "presentation_presented_by", "Presented By" %></div>
     <div><%= f.text_field :presented_by %></div>
-  </p>
-  <p>
+  </div>
+  <div class="form_field">
     <div>
       <%= label_tag "presentation_narrative", "Narrative" %>
       <span>
@@ -25,10 +25,10 @@
       </span>
     </div>
     <div><%= f.text_area :narrative, :cols => 65, :rows => 18 %></div>
-  </p>
-  <p>
+  </div>
+  <div class="form_field">
     <%= f.submit submit_label %>&nbsp;
     or&nbsp;
     <%= link_to 'Cancel', presentations_path %>
-  </p>
+  </div>
 <% end %>
