@@ -23,6 +23,13 @@ class UsersController < ApplicationController
     end
   end
 
+  # GET /meetings/1
+  # GET /meetings/1.xml
+  def show
+    @user = User.find(params[:id])
+    render :partial => "address_card", :locals => { :user => @user }
+  end
+
   # render new.rhtml
   def new
     @user = User.new

@@ -375,10 +375,16 @@ td {
 	margin-left: 55px;
 }
 
+#meeting_attendees {
+	position: relative;
+}
+
 .gravatar_image {
-	float: left;
 	margin-right: 2px;
 	margin-bottom: 2px;
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
 }
 
 .gravatar_image img {
@@ -523,6 +529,90 @@ td {
 
 .attendee_rsvp_maybe {
 	color: #55a;
+}
+
+/* @end */
+
+/* @group Address Card */
+
+.address_card {
+	font: small "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	width: 300px;
+	height: 160px;
+	border: 2px solid #777;
+	background: #ffe url(address_card_holes.png) no-repeat center bottom;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 100;
+	border-radius: 6px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+}
+
+.address_card_close_button {
+	font-weight: bold;
+	font-size: x-small;
+	color: #777;
+	margin: 3px;
+	padding: 0 4px;
+	float: right;
+	cursor: default;
+	border: 1px solid #ffe;
+}
+
+.address_card_close_button:hover {
+	color: white;
+	border: 1px solid #777;
+	background-color: #a00;
+}
+
+.address_card_content {
+	margin: 10px;
+}
+
+.address_card_avatar_container {
+	width: 55px;
+	height: 40px;
+	float: left;
+	background-color: #ffe;
+}
+
+.address_card_avatar {
+	width: 40px;
+	height: 40px;
+	border: 1px solid #aaa;
+	background-color: #aaf;
+}
+
+.address_card_text {
+	font-size: 10pt;
+	padding-bottom: 6px;
+	margin-left: 55px;
+	margin-bottom: 6px;
+}
+
+.address_card_label {
+	color: #aaa;
+}
+
+.address_card_name {
+	font-size: 14pt;
+	font-weight: bold;
+	font-style: italic;
+	border-bottom: 1px solid #aaa;
+	text-shadow: #aaa 2px 2px 3px;
+}
+
+.address_card_member_since {
+	font-size: 8pt;
+	color: #aaa;
+}
+
+.address_card_holes {
+	position: absolute;
+	left: 108px;
+	bottom: 0;
 }
 
 /* @end */

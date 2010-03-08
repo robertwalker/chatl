@@ -40,7 +40,8 @@
     <h3>Members who were there</h3>
     <% end -%>
     <% @attendees.each do |attendee| -%>
-    <div class="gravatar_image">
+    <div id="gravatar_image_<%= attendee.user.id %>"
+         class="gravatar_image" onclick="showAddressCard(<%= attendee.user.id %>);">
       <%= image_tag attendee.user.gravatar_url,
           :alt => "#{attendee.user.full_name} avatar",
           :title => attendee.user.full_name %>

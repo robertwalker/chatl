@@ -1,0 +1,23 @@
+<div id="address_card_<%= user.id %>" class="address_card">
+  <div id="address_card_close_button_<%= user.id %>" class="address_card_close_button">X</div>
+  <div class="address_card_content">
+    <div class="address_card_avatar_container">
+      <div class="address_card_avatar">
+        <%= image_tag user.gravatar_url,
+        :alt => "#{user.full_name} avatar" %>
+      </div>
+    </div>
+    <div class="address_card_text address_card_name">
+      <%=h user.full_name %>
+    </div>
+    <div class="address_card_text">
+      <p class="address_card_member_since">
+        member since <%=h user.created_at.strftime("%m/%d/%Y") %>
+      </p>
+      <div>
+        <!-- <span class="address_card_label">Twitter: </span> -->
+        Watch this space for upcoming features.
+      </div>
+    </div>
+  </div>
+</div>
