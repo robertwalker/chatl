@@ -540,7 +540,7 @@ td {
 	width: 300px;
 	height: 160px;
 	border: 2px solid #777;
-	background: #ffe url(address_card_holes.png) no-repeat center bottom;
+	background: #ffe url(../images/address_card_holes.png) no-repeat center bottom;
 	position: absolute;
 	top: 0;
 	left: 0;
