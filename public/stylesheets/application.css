@@ -557,7 +557,7 @@ td {
 	margin: 3px;
 	padding: 0 4px;
 	float: right;
-	cursor: default;
+	cursor: pointer;
 	border: 1px solid #ffe;
 }
 
