@@ -31,7 +31,7 @@ function showAddressCard(user_id, idx) {
     onComplete: function() {
       gravatar_v_offset = $('gravatar_image_' + idx).positionedOffset().top;
       card_height = $('address_card_' + user_id).getHeight();
-      $('address_card_' + user_id).setStyle("left: " + ((idx * 42) + 3) + "px");
+      $('address_card_' + user_id).setStyle("left: " + ((idx * 47) + 3) + "px");
       $('address_card_' + user_id).setStyle("top: " + (gravatar_v_offset - (card_height - 38)) + "px");
       $('address_card_close_button_' + user_id).observe('click', function() {
         $('address_card_close_button_' + user_id).stopObserving();
