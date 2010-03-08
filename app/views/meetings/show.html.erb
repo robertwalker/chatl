@@ -39,9 +39,9 @@
     <% else -%>
     <h3>Members who were there</h3>
     <% end -%>
-    <% @attendees.each do |attendee| -%>
-    <div id="gravatar_image_<%= attendee.user.id %>"
-         class="gravatar_image" onclick="showAddressCard(<%= attendee.user.id %>);">
+    <% @attendees.each_with_index do |attendee, idx| -%>
+    <div id="gravatar_image_<%= idx %>"
+         class="gravatar_image" onclick="showAddressCard(<%= attendee.user.id %>, <%= idx %>);">
       <%= image_tag attendee.user.gravatar_url,
           :alt => "#{attendee.user.full_name} avatar",
           :title => attendee.user.full_name %>
