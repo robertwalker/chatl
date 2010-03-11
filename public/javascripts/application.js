@@ -30,11 +30,11 @@ function showAddressCard(user_id, idx) {
   var card_top;
   var card_height;
 
-  new Ajax.Updater('gravatar_image_' + idx, '/users/' + user_id, {
+  new Ajax.Updater('attendee_image_' + idx, '/users/' + user_id, {
     method: "get",
     insertion: "before",
     onComplete: function() {
-      gravatar_offset = $('gravatar_image_' + idx).positionedOffset();
+      gravatar_offset = $('attendee_image_' + idx).positionedOffset();
       card_height = $('address_card_' + user_id).getHeight();
       card_left = (gravatar_offset.left + 3) + "px";
       card_top = (gravatar_offset.top - (card_height - 38)) + "px";

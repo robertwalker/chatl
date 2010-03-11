@@ -382,12 +382,19 @@ td {
 .gravatar_image {
 	margin-right: 2px;
 	margin-bottom: 2px;
+	float: left;
+}
+
+.attendee_image {
+	margin-right: 2px;
+	margin-bottom: 2px;
 	position: relative;
 	display: inline-block;
 	cursor: pointer;
 }
 
-.gravatar_image img {
+.gravatar_image img,
+.attendee_image img {
 	width: 40px;
 	height: 40px;
 	border: 1px solid gray;
