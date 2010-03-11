@@ -16,6 +16,20 @@ describe "/meetings/index.html.erb" do
         :details => "value for details"
       )
     ]
+
+    assigns[:past_meetings] = [
+      stub_model(Meeting,
+        :title => "value for title",
+        :venue_id => 1,
+        :details => "value for details"
+      ),
+      stub_model(Meeting,
+        :title => "value for title",
+        :venue_id => 1,
+        :details => "value for details"
+      )
+    ]
+
     assigns[:upcoming_meetings] = [
       stub_model(Meeting,
         :title => "value for title",
@@ -28,15 +42,6 @@ describe "/meetings/index.html.erb" do
         :details => "value for details"
       )
     ]
-  end
-
-  it "should render the empty state image when not meetings found" do
-    assigns[:meetings] = []
-    assigns[:upcoming_meetings] = []
-    render
-    response.should have_tag("img#blank_state[src=?][alt=?]",
-                             %r{/images/meeting_blank_state.jpg.*},
-                             "Meeting_blank_state")
   end
 
   it "should render 'Past Meetings' header" do
@@ -56,11 +61,14 @@ describe "/meetings/index.html.erb" do
   describe "with no meetings (the blank state)" do
     before(:each) do
       assigns[:meetings] = @meetings = []
+      assigns[:upcoming_meetings] = @upcoming_meetings = []
     end
 
     it "shows blank state image" do
       render
-      response.should have_tag("img#blank_state[src=?]", %r{/images/meeting_blank_state.jpg.*})
+      response.should have_tag("img#blank_state[src=?][alt=?]",
+                               %r{/images/meeting_blank_state.jpg.*},
+                               "Meeting_blank_state")
     end
   end
 

@@ -18,8 +18,10 @@ TEMPLATE
   has_many :users, :through => :attendees
   belongs_to :venue
 
-  named_scope :recent_past, lambda {
-    { :conditions => [ 'scheduled_at < ?', Time.now ], :order => "scheduled_at DESC", :limit => 6 }
+  named_scope :recent, { :order => "scheduled_at DESC", :limit => 12 }
+
+  named_scope :past, lambda {
+    { :conditions => [ 'scheduled_at < ?', Time.now ] }
   }
 
   named_scope :upcoming, lambda {

@@ -53,7 +53,7 @@
 </div>
 
 <!-- Navigation Controls -->
-<%= link_to 'Past Meetings', meetings_path %>
+<%= link_to 'Recent Meetings', meetings_path %>
 <% if @meeting.scheduled_at < Time.now %>
 | <%= link_to 'Next Scheduled Meeting', next_meeting_path %>
 <% end %>

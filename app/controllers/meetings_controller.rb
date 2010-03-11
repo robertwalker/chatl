@@ -1,15 +1,17 @@
 class MeetingsController < ApplicationController
   require_role "admin", :except => [ :index, :show, :next_scheduled ]
-  before_filter :load_upcoming, :only => [ :index, :next_scheduled ]
 
   # GET /meetings
   # GET /meetings.xml
   def index
-    @meetings = Meeting.recent_past
+    @meetings = Meeting.recent
+    @past_meetings = Meeting.recent.past
+    @upcoming_meetings = Meeting.upcoming
 
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @meetings }
+      format.atom
     end
   end
 
@@ -94,7 +96,8 @@ class MeetingsController < ApplicationController
   def next_scheduled
     # Set meetings to an empty array to handle blank state
     @meetings = []
-    meeting = @upcoming_meetings ? @upcoming_meetings.first : Meeting.upcoming.first
+    @upcoming_meetings = Meeting.upcoming
+    meeting = @upcoming_meetings.first
 
     respond_to do |format|
       if meeting
@@ -104,14 +107,6 @@ class MeetingsController < ApplicationController
         format.html { render :action => "index" }
         format.xml  { render :xml => [] }
       end
-    end
-  end
-
-  protected
-
-  def load_upcoming
-    if logged_in? && current_user.admin?
-      @upcoming_meetings = Meeting.upcoming
     end
   end
 end

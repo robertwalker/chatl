@@ -18,6 +18,12 @@ module MeetingsHelper
     end
   end
 
+  def feed_summary(meeting)
+    summary = "What: " + meeting.title
+    summary << "\nWhen: " + meeting.scheduled_at.strftime("%A, %B %d, %Y %I:%M %p")
+    summary << "\nWhere: " + meeting.venue.name
+  end
+
   protected
 
   def rsvp_state_style(rsvp)

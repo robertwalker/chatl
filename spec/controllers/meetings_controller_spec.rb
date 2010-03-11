@@ -10,10 +10,25 @@ describe MeetingsController do
   end
 
   describe "GET index" do
-    it "assigns recent past meetings as @meetings" do
-      Meeting.stub!(:recent_past).and_return([ mock_meeting ])
+    before(:each) {
+      Meeting.stub(:recent).and_return([ mock_meeting ])
+      Meeting.stub_chain(:recent, :past).and_return([ mock_meeting ])
+      Meeting.should_receive(:upcoming).and_return([ mock_meeting ])
+    }
+
+    it "assigns recent meetings as @meetings" do
       get :index
       assigns[:meetings].should == [ mock_meeting ]
+    end
+
+    it "assigns recent past meetings as @past_meetings" do
+      get :index
+      assigns[:past_meetings].should == [ mock_meeting ]
+    end
+
+    it "assigns upcoming meetings as @upcoming_meetings" do
+      get :index
+      assigns[:upcoming_meetings].should == [ mock_meeting ]
     end
   end
 

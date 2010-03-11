@@ -136,11 +136,15 @@ TEMPLATE
   end
 
   describe "named scopes" do
-    it "should have 'recent_past'" do
-      Meeting.should respond_to(:recent_past)
+    it "should provide 'recent' meetings" do
+      Meeting.should respond_to(:recent)
     end
 
-    it "should have 'upcoming'" do
+    it "should provide 'past' meetings" do
+      Meeting.should respond_to(:past)
+    end
+
+    it "should provide 'upcoming' meetings" do
       Meeting.should respond_to(:upcoming)
     end
   end

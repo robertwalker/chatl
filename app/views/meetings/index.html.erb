@@ -3,22 +3,23 @@
 <div id="meeting_blank_state">
   <%= image_tag "meeting_blank_state.jpg", :id => "blank_state" %>
 </div>
-<% else -%>
-
-<h1>Past Meetings</h1>
-<div style="border-top: 1px solid #aaa"></div>
-<%= render :partial => 'meetings', :object => @meetings %>
 <% end -%>
 
-<% if logged_in? && current_user.admin? && @upcoming_meetings.count > 0 -%>
+<% if @past_meetings.count > 0 -%>
+<h1>Past Meetings</h1>
+<div style="border-top: 1px solid #aaa"></div>
+<%= render :partial => 'meetings', :object => @past_meetings %>
 <br />
+<% end -%>
+
+<% if @upcoming_meetings.count > 0 -%>
 <h1>Upcoming Meetings</h1>
 <div style="border-top: 1px solid #aaa"></div>
 <%= render :partial => 'meetings', :object => @upcoming_meetings %>
 <% end -%>
 
 <% if @meetings.count == 0 -%>
-<%= link_to 'Past Meetings', meetings_path %>
+<%= link_to 'Recent Meetings', meetings_path %>
 <% else -%>
 <%= link_to 'Next Scheduled Meeting', next_meeting_path %>
 <% end -%>

@@ -4,12 +4,9 @@
   <p>For more information please visit <%= link_to_function "cocoaheads.org", "window.open('http://cocoaheads.org/')" %>.</p>
   <p>Announcements, meeting invitations and venue details are posted to the Atlanta chapter mailing list. Please contact the <a href="mailto:organizer@cocoaheadsatlanta.org">group organizer</a> if you would like to receive announcements and meeting invitations.</p>
   <p>Follow us on Twitter:<br /><%= link_to_function "CHAtl", "window.open('http://www.twitter.com/CHAtl')" %></p>
-  <p>CocoaHeads Atlanta Calendar:<br /><%= link_to "Subscribe", "webcal://www.cocoaheads.org//us/AtlantaGeorgia/events.ics" %></p>
-  <!-- TODO: Implement the Gravatar properly and then remove this -->
-  <% if false && current_user -%>
   <p>
-    <%= image_tag current_user.gravatar_url, :size => "48x48" %> 
-    <%= "Administrator" if current_user.admin? %>
+    <%= link_to(image_tag("feed_icon.png", :style => "vertical-align: bottom;"), meetings_url(:atom)) %>
+    <%= link_to "Subscribe", meetings_url(:atom) %> to our ATOM feed.
   </p>
-  <% end -%>
+  <p>CocoaHeads Atlanta Calendar:<br /><%= link_to "Subscribe", "webcal://www.cocoaheads.org//us/AtlantaGeorgia/events.ics" %></p>
 </div>
