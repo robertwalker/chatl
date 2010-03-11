@@ -30,6 +30,10 @@ function showAddressCard(user_id, idx) {
   var card_top;
   var card_height;
 
+  // Remove all address cards
+  removeAllAddressCards();
+
+  // Add the address card to selected attendee image
   new Ajax.Updater('attendee_image_' + idx, '/users/' + user_id, {
     method: "get",
     insertion: "before",
@@ -40,10 +44,16 @@ function showAddressCard(user_id, idx) {
       card_top = (gravatar_offset.top - (card_height - 38)) + "px";
       $('address_card_' + user_id).setStyle("left: " + card_left);
       $('address_card_' + user_id).setStyle("top: " + card_top);
-      $('address_card_close_button_' + user_id).observe('click', function() {
-        $('address_card_close_button_' + user_id).stopObserving();
+      $('address_card_close_hit_region_' + user_id).observe('click', function() {
+        $('address_card_close_hit_region_' + user_id).stopObserving();
         $('address_card_' + user_id).remove();
       });
     }
+  });
+}
+
+function removeAllAddressCards() {
+  $$('.address_card').each(function(card) {
+    card.remove();
   });
 }

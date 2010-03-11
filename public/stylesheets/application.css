@@ -557,6 +557,12 @@ td {
 	-moz-border-radius: 6px;
 }
 
+.address_card_close_hit_region {
+	width: 50px;
+	height: 30px;
+	float: right;
+}
+
 .address_card_close_button {
 	font-weight: bold;
 	font-size: x-small;
