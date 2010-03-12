@@ -96,6 +96,7 @@ class MeetingsController < ApplicationController
   def next_scheduled
     # Set meetings to an empty array to handle blank state
     @meetings = []
+    @past_meetings = []
     @upcoming_meetings = Meeting.upcoming
     meeting = @upcoming_meetings.first
 

@@ -59,6 +59,18 @@ describe MeetingsController do
   end
 
   describe "GET next_scheduled" do
+    it "assigns recent meetings to @meetings" do
+      Meeting.stub!(:upcoming).and_return([ mock_meeting ])
+      get :next_scheduled
+      assigns[:meetings].should == []
+    end
+
+    it "assigns recent past meetings to @past_meetings" do
+      Meeting.stub!(:upcoming).and_return([ mock_meeting ])
+      get :next_scheduled
+      assigns[:past_meetings].should == []
+    end
+
     it "redirects to show page for next upcoming meeting" do
       Meeting.stub!(:upcoming).and_return([ mock_meeting ])
       mock_meeting.stub!(:attendee_with_user).and_return(nil)
