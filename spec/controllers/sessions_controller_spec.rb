@@ -6,7 +6,7 @@ describe SessionsController do
   before do
     @user = mock_user
     @login_params = { :login => 'quentin', :password => 'test' }
-    User.stub!(:authenticate).with(@login_params[:login], @login_params[:password]).and_return(@user)
+    User.stub!(:authenticate).with(nil, @login_params[:login], @login_params[:password]).and_return(@user)
   end
 
   def do_create
@@ -135,7 +135,7 @@ describe SessionsController do
             it "updates user.logged_in_at" do
               a_week_ago = Time.now - 1.week
               returning_user = Factory(:user, :logged_in_at => a_week_ago)
-              User.should_receive(:authenticate).with('a_user', 'monkey').and_return(returning_user)
+              User.should_receive(:authenticate).with(nil, 'a_user', 'monkey').and_return(returning_user)
               post :create, { :login => 'a_user', :password => 'monkey' }
               returning_user.logged_in_at.should be_close(Time.now, 2.seconds)
             end
@@ -147,7 +147,7 @@ describe SessionsController do
 
   describe "on failed login" do
     before do
-      User.should_receive(:authenticate).with(anything(), anything()).and_return(nil)
+      User.should_receive(:authenticate).with(nil, anything(), anything()).and_return(nil)
       login_as :quentin
     end
 

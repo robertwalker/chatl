@@ -49,12 +49,12 @@ describe UsersController do
 
   describe 'activation' do
     it 'activates user' do
-      User.authenticate('aaron', 'monkey').should be_nil
+      User.authenticate(nil, 'aaron', 'monkey').should be_nil
       get :activate, :activation_code => users(:aaron).activation_code
       response.should redirect_to('/login')
       flash[:notice].should_not be_nil
       flash[:error ].should     be_nil
-      User.authenticate('aaron', 'monkey').should == users(:aaron)
+      User.authenticate(nil, 'aaron', 'monkey').should == users(:aaron)
     end
 
     it 'does not activate user without key' do

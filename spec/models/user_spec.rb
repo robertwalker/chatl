@@ -250,12 +250,12 @@ describe User do
 
   it 'resets password' do
     users(:quentin).update_attributes(:password => 'new password', :password_confirmation => 'new password')
-    User.authenticate('quentin', 'new password').should == users(:quentin)
+    User.authenticate(nil, 'quentin', 'new password').should == users(:quentin)
   end
 
   it 'does not rehash password' do
     users(:quentin).update_attributes(:login => 'quentin2')
-    User.authenticate('quentin2', 'monkey').should == users(:quentin)
+    User.authenticate(nil, 'quentin2', 'monkey').should == users(:quentin)
   end
 
   #
@@ -263,28 +263,28 @@ describe User do
   #
 
   it 'authenticates user' do
-    User.authenticate('quentin', 'monkey').should == users(:quentin)
+    User.authenticate(nil, 'quentin', 'monkey').should == users(:quentin)
   end
 
   it "doesn't authenticate user with bad password" do
-    User.authenticate('quentin', 'invalid_password').should be_nil
+    User.authenticate(nil, 'quentin', 'invalid_password').should be_nil
   end
 
  if REST_AUTH_SITE_KEY.blank?
    # old-school passwords
    it "authenticates a user against a hard-coded old-style password" do
-     User.authenticate('old_password_holder', 'test').should == users(:old_password_holder)
+     User.authenticate(nil, 'old_password_holder', 'test').should == users(:old_password_holder)
    end
  else
    it "doesn't authenticate a user against a hard-coded old-style password" do
-     User.authenticate('old_password_holder', 'test').should be_nil
+     User.authenticate(nil, 'old_password_holder', 'test').should be_nil
    end
 
    # New installs should bump this up and set REST_AUTH_DIGEST_STRETCHES to give a 10ms encrypt time or so
    desired_encryption_expensiveness_ms = 0.1
    it "takes longer than #{desired_encryption_expensiveness_ms}ms to encrypt a password" do
      test_reps = 100
-     start_time = Time.now; test_reps.times{ User.authenticate('quentin', 'monkey'+rand.to_s) }; end_time   = Time.now
+     start_time = Time.now; test_reps.times{ User.authenticate(nil, 'quentin', 'monkey'+rand.to_s) }; end_time   = Time.now
      auth_time_ms = 1000 * (end_time - start_time)/test_reps
      auth_time_ms.should > desired_encryption_expensiveness_ms
    end
@@ -340,7 +340,7 @@ describe User do
 
   it 'does not authenticate suspended user' do
     users(:quentin).suspend!
-    User.authenticate('quentin', 'monkey').should_not == users(:quentin)
+    User.authenticate(nil, 'quentin', 'monkey').should_not == users(:quentin)
   end
 
   it 'deletes user' do

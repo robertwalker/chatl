@@ -75,10 +75,14 @@ class User < ActiveRecord::Base
   # We really need a Dispatch Chain here or something.
   # This will also let us return a human error message.
   #
-  def self.authenticate(login, password)
-    return nil if login.blank? || password.blank?
-    u = find_in_state :first, :active, :conditions => {:login => login.downcase} # need to get the salt
-    u && u.authenticated?(password) ? u : nil
+  def self.authenticate(identity_url, login, password)
+    return nil if identity_url.blank? && (login.blank? || password.blank?)
+    if identity_url.present?
+      u = find_in_state :first, :active, :conditions => { :identity_url => identity_url }
+    else
+      u = find_in_state :first, :active, :conditions => {:login => login.downcase} # need to get the salt
+      u && u.authenticated?(password) ? u : nil
+    end
   end
 
   def login=(value)

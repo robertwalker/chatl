@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     if using_open_id?
       open_id_authentication
     else
-      user = User.authenticate(params[:login], params[:password])
+      user = User.authenticate(nil, params[:login], params[:password])
       if user
         # Protects against session fixation attacks, causes request forgery
         # protection if user resubmits an earlier form using back
@@ -39,8 +39,12 @@ class SessionsController < ApplicationController
   protected
   def open_id_authentication
     authenticate_with_open_id do |result, identity_url|
-      if result.successful? && @current_user = User.find_by_identity_url(identity_url)
-        successful_login
+      if result.successful?
+        if @current_user = User.authenticate(identity_url, nil, nil)
+          successful_login
+        else
+          failed_login "Sorry your account is not currently active. You should have received an activation email. If you did not receive one please contact the group orgainizer (Also check your SPAM mailbox in case it got flagged)."
+        end
       else
         failed_login result.message
       end
@@ -55,7 +59,7 @@ class SessionsController < ApplicationController
   end
 
   def failed_login(message)
-    flash[:error] = message || "Please sign up before attempting to log in!"
+    flash[:error] = message || "Please sign up before attempting to log in."
     if message
       redirect_to new_session_url
     else
