@@ -35,9 +35,9 @@
   <% if @attendees.count > 0 -%>
   <div id="meeting_attendees">
     <% if @meeting.scheduled_at > Time.now -%>
-    <h3>Members planning to attend</h3>
+    <h2>Members planning to attend</h2>
     <% else -%>
-    <h3>Members who were there</h3>
+    <h2>Members who were there</h2>
     <% end -%>
     <% @attendees.each_with_index do |attendee, idx| -%>
     <div id="attendee_image_<%= idx %>"
