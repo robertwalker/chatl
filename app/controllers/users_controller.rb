@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   require_role "admin", :only => [:suspend, :unsuspend, :destroy, :purge]
   before_filter :find_user, :only => [:suspend, :unsuspend, :destroy, :purge]
-  before_filter :login_required, :only => :index
+  before_filter :login_required, :only => [ :index, :edit, :update ]
 
   # GET /users
   # GET /users.xml
@@ -23,18 +23,29 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /meetings/1
-  # GET /meetings/1.xml
+  # GET /users/1
+  # GET /users/1.xml
   def show
     @user = User.find(params[:id])
     render :partial => "address_card", :locals => { :user => @user }
   end
 
-  # render new.rhtml
+  # GET /users/new
   def new
     @user = User.new
   end
  
+  # GET /users/1
+  def edit
+    @user = User.find(params[:id])
+
+    if @user != current_user
+      flash[:error] = "Sorry, you may only edit your own profile."
+      redirect_to root_url
+    end
+  end
+
+  # POST /users
   def create
     logout_keeping_session!
     openid_identifier = params[:openid_identifier]
@@ -52,6 +63,17 @@ class UsersController < ApplicationController
         flash[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact the group organizer (link is in the sidebar)."
         render :action => 'new'
       end
+    end
+  end
+
+  # PUT /users/1
+  def update
+    @user = User.find(params[:id])
+
+    if @user.update_attributes(params[:user])
+      redirect_to users_url
+    else
+      render :action => "edit"
     end
   end
 

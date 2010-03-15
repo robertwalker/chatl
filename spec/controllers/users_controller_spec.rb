@@ -3,10 +3,88 @@ require File.dirname(__FILE__) + '/../spec_helper'
 describe UsersController do
   fixtures :users
 
+  def mock_user(stubs={})
+    @mock_user ||= mock_model(User, stubs)
+  end
+
   describe 'not logged in' do
     it 'denies access to #index' do
       get :index
       response.should redirect_to(new_session_url)
+    end
+
+    it 'denies access to #edit' do
+      get :edit, :id => "37"
+      response.should redirect_to(new_session_url)
+    end
+  end
+
+  describe "authenticated" do
+    before(:each) do
+      @user = Factory(:user)
+      login_as(@user)
+    end
+
+    describe "GET edit" do
+      it "assigns the requested user as @user" do
+        get :edit, :id => @user.id.to_s
+        assigns[:user].should == @user
+      end
+
+      it "denies access to other users other than 'current_user'" do
+        steve = Factory(:steve)
+        get :edit, :id => steve.id.to_s
+        flash[:error].should == "Sorry, you may only edit your own profile."
+        response.should redirect_to(root_url)
+      end
+    end
+
+    describe "PUT update" do
+      before(:each) do
+        User.stub!(:find).with(:first,
+                               { :conditions => { :id => @user.id}}).
+                               and_return(@user)
+      end
+
+      describe "with valid params" do
+        it "assigns the requested user as @user" do
+          User.stub!(:find).with("37").and_return(mock_user(:update_attributes => true))
+          put :update, :id => "37"
+          assigns[:user].should equal(mock_user)
+        end
+
+        it "updates the requested user" do
+          User.should_receive(:find).with("37").and_return(mock_user)
+          mock_user.should_receive(:update_attributes).with({'these' => 'params'})
+          put :update, :id => "37", :user => {'these' => 'params'}
+        end
+
+        it "redirects to the users index page" do
+          User.stub!(:find).with("37").and_return(mock_user(:update_attributes => true))
+          put :update, :id => "37"
+          response.should redirect_to(users_url)
+        end
+      end
+
+      describe "with invalid params" do
+        it "assigns the requested user as @user" do
+          User.stub!(:find).with("37").and_return(mock_user(:update_attributes => false))
+          put :update, :id => "37"
+          assigns[:user].should equal(mock_user)
+        end
+
+        it "updates the requested user" do
+          User.should_receive(:find).with("37").and_return(mock_user)
+          mock_user.should_receive(:update_attributes).with({'these' => 'params'})
+          put :update, :id => "37", :user => {:these => 'params'}
+        end
+
+        it "re-renders the 'edit' template" do
+          User.stub!(:find).with("37").and_return(mock_user(:update_attributes => false))
+          put :update, :id => "37"
+          response.should render_template('edit')
+        end
+      end
     end
   end
 

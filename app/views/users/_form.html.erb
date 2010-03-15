@@ -1,0 +1,32 @@
+<% form_for user do |f| -%>
+  <%= error_messages_for :user %>
+
+  <div class="form_field">
+    <div><%= label_tag 'openid_identifier', 'OpenID URL' %></div>
+    <div><%= text_field_tag "openid_identifier", user.identity_url, :size => 50 %></div>
+  </div>
+
+  <div class="form_field">
+    <div><%= label_tag 'user_email', "Email" %></div>
+    <div><%= f.text_field :email %></div>
+  </div>
+
+  <div class="form_field">
+    <div><%= label_tag 'user_first_name', "First Name" %></div>
+    <div><%= f.text_field :first_name %></div>
+  </div>
+
+  <div class="form_field">
+    <div><%= label_tag 'user_last_name', "Last Name" %></div>
+    <div><%= f.text_field :last_name %></div>
+  </div>
+
+  <div class="form_field">
+    <%= f.check_box :subscribe_to_chatter %>&nbsp;
+    <%= label_tag "user_subscribe_to_chatter", "I would like to join the group mailing list" %>
+  </div>
+
+  <div class="form_field">
+    <%= submit_tag submit_label %>
+  </div>
+<% end -%>

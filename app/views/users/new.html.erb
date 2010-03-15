@@ -6,8 +6,6 @@
 <h1>Sign up as a new member</h1>
 <% @user.password = @user.password_confirmation = nil %>
 
-<%= error_messages_for :user %>
-
 <h3>Welcome to CocoaHeads: Atlanta</h3>
 <p>Registration for this site requires the use of an <a href="http://openid.net/" title="OpenID Foundation website">OpenID</a> provider.</p>
 <p>It is likely you already have one. OpenID services are provided for Google accounts (including gmail accounts), Yahoo accounts, AOL/AIM accounts and many other providers. Several of the most common providers are listed below. If you already use one of these then clicking the link will assist in filling out your OpenID identity URL. If you use a provider not listed, then enter the unique identity URL supplied by your provider.</p>
@@ -20,35 +18,7 @@
 <p class="emphasize">Select your OpenID provider or enter your identity URL below:</p>
 <%= open_id_link_bar(:signup) %><br />
 
-<% form_for :user, :url => users_path do |f| -%>
-  <div class="form_field">
-    <div><%= label_tag 'openid_identifier', 'OpenID URL' %></div>
-    <div><%= text_field_tag "openid_identifier", nil, :size => 50 %></div>
-  </div>
-
-  <div class="form_field">
-    <div><%= label_tag 'user_email', "Email" %></div>
-    <div><%= f.text_field :email %></div>
-  </div>
-
-  <div class="form_field">
-    <div><%= label_tag 'user_first_name', "First Name" %></div>
-    <div><%= f.text_field :first_name %></div>
-  </div>
-
-  <div class="form_field">
-    <div><%= label_tag 'user_last_name', "Last Name" %></div>
-    <div><%= f.text_field :last_name %></div>
-  </div>
-
-  <div class="form_field">
-    <%= f.check_box :subscribe_to_chatter %>&nbsp;
-    <%= label_tag "user_subscribe_to_chatter", "I would like to join the group mailing list" %>
-  </div>
-
-  <div class="form_field">
-    <%= submit_tag 'Sign up' %>
-  </div>
-<% end -%>
+<%= render :partial => 'form',
+           :locals => { :user => @user, :submit_label => "Sign up" } %>
 
 <p>Add your profile picture using <a href="http://gravatar.com/">Gravatar &mdash; Globally Recognized Avatar</a>.</p>
