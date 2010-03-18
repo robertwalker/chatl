@@ -68,10 +68,12 @@ class UsersController < ApplicationController
 
   # PUT /users/1
   def update
+    logout_keeping_session!
     @user = User.find(params[:id])
 
     if @user.update_attributes(params[:user])
-      redirect_to users_url
+      flash[:notice] = "Your profile was successfully updated. Please log in again to verify your changes. If you have any problems please contact the group orgainizer for assistance (link is in sidebar)."
+      redirect_to login_url
     else
       render :action => "edit"
     end

@@ -62,7 +62,8 @@ describe UsersController do
         it "redirects to the users index page" do
           User.stub!(:find).with("37").and_return(mock_user(:update_attributes => true))
           put :update, :id => "37"
-          response.should redirect_to(users_url)
+          flash[:notice].should == "Your profile was successfully updated. Please log in again to verify your changes. If you have any problems please contact the group orgainizer for assistance (link is in sidebar)."
+          response.should redirect_to(login_url)
         end
       end
 
