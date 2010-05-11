@@ -231,7 +231,7 @@ td {
 	color: #c00;
 }
 
-#attention {
+.attention {
 	color: #a00;
 	margin-bottom: 0.75em;
 	padding: 4px;

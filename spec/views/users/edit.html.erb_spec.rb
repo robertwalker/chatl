@@ -25,7 +25,7 @@ describe "/users/edit.html.erb" do
   it "renders the edit user form" do
     render
     response.should have_tag("form[action=#{user_path(@user)}][method=post]") do
-      with_tag('input#openid_identifier[name=?][size=?]', "openid_identifier", "50")
+      # with_tag('input#openid_identifier[name=?][size=?]', "openid_identifier", "50")
       with_tag('input#user_email[name=?]', "user[email]")
       with_tag('input#user_first_name[name=?]', "user[first_name]")
       with_tag('input#user_last_name[name=?]', "user[last_name]")
