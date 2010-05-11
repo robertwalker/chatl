@@ -1,11 +1,16 @@
 <% form_for user do |f| -%>
   <%= error_messages_for :user %>
 
+  <% unless user.new_record? %>
   <div class="attention">Changing OpenID URL is not yet supported. I'm trying to get back to fixing this. In the mean time if you need to change your OpenID URL please contact the group organizer (see sidebar for email link).</div>
-  <!-- <div class="form_field">
+  <% end %>
+
+  <% if user.new_record? %>
+  <div class="form_field">
     <div><%= label_tag 'openid_identifier', 'OpenID URL' %></div>
     <div><%= text_field_tag "openid_identifier", user.identity_url, :size => 50 %></div>
-  </div> -->
+  </div>
+  <% end %>
 
   <div class="form_field">
     <div><%= label_tag 'user_email', "Email" %></div>
