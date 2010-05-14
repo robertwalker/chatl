@@ -16,7 +16,7 @@
     <% end -%>
   </div>
   <div class="data_file_row_icon">
-    <img src="<%= data_file_icon_src(data_file.content_type) %>" />
+    <%= image_tag data_file_icon_src(data_file.content_type) %>
   </div>
   <div class="data_file_row_content">
     <div class="data_file_row_title"><%=h data_file.comment %></div>
